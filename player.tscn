@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://blcrlxm2w0jt4"]
+
+[ext_resource type="Script" path="res://Player.cs" id="1_60gwu"]
+[ext_resource type="Texture2D" uid="uid://b6lbjk2l4kvej" path="res://player.png" id="2_71cxw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bopq3"]
+radius = 9.48683
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dypxp"]
+atlas = ExtResource("2_71cxw")
+region = Rect2(0, 0, 21, 27)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_moxy5"]
+animations = [{
+"frames": [SubResource("AtlasTexture_dypxp")],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="player" type="Area2D"]
+script = ExtResource("1_60gwu")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bopq3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+frames = SubResource("SpriteFrames_moxy5")
