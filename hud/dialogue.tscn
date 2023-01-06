@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://byc261xcsjlgc"]
+
+[ext_resource type="Script" path="res://hud/Dialogue.cs" id="1_l5f6k"]
+[ext_resource type="Texture2D" uid="uid://b6u2yk0q0yf76" path="res://hud/ok_button.png" id="2_s6ccp"]
+[ext_resource type="Texture2D" uid="uid://g2733dhcw5u8" path="res://hud/ok_button_pressed.png" id="3_ysnq3"]
+[ext_resource type="Texture2D" uid="uid://db241fck74mjw" path="res://hud/ok_button_hover.png" id="4_hrkew"]
+
+[node name="Dialogue" type="Control" node_paths=PackedStringArray("label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l5f6k")
+label = NodePath("Background/Label")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -318.0
+offset_top = -96.0
+offset_right = 315.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.564706, 0.556863, 0, 1)
+
+[node name="Label" type="Label" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_right = -107.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+vertical_alignment = 1
+clip_text = true
+
+[node name="ButtonOk" type="TextureButton" parent="Background"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = -35.0
+offset_right = -11.0
+offset_bottom = 35.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("2_s6ccp")
+texture_pressed = ExtResource("3_ysnq3")
+texture_hover = ExtResource("4_hrkew")
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="pressed" from="Background/ButtonOk" to="." method="on_ok_button_pressed"]
