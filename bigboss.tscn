@@ -1,23 +1,69 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxnphfjbugtqj"]
+[gd_scene load_steps=16 format=3 uid="uid://dxnphfjbugtqj"]
 
 [ext_resource type="Script" path="res://BigBoss.cs" id="1_2bfig"]
-[ext_resource type="Texture2D" uid="uid://djeiabt46sq0q" path="res://placeholder.png" id="1_tg2bj"]
+[ext_resource type="Texture2D" uid="uid://00ba8pqfperf" path="res://bigboss/ruohonleikkuriBATTLE.png" id="2_uxbe0"]
+[ext_resource type="Texture2D" uid="uid://ckglbw20pa857" path="res://bigboss/ruohonleikkuriIdle.png" id="3_y1rjx"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rnnht"]
-radius = 16.0
-height = 114.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ydpkh"]
-atlas = ExtResource("1_tg2bj")
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0l8m"]
+atlas = ExtResource("2_uxbe0")
 region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjhlp"]
+atlas = ExtResource("2_uxbe0")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfdcf"]
+atlas = ExtResource("2_uxbe0")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jria2"]
+atlas = ExtResource("2_uxbe0")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jwe1"]
+atlas = ExtResource("2_uxbe0")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vny80"]
+atlas = ExtResource("3_y1rjx")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dgpn"]
+atlas = ExtResource("3_y1rjx")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7b82"]
+atlas = ExtResource("3_y1rjx")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnq2c"]
+atlas = ExtResource("3_y1rjx")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sr82s"]
+atlas = ExtResource("3_y1rjx")
+region = Rect2(256, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7lvye"]
 animations = [{
-"frames": [SubResource("AtlasTexture_ydpkh")],
+"frames": [SubResource("AtlasTexture_l0l8m"), SubResource("AtlasTexture_qjhlp"), SubResource("AtlasTexture_bfdcf"), SubResource("AtlasTexture_jria2"), SubResource("AtlasTexture_6jwe1")],
 "loop": true,
-"name": &"default",
+"name": &"charge",
+"speed": 7.0
+}, {
+"frames": [SubResource("AtlasTexture_vny80"), SubResource("AtlasTexture_2dgpn"), SubResource("AtlasTexture_f7b82"), SubResource("AtlasTexture_vnq2c")],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [SubResource("AtlasTexture_sr82s")],
+"loop": true,
+"name": &"seek",
 "speed": 5.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5j5mm"]
+radius = 29.0172
 
 [node name="BigBoss" type="Area2D"]
 z_index = 1
@@ -25,9 +71,12 @@ collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_2bfig")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_rnnht")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 frames = SubResource("SpriteFrames_7lvye")
+animation = &"seek"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-10, 18)
+shape = SubResource("CircleShape2D_5j5mm")

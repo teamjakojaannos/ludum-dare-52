@@ -13,11 +13,14 @@ public partial class BigBoss : Area2D {
     private Path2D path;
     private PathFollow2D follow;
     private Timer dash_attack_timer;
+    private AnimatedSprite2D sprite;
 
     private State state;
     private Vector2 target_position = Vector2.Zero;
 
     private float speed_mult = 1.0f;
+
+    public int health = 5;
 
     enum State {
         FollowPath,
@@ -32,6 +35,8 @@ public partial class BigBoss : Area2D {
         follow = GetParent().GetNode<PathFollow2D>("BossPath/Follow");
         path = GetParent().GetNode<Path2D>("BossPath");
 
+        sprite = GetNode<AnimatedSprite2D>("Sprite");
+
         BodyEntered += HandleCollision;
 
         dash_attack_timer = new Timer();
@@ -44,6 +49,9 @@ public partial class BigBoss : Area2D {
         state = State.FollowPath;
         target_position = Vector2.Zero;
         speed_mult = 1.0f;
+
+        sprite.Animation = "idle";
+        sprite.Play();
     }
 
     private void HandleCollision(Node2D other) {
@@ -53,7 +61,10 @@ public partial class BigBoss : Area2D {
             explodingRock.CallDeferred(new StringName("Explode"));
 
             Blink(10, 0.1f);
+            health--;
             state = State.DramaticPause;
+
+            sprite.Animation = "idle";
 
             GetTree().CreateTimer(4.0f + 1.5f, false).Timeout += () => {
                 state = State.Retreat;
@@ -84,9 +95,14 @@ public partial class BigBoss : Area2D {
         // Dramatic pause
         GetTree().CreateTimer(0.5f, false).Timeout += () => {
             state = State.Seek;
+            sprite.Animation = "seek";
+            sprite.Stop();
 
             // Initiate charge
             GetTree().CreateTimer(1.5f, false).Timeout += () => {
+                sprite.Animation = "charge";
+                sprite.Play();
+
                 state = State.Charge;
                 speed_mult = 1.0f;
 
@@ -114,10 +130,15 @@ public partial class BigBoss : Area2D {
                     Position += Vector2.Left * (DashSpeed * speed_mult) * (float)delta;
                 } else {
                     state = State.DramaticPause;
+                    sprite.Animation = "idle";
+                    sprite.Stop();
 
                     // Start retreat
                     GetTree().CreateTimer(0.5f, false).Timeout += () => {
                         state = State.Retreat;
+
+                        sprite.Animation = "seek";
+                        sprite.Play();
                     };
                 }
                 break;
@@ -130,6 +151,9 @@ public partial class BigBoss : Area2D {
                     target_position = Vector2.Zero;
                     state = State.FollowPath;
                     speed_mult = 1.0f;
+
+                    sprite.Animation = "idle";
+                    sprite.Play();
                 }
                 break;
             case State.DramaticPause:
