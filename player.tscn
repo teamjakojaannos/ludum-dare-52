@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://blcrlxm2w0jt4"]
+[gd_scene load_steps=18 format=3 uid="uid://blcrlxm2w0jt4"]
 
 [ext_resource type="Script" path="res://Player.cs" id="1_60gwu"]
 [ext_resource type="Texture2D" uid="uid://b6lbjk2l4kvej" path="res://player.png" id="2_71cxw"]
 [ext_resource type="PackedScene" uid="uid://d1xynel1afh3v" path="res://particles/poof.tscn" id="3_ipw1t"]
+[ext_resource type="Texture2D" uid="uid://dic1apnoc0srt" path="res://characters/tomatosidewaywalk.png" id="3_jj3j1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bopq3"]
 radius = 11.0
@@ -11,12 +12,49 @@ radius = 11.0
 atlas = ExtResource("2_71cxw")
 region = Rect2(0, 0, 21, 27)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsdbf"]
+atlas = ExtResource("3_jj3j1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fils5"]
+atlas = ExtResource("3_jj3j1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tm3e1"]
+atlas = ExtResource("3_jj3j1")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxh7r"]
+atlas = ExtResource("3_jj3j1")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e0cf"]
+atlas = ExtResource("3_jj3j1")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftxu8"]
+atlas = ExtResource("3_jj3j1")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kdll"]
+atlas = ExtResource("3_jj3j1")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ed1cs"]
+atlas = ExtResource("3_jj3j1")
+region = Rect2(224, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_moxy5"]
 animations = [{
 "frames": [SubResource("AtlasTexture_dypxp")],
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_bsdbf"), SubResource("AtlasTexture_fils5"), SubResource("AtlasTexture_tm3e1"), SubResource("AtlasTexture_cxh7r"), SubResource("AtlasTexture_6e0cf"), SubResource("AtlasTexture_ftxu8"), SubResource("AtlasTexture_8kdll"), SubResource("AtlasTexture_ed1cs")],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
 }]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7xhh2"]
@@ -42,9 +80,10 @@ metadata/_edit_lock_ = true
 position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_bopq3")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 frames = SubResource("SpriteFrames_moxy5")
+playing = true
 
 [node name="DashSweat" type="GPUParticles2D" parent="."]
 emitting = false

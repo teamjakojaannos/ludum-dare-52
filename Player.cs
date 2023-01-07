@@ -31,10 +31,15 @@ public partial class Player : CharacterBody2D {
     private GPUParticles2D DashSweat;
     private GPUParticles2D DashPoof;
 
+    private AnimatedSprite2D sprite;
+
     private bool is_dead;
 
     public override void _Ready() {
         GetNode<Area2D>("Hitbox").AreaEntered += HandleCollision;
+
+        sprite = GetNode<AnimatedSprite2D>("Sprite");
+        sprite.Animation = "default";
 
         dash_cooldown_timer = new Timer();
         dash_cooldown_timer.WaitTime = DashCooldown;
@@ -90,9 +95,15 @@ public partial class Player : CharacterBody2D {
     public override void _Process(double delta) {
         if (is_dead) {
             RotationDegrees = -90.0f;
+            sprite.Animation = "default";
+            sprite.Stop();
             return;
         } else {
             RotationDegrees = 0.0f;
+
+            if (!sprite.Playing) {
+                sprite.Play();
+            }
         }
 
         var input_direction = is_dashing
@@ -128,5 +139,13 @@ public partial class Player : CharacterBody2D {
 
         Velocity = velocity;
         MoveAndSlide();
+
+        if (Velocity.LengthSquared() > 0.01f) {
+            sprite.Animation = "walk";
+            sprite.FlipH = Velocity.x < 0.0f;
+        } else {
+            sprite.Animation = "default";
+            sprite.FlipH = false;
+        }
     }
 }
