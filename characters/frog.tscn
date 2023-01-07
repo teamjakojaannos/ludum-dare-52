@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://wu5v701tnf8f"]
+[gd_scene load_steps=20 format=3 uid="uid://wu5v701tnf8f"]
 
 [ext_resource type="Script" path="res://characters/Frog.cs" id="1_i3jdb"]
 [ext_resource type="Texture2D" uid="uid://d2sjrqjiwaspk" path="res://characters/frog_tongue_1.png" id="2_6yfrh"]
@@ -8,9 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://cumceglk6j8mk" path="res://characters/frog_tongue_3.png" id="4_k13gj"]
 [ext_resource type="Texture2D" uid="uid://dj7m2w5axaaxr" path="res://characters/frog_tongue_4.png" id="5_4q4o5"]
 [ext_resource type="Texture2D" uid="uid://c01kjb1lvbwhn" path="res://characters/frog_idle_1.png" id="8_2nxd6"]
+[ext_resource type="Texture2D" uid="uid://bmna1lt5oel51" path="res://characters/frog_chew_3.png" id="8_ti1b4"]
 [ext_resource type="Texture2D" uid="uid://c5u7ihank6as6" path="res://characters/frog_idle_2.png" id="9_2hfii"]
+[ext_resource type="Texture2D" uid="uid://citag6hywgvl" path="res://characters/frog_chew_4.png" id="9_53k1s"]
 [ext_resource type="Texture2D" uid="uid://ck3t511ggwvjk" path="res://characters/frog_idle_3.png" id="10_65god"]
 [ext_resource type="Texture2D" uid="uid://b4dwl1ao4cd0t" path="res://characters/frog_sit_1.png" id="10_dhbrq"]
+[ext_resource type="Texture2D" uid="uid://xgsp8ob4jbj4" path="res://characters/frog_chew_5.png" id="10_qmltf"]
 [ext_resource type="Texture2D" uid="uid://bd3g4ime08s35" path="res://characters/frog_sit_2.png" id="11_x6dqv"]
 [ext_resource type="Texture2D" uid="uid://dl05bhg3a6ts4" path="res://characters/frog_sit_3.png" id="12_vr13y"]
 
@@ -21,7 +24,7 @@ animations = [{
 "name": &"attacking",
 "speed": 5.0
 }, {
-"frames": [ExtResource("2_jik5x"), ExtResource("3_tbvby")],
+"frames": [ExtResource("2_jik5x"), ExtResource("3_tbvby"), ExtResource("2_jik5x"), ExtResource("3_tbvby"), ExtResource("8_ti1b4"), ExtResource("9_53k1s"), ExtResource("10_qmltf")],
 "loop": true,
 "name": &"chewing",
 "speed": 5.0
