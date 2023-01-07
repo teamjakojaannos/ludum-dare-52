@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://cddrio631ra6n"]
+
+[ext_resource type="Texture2D" uid="uid://bsxsfkyi3dm7j" path="res://enemies/fly/fly.png" id="1_55apf"]
+[ext_resource type="Script" path="res://enemies/fly/Fly.cs" id="1_usewm"]
+[ext_resource type="Texture2D" uid="uid://dm2x37rocc0q" path="res://enemies/fly/fly_2.png" id="2_2oq1b"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ehqq1"]
+animations = [{
+"frames": [ExtResource("1_55apf"), ExtResource("2_2oq1b")],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sym4n"]
+radius = 3.1566
+height = 18.0
+
+[sub_resource type="Curve2D" id="Curve2D_xucqe"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23, -13, 0, 0, 0, 0, 40, 0, 0, 0, 0, 0, 25, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -18, -13, 0, 0, 0, 0, -33, 1, 0, 0, 0, 0, -15, 17, 0, 0, 0, 0, 0, 0)
+}
+point_count = 9
+
+[node name="Fly" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_usewm")
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+frames = SubResource("SpriteFrames_ehqq1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 1)
+rotation = 1.8326
+shape = SubResource("CapsuleShape2D_sym4n")
+
+[node name="Path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_xucqe")
+
+[node name="Follow" type="PathFollow2D" parent="Path"]
+rotation = -0.514451
+lookahead = 10.0
+
+[node name="Target" type="Node2D" parent="."]
+position = Vector2(100, 100)
