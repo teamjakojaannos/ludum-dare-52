@@ -32,13 +32,14 @@ radius = 8.0
 
 [node name="player" type="CharacterBody2D"]
 z_index = 69
-collision_mask = 7
+collision_mask = 3
 motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_60gwu")
 metadata/_edit_lock_ = true
 
 [node name="MovementCollider" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_bopq3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

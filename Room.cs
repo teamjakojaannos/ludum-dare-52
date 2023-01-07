@@ -9,7 +9,12 @@ public partial class Room : Node2D {
             OnPlayerEnter();
         } else {
             OnPlayerExit();
+            CallDeferred(new StringName(nameof(Detach)));
         }
+    }
+
+    private void Detach() {
+        GetParent().RemoveChild(this);
     }
 
     public void OnPlayerEnter() {

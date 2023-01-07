@@ -32,7 +32,7 @@ public partial class BigBoss : Area2D {
         follow = GetParent().GetNode<PathFollow2D>("BossPath/Follow");
         path = GetParent().GetNode<Path2D>("BossPath");
 
-        AreaEntered += HandleCollision;
+        BodyEntered += HandleCollision;
 
         dash_attack_timer = new Timer();
         dash_attack_timer.OneShot = true;
@@ -46,7 +46,7 @@ public partial class BigBoss : Area2D {
         speed_mult = 1.0f;
     }
 
-    private void HandleCollision(Area2D other) {
+    private void HandleCollision(Node2D other) {
         var explodingRock = other as ExplodingRock;
         if (explodingRock != null) {
             // HACK: can't destroy shit during event handlers or sth; defer the call to idle time
