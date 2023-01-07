@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://dafy481r86g03"]
+
+[ext_resource type="Script" path="res://Room.cs" id="1_edeay"]
+[ext_resource type="PackedScene" uid="uid://cs2e0f1rl6am2" path="res://rock.tscn" id="2_d4avg"]
+
+[node name="SpawnRoom" type="Node2D"]
+script = ExtResource("1_edeay")
+StartEnabled = true
+
+[node name="Rock" parent="." instance=ExtResource("2_d4avg")]
+position = Vector2(103, -69)
+
+[node name="Rock4" parent="." instance=ExtResource("2_d4avg")]
+position = Vector2(77, -69)
+
+[node name="Rock5" parent="." instance=ExtResource("2_d4avg")]
+position = Vector2(53, -69)
+
+[node name="Rock6" parent="." instance=ExtResource("2_d4avg")]
+position = Vector2(127, -69)
+
+[node name="Rock7" parent="." instance=ExtResource("2_d4avg")]
+position = Vector2(103, -92)
+
+[node name="Rock8" parent="." instance=ExtResource("2_d4avg")]
+position = Vector2(104, -46)
+
+[node name="Rock9" parent="." instance=ExtResource("2_d4avg")]
+position = Vector2(84, -31)
+
+[node name="Rock10" parent="." instance=ExtResource("2_d4avg")]
+position = Vector2(81, -108)
+
+[node name="Rock11" parent="." instance=ExtResource("2_d4avg")]
+position = Vector2(27, -69)
+
+[node name="Rock12" parent="." instance=ExtResource("2_d4avg")]
+position = Vector2(2, -69)
+
+[node name="Rock2" parent="." instance=ExtResource("2_d4avg")]
+position = Vector2(174, 41)
+
+[node name="Rock3" parent="." instance=ExtResource("2_d4avg")]
+position = Vector2(-153, -44)

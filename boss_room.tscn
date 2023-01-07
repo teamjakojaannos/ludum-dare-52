@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://mawe3076nl7v"]
+[gd_scene load_steps=7 format=3 uid="uid://mawe3076nl7v"]
 
 [ext_resource type="Script" path="res://Room.cs" id="1_hxd1l"]
 [ext_resource type="Texture2D" uid="uid://c40wpwufgldus" path="res://background_scale.png" id="1_ogwga"]
 [ext_resource type="PackedScene" uid="uid://dxnphfjbugtqj" path="res://bigboss.tscn" id="4_67fha"]
+[ext_resource type="Script" path="res://ExplodingRock.cs" id="5_5k12q"]
 [ext_resource type="PackedScene" uid="uid://cs2e0f1rl6am2" path="res://rock.tscn" id="5_vwher"]
 
 [sub_resource type="Curve2D" id="Curve2D_6hue2"]
@@ -28,13 +29,14 @@ position = Vector2(-3, -11)
 curve = SubResource("Curve2D_6hue2")
 
 [node name="Follow" type="PathFollow2D" parent="BossPath"]
-position = Vector2(166, -110)
-rotation = 1.48253
+position = Vector2(167, -94)
+rotation = 0.974578
 
 [node name="Rocks" type="Node2D" parent="."]
 
 [node name="1" parent="Rocks" instance=ExtResource("5_vwher")]
 position = Vector2(-178.5, -89.5)
+script = ExtResource("5_5k12q")
 
 [node name="2" parent="Rocks" instance=ExtResource("5_vwher")]
 position = Vector2(40, -95)

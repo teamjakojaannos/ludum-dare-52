@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://0hox6eid43h1"]
+[gd_scene load_steps=7 format=3 uid="uid://0hox6eid43h1"]
 
 [ext_resource type="PackedScene" uid="uid://blcrlxm2w0jt4" path="res://player.tscn" id="1_7y16m"]
 [ext_resource type="PackedScene" uid="uid://mawe3076nl7v" path="res://boss_room.tscn" id="1_e0hd2"]
-[ext_resource type="Script" path="res://Room.cs" id="3_akw4b"]
+[ext_resource type="PackedScene" uid="uid://dafy481r86g03" path="res://spawn_room.tscn" id="3_li774"]
 [ext_resource type="Script" path="res://CameraFixedZoom.cs" id="3_oj2n0"]
 [ext_resource type="Script" path="res://RoomTransition.cs" id="4_1hoxw"]
-[ext_resource type="PackedScene" uid="uid://cs2e0f1rl6am2" path="res://rock.tscn" id="5_u430w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0lcg"]
 size = Vector2(14, 287)
@@ -21,9 +20,7 @@ script = ExtResource("3_oj2n0")
 
 [node name="Rooms" type="Node2D" parent="."]
 
-[node name="SpawnRoom" type="Node2D" parent="Rooms"]
-script = ExtResource("3_akw4b")
-StartEnabled = true
+[node name="SpawnRoom" parent="Rooms" instance=ExtResource("3_li774")]
 
 [node name="BossRoomTransition" type="Area2D" parent="Rooms/SpawnRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
 position = Vector2(267, 0)
@@ -35,42 +32,6 @@ Entrypoint = NodePath("../../BossRoom/BossEntryLeft")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/SpawnRoom/BossRoomTransition"]
 position = Vector2(6, 1.5)
 shape = SubResource("RectangleShape2D_h0lcg")
-
-[node name="Rock" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
-position = Vector2(103, -69)
-
-[node name="Rock4" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
-position = Vector2(77, -69)
-
-[node name="Rock5" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
-position = Vector2(53, -69)
-
-[node name="Rock6" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
-position = Vector2(127, -69)
-
-[node name="Rock7" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
-position = Vector2(103, -92)
-
-[node name="Rock8" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
-position = Vector2(104, -46)
-
-[node name="Rock9" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
-position = Vector2(84, -31)
-
-[node name="Rock10" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
-position = Vector2(81, -108)
-
-[node name="Rock11" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
-position = Vector2(27, -69)
-
-[node name="Rock12" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
-position = Vector2(2, -69)
-
-[node name="Rock2" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
-position = Vector2(174, 41)
-
-[node name="Rock3" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
-position = Vector2(-153, -44)
 
 [node name="BossRoom" parent="Rooms" instance=ExtResource("1_e0hd2")]
 visible = false
