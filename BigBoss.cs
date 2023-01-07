@@ -10,6 +10,9 @@ public partial class BigBoss : Area2D {
     [Export]
     public float DashCooldown = 5.0f;
 
+    [Export]
+    public ProgressBar Healthbar;
+
     private Path2D path;
     private PathFollow2D follow;
     private Timer dash_attack_timer;
@@ -20,7 +23,24 @@ public partial class BigBoss : Area2D {
 
     private float speed_mult = 1.0f;
 
-    public int health = 5;
+    public int health = 4;
+
+    private AudioStreamPlayer sfx;
+
+    [Export]
+    public AudioStream SfxIntro;
+
+    [Export]
+    public AudioStream SfxIdle;
+
+    [Export]
+    public AudioStream SfxStall;
+
+    [Export]
+    public AudioStream SfxAttack;
+
+    [Export]
+    public AudioStream SfxStuck;
 
     enum State {
         FollowPath,
@@ -30,12 +50,16 @@ public partial class BigBoss : Area2D {
         Retreat,
     }
 
+    private bool is_dead = false;
+
 
     public override void _Ready() {
         follow = GetParent().GetNode<PathFollow2D>("BossPath/Follow");
         path = GetParent().GetNode<Path2D>("BossPath");
 
         sprite = GetNode<AnimatedSprite2D>("Sprite");
+        sfx = GetNode<AudioStreamPlayer>("SFX");
+        sfx.VolumeDb = -25.0f;
 
         BodyEntered += HandleCollision;
 
@@ -45,13 +69,35 @@ public partial class BigBoss : Area2D {
         dash_attack_timer.Timeout += AttackSequence;
         AddChild(dash_attack_timer);
 
-        dash_attack_timer.Start();
         state = State.FollowPath;
         target_position = Vector2.Zero;
         speed_mult = 1.0f;
 
         sprite.Animation = "idle";
         sprite.Play();
+
+        Healthbar.MaxValue = health;
+        Healthbar.Value = health;
+    }
+
+    public void StartEncounter() {
+        state = State.DramaticPause;
+
+        sfx.Stream = SfxIntro;
+        sfx.Autoplay = false;
+
+        sfx.Finished += LoopIdle;
+        sfx.Play();
+
+        GetTree().CreateTimer(2.0f, false).Timeout += () => {
+            state = State.FollowPath;
+            dash_attack_timer.Start();
+        };
+    }
+
+    private void LoopIdle() {
+        sfx.Stream = SfxIdle;
+        sfx.Play();
     }
 
     private void HandleCollision(Node2D other) {
@@ -61,13 +107,32 @@ public partial class BigBoss : Area2D {
             explodingRock.CallDeferred(new StringName("Explode"));
 
             Blink(10, 0.1f);
-            health--;
+            Healthbar.Value = --health;
+
             state = State.DramaticPause;
 
-            sprite.Animation = "idle";
+            sprite.Animation = "hurt";
+
+            sfx.Stream = SfxStuck;
+            sfx.Play();
 
             GetTree().CreateTimer(4.0f + 1.5f, false).Timeout += () => {
-                state = State.Retreat;
+                if (health == 0) {
+                    state = State.DramaticPause;
+                    sprite.Animation = "dead";
+
+                    sfx.Finished -= LoopIdle;
+                    sfx.Stream = SfxStall;
+                    sfx.Play();
+
+                    is_dead = true;
+
+                    var main = GetTree().Root.GetNode<Main>("Main");
+                    main.CallDeferred(nameof(Main.Win));
+                } else {
+                    state = State.Retreat;
+                    sprite.Animation = "idle";
+                }
             };
         }
     }
@@ -103,6 +168,9 @@ public partial class BigBoss : Area2D {
                 sprite.Animation = "charge";
                 sprite.Play();
 
+                sfx.Stream = SfxAttack;
+                sfx.Play();
+
                 state = State.Charge;
                 speed_mult = 1.0f;
 
@@ -116,6 +184,10 @@ public partial class BigBoss : Area2D {
     public override void _Process(double delta) {
         var player = GetTree().Root.GetNode<Node2D>("Main/player");
         target_position = player.Position;
+
+        if (is_dead) {
+            sfx.VolumeDb = Mathf.Lerp(sfx.VolumeDb, -60.0f, 0.01f);
+        }
 
         switch (state) {
             case State.FollowPath:
@@ -139,6 +211,9 @@ public partial class BigBoss : Area2D {
 
                         sprite.Animation = "seek";
                         sprite.Play();
+
+                        sfx.Stream = SfxStall;
+                        sfx.Play();
                     };
                 }
                 break;
@@ -146,7 +221,7 @@ public partial class BigBoss : Area2D {
                 if (Position.x < follow.Position.x) {
                     Position += Vector2.Right * (DashSpeed * 0.75f) * (float)delta;
                 } else {
-					// Reset
+                    // Reset
                     dash_attack_timer.Start();
                     target_position = Vector2.Zero;
                     state = State.FollowPath;
@@ -154,6 +229,9 @@ public partial class BigBoss : Area2D {
 
                     sprite.Animation = "idle";
                     sprite.Play();
+
+                    sfx.Stream = SfxIdle;
+                    sfx.Play();
                 }
                 break;
             case State.DramaticPause:

@@ -1,8 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://dxnphfjbugtqj"]
+[gd_scene load_steps=25 format=3 uid="uid://dxnphfjbugtqj"]
 
 [ext_resource type="Script" path="res://BigBoss.cs" id="1_2bfig"]
+[ext_resource type="AudioStream" uid="uid://b4utf76egfkrf" path="res://bigboss/LAWNMOWER_INTRO.ogg" id="2_u8jpo"]
 [ext_resource type="Texture2D" uid="uid://00ba8pqfperf" path="res://bigboss/ruohonleikkuriBATTLE.png" id="2_uxbe0"]
+[ext_resource type="AudioStream" uid="uid://b6gpilk07cmoe" path="res://bigboss/LAWNMOWER_IDLE.ogg" id="3_x5xs1"]
 [ext_resource type="Texture2D" uid="uid://ckglbw20pa857" path="res://bigboss/ruohonleikkuriIdle.png" id="3_y1rjx"]
+[ext_resource type="AudioStream" uid="uid://5tapl48mhdpm" path="res://bigboss/LAWNMOWER_STALL.ogg" id="4_ew51e"]
+[ext_resource type="Texture2D" uid="uid://duah06k0hjy2v" path="res://bigboss/ruohonleikkuriHURT.png" id="4_nghp3"]
+[ext_resource type="AudioStream" uid="uid://oqml73afoui7" path="res://bigboss/LAWNMOWER_ATTACK.ogg" id="5_7a146"]
+[ext_resource type="AudioStream" uid="uid://dcuvqprne02df" path="res://bigboss/LAWNMOWER_STUCK.ogg" id="6_70sda"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l0l8m"]
 atlas = ExtResource("2_uxbe0")
@@ -23,6 +29,18 @@ region = Rect2(384, 0, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_6jwe1"]
 atlas = ExtResource("2_uxbe0")
 region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtcnt"]
+atlas = ExtResource("4_nghp3")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6fu5"]
+atlas = ExtResource("4_nghp3")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_257xh"]
+atlas = ExtResource("3_y1rjx")
+region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vny80"]
 atlas = ExtResource("3_y1rjx")
@@ -51,6 +69,16 @@ animations = [{
 "name": &"charge",
 "speed": 7.0
 }, {
+"frames": [SubResource("AtlasTexture_wtcnt")],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_w6fu5"), SubResource("AtlasTexture_257xh")],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
 "frames": [SubResource("AtlasTexture_vny80"), SubResource("AtlasTexture_2dgpn"), SubResource("AtlasTexture_f7b82"), SubResource("AtlasTexture_vnq2c")],
 "loop": true,
 "name": &"idle",
@@ -70,13 +98,20 @@ z_index = 1
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_2bfig")
+SfxIntro = ExtResource("2_u8jpo")
+SfxIdle = ExtResource("3_x5xs1")
+SfxStall = ExtResource("4_ew51e")
+SfxAttack = ExtResource("5_7a146")
+SfxStuck = ExtResource("6_70sda")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 frames = SubResource("SpriteFrames_7lvye")
-animation = &"seek"
+animation = &"idle"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-10, 18)
 shape = SubResource("CircleShape2D_5j5mm")
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]

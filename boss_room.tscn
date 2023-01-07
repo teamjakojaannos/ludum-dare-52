@@ -19,9 +19,10 @@ script = ExtResource("1_hxd1l")
 texture_filter = 1
 texture = ExtResource("1_ogwga")
 
-[node name="BigBoss" parent="." instance=ExtResource("4_67fha")]
+[node name="BigBoss" parent="." node_paths=PackedStringArray("Healthbar") instance=ExtResource("4_67fha")]
 position = Vector2(177, -1)
 Speed = 250.0
+Healthbar = NodePath("../UICanvas/VBoxContainer/ProgressBar")
 
 [node name="BossPath" type="Path2D" parent="."]
 position = Vector2(-3, -11)

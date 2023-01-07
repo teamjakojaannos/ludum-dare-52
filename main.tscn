@@ -1,11 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://0hox6eid43h1"]
+[gd_scene load_steps=14 format=3 uid="uid://0hox6eid43h1"]
 
-[ext_resource type="PackedScene" path="res://player.tscn" id="1_7y16m"]
-[ext_resource type="PackedScene" path="res://boss_room.tscn" id="1_e0hd2"]
-[ext_resource type="PackedScene" path="res://spawn_room.tscn" id="3_li774"]
+[ext_resource type="PackedScene" uid="uid://blcrlxm2w0jt4" path="res://player.tscn" id="1_7y16m"]
+[ext_resource type="PackedScene" uid="uid://ddtu463gtav58" path="res://boss_room.tscn" id="1_e0hd2"]
+[ext_resource type="Script" path="res://Main.cs" id="1_euqig"]
+[ext_resource type="PackedScene" uid="uid://bp0w8jibe53x7" path="res://spawn_room.tscn" id="3_li774"]
 [ext_resource type="Script" path="res://CameraFixedZoom.cs" id="3_oj2n0"]
 [ext_resource type="Script" path="res://RoomTransition.cs" id="4_1hoxw"]
 [ext_resource type="PackedScene" path="res://fly_room.tscn" id="6_k06wr"]
+[ext_resource type="AudioStream" uid="uid://dqspt6x3u64jj" path="res://music/tutkimusmusa1.0.ogg" id="8_2gy5n"]
+[ext_resource type="AudioStream" uid="uid://bjapuhegmhd4y" path="res://music/taistelumusa1.0.ogg" id="8_k1lj1"]
+[ext_resource type="Script" path="res://BackgroundMusic.cs" id="10_rw3iy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0lcg"]
 size = Vector2(14, 287)
@@ -13,7 +17,16 @@ size = Vector2(14, 287)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ro1hx"]
 size = Vector2(505, 20)
 
-[node name="Main" type="Node2D"]
+[sub_resource type="LabelSettings" id="LabelSettings_pxomi"]
+font_size = 32
+outline_size = 7
+shadow_size = 19
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("WinUI", "BackgroundMusicPlayer")]
+script = ExtResource("1_euqig")
+WinUI = NodePath("CanvasLayer/Container")
+BackgroundMusicPlayer = NodePath("BackgroundMusic")
 
 [node name="player" parent="." instance=ExtResource("1_7y16m")]
 
@@ -25,6 +38,9 @@ script = ExtResource("3_oj2n0")
 [node name="Rooms" type="Node2D" parent="."]
 
 [node name="SpawnRoom" parent="Rooms" instance=ExtResource("3_li774")]
+visible = false
+Music = ExtResource("8_2gy5n")
+MusicPitch = 0.25
 
 [node name="BossRoomTransition" type="Area2D" parent="Rooms/SpawnRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
 position = Vector2(267, 0)
@@ -49,12 +65,45 @@ shape = SubResource("RectangleShape2D_ro1hx")
 
 [node name="BossRoom" parent="Rooms" instance=ExtResource("1_e0hd2")]
 visible = false
+Music = ExtResource("8_k1lj1")
+MusicPitch = 1.5
 
 [node name="BossEntryLeft" type="Marker2D" parent="Rooms/BossRoom"]
 position = Vector2(-244, 0)
 
 [node name="FlyRoom" parent="Rooms" instance=ExtResource("6_k06wr")]
 visible = false
+Music = ExtResource("8_k1lj1")
 
 [node name="FlyRoomEntry" type="Marker2D" parent="Rooms/FlyRoom"]
 position = Vector2(25, 121)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Container" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -20.0
+offset_right = 100.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Container"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "YOU WIN"
+label_settings = SubResource("LabelSettings_pxomi")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackgroundMusic" type="Node" parent="."]
+script = ExtResource("10_rw3iy")
