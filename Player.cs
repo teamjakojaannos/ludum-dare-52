@@ -28,15 +28,26 @@ public partial class Player : Area2D {
 
     private Timer dash_cooldown_timer;
 
+	private GPUParticles2D DashSweat;
+	private GPUParticles2D DashPoof;
+
     public override void _Ready() {
         dash_cooldown_timer = new Timer();
         dash_cooldown_timer.Autostart = false;
         dash_cooldown_timer.OneShot = true;
         dash_cooldown_timer.Stop();
+		dash_cooldown_timer.Timeout += () => {
+			DashSweat.Emitting = false;
+		};
 
         AddChild(dash_cooldown_timer);
 
 		current_move_smoothness = MoveSmoothness;
+
+		DashSweat = GetNode<GPUParticles2D>("DashSweat");
+		DashPoof = GetNode<GPUParticles2D>("DashParticles");
+		DashSweat.Emitting = false;
+		DashPoof.Emitting = false;
     }
 
 
@@ -67,6 +78,9 @@ public partial class Player : Area2D {
             is_dashing = true;
             dash_cooldown_timer.Start();
 			current_move_smoothness = DashSmoothness;
+
+			DashSweat.Emitting = true;
+			DashPoof.Emitting = true;
         }
 
         Position = Position + velocity * (float)delta;

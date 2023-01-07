@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://blcrlxm2w0jt4"]
+[gd_scene load_steps=11 format=3 uid="uid://blcrlxm2w0jt4"]
 
 [ext_resource type="Script" path="res://Player.cs" id="1_60gwu"]
 [ext_resource type="Texture2D" uid="uid://b6lbjk2l4kvej" path="res://player.png" id="2_71cxw"]
+[ext_resource type="Texture2D" uid="uid://cq2q38kk5mb2t" path="res://particle.png" id="3_hgsgi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bopq3"]
 radius = 9.48683
@@ -18,6 +19,34 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7xhh2"]
+emission_shape = 1
+emission_sphere_radius = 9.0
+particle_flag_disable_z = true
+gravity = Vector3(0, 4, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+
+[sub_resource type="Curve" id="Curve_do0us"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_p4qwr"]
+curve = SubResource("Curve_do0us")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rnl2a"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 150.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 500.0
+damping_max = 500.0
+scale_min = 0.1
+scale_curve = SubResource("CurveTexture_p4qwr")
+
 [node name="player" type="Area2D"]
 script = ExtResource("1_60gwu")
 metadata/_edit_lock_ = true
@@ -28,3 +57,20 @@ shape = SubResource("CircleShape2D_bopq3")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 frames = SubResource("SpriteFrames_moxy5")
+
+[node name="DashSweat" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_7xhh2")
+local_coords = true
+
+[node name="DashParticles" type="GPUParticles2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 11)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_rnl2a")
+texture = ExtResource("3_hgsgi")
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
