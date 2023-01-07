@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bm8yuh6v168q0"]
+[gd_scene load_steps=7 format=3 uid="uid://bm8yuh6v168q0"]
 
 [ext_resource type="Script" path="res://Room.cs" id="1_fa68n"]
 [ext_resource type="Texture2D" uid="uid://c40wpwufgldus" path="res://background_scale.png" id="2_b6qyy"]
 [ext_resource type="PackedScene" uid="uid://wu5v701tnf8f" path="res://characters/frog.tscn" id="3_le0al"]
 [ext_resource type="PackedScene" uid="uid://cddrio631ra6n" path="res://enemies/fly/fly.tscn" id="5_pp0br"]
+[ext_resource type="PackedScene" uid="uid://bt71ngvkigiia" path="res://characters/fertilizer/fertilizer.tscn" id="5_ysn6d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tnyv0"]
 size = Vector2(512, 288)
@@ -27,3 +28,6 @@ position = Vector2(-121, 94)
 
 [node name="Fly2" parent="." instance=ExtResource("5_pp0br")]
 position = Vector2(174, 113)
+
+[node name="Fertilizer" parent="." instance=ExtResource("5_ysn6d")]
+position = Vector2(44, -110)
