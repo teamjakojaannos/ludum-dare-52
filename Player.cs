@@ -31,7 +31,11 @@ public partial class Player : Area2D {
     private GPUParticles2D DashSweat;
     private GPUParticles2D DashPoof;
 
+	private bool is_dead;
+
     public override void _Ready() {
+		AreaEntered += HandleCollision;
+
         dash_cooldown_timer = new Timer();
         dash_cooldown_timer.WaitTime = DashCooldown;
         dash_cooldown_timer.Autostart = false;
@@ -49,10 +53,24 @@ public partial class Player : Area2D {
         DashPoof = GetNode<GPUParticles2D>("DashParticles");
         DashSweat.Emitting = false;
         DashPoof.Emitting = false;
+
+		is_dead = false;
     }
+
+	private void HandleCollision(Area2D other) {
+		var boss = other as BigBoss;
+		if (boss != null) {
+			is_dead = true;
+		}
+	}
 
 
     public override void _Process(double delta) {
+		if (is_dead) {
+			RotationDegrees = -90.0f;
+			return;
+		}
+
         var input_direction = is_dashing
             ? velocity.Normalized()
             : Input.GetVector("move_left", "move_right", "move_up", "move_down");
