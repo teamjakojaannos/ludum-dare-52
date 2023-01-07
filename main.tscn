@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://0hox6eid43h1"]
 
-[ext_resource type="PackedScene" uid="uid://blcrlxm2w0jt4" path="res://player.tscn" id="1_7y16m"]
-[ext_resource type="PackedScene" uid="uid://mawe3076nl7v" path="res://boss_room.tscn" id="1_e0hd2"]
-[ext_resource type="PackedScene" uid="uid://dafy481r86g03" path="res://spawn_room.tscn" id="3_li774"]
+[ext_resource type="PackedScene" path="res://player.tscn" id="1_7y16m"]
+[ext_resource type="PackedScene" path="res://boss_room.tscn" id="1_e0hd2"]
+[ext_resource type="PackedScene" path="res://spawn_room.tscn" id="3_li774"]
 [ext_resource type="Script" path="res://CameraFixedZoom.cs" id="3_oj2n0"]
 [ext_resource type="Script" path="res://RoomTransition.cs" id="4_1hoxw"]
 
