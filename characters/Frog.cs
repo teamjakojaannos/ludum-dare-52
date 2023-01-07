@@ -67,14 +67,14 @@ public partial class Frog : StaticBody2D {
 
 	}
 
-	private void attack() {
-		GD.Print("Slap");
-		destroy_nearest_fly();
-		// fly.destroy()
-		cooldown.Start();
-		animation.Animation = "chewing";
-		this.state = State.AttackOnCooldown;
-	}
+    private void attack() {
+        destroy_nearest_fly();
+
+        attack_window.Stop();
+        cooldown.Start();
+        animation.Animation = "chewing";
+        this.state = State.AttackOnCooldown;
+    }
 
 	private void destroy_nearest_fly() {
 		if (tracking_targets.Count == 0) {
@@ -105,12 +105,11 @@ public partial class Frog : StaticBody2D {
 		return this.Position.DistanceSquaredTo(other.Position);
 	}
 
-	private void start_attack_charge() {
-		GD.Print("Charging attack");
-		animation.Animation = "prepared";
-		state = State.AttackCharging;
-		attack_charge.Start();
-	}
+    private void start_attack_charge() {
+        animation.Animation = "prepared";
+        state = State.AttackCharging;
+        attack_charge.Start();
+    }
 
 	public void on_area_entered(Area2D area) {
 		if (area.GetType() != typeof(Fly)) {
@@ -130,25 +129,19 @@ public partial class Frog : StaticBody2D {
 		tracking_targets.Remove(fly);
 	}
 
-	private void attack_charged() {
-		GD.Print("Ready to attack");
+    private void attack_charged() {
+        this.state = State.ReadyToAttack;
+        animation.Animation = "prepared";
+        attack_window.Start();
+    }
 
-		this.state = State.ReadyToAttack;
-		animation.Animation = "prepared";
-		attack_window.Start();
-	}
+    private void cooldown_done() {
+        state = State.Idle;
+        animation.Animation = "default";
+    }
 
-	private void cooldown_done() {
-		GD.Print("Cooldown done");
-
-		state = State.Idle;
-		animation.Animation = "default";
-	}
-
-	private void missed_window_to_attack() {
-		GD.Print("Missed attack window");
-
-		state = State.Idle;
-		animation.Animation = "default";
-	}
+    private void missed_window_to_attack() {
+        state = State.Idle;
+        animation.Animation = "default";
+    }
 }

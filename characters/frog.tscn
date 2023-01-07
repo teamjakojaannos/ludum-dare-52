@@ -66,7 +66,6 @@ collision_mask = 4
 shape = SubResource("CircleShape2D_uynfl")
 
 [node name="Charge" type="Timer" parent="."]
-wait_time = 2.0
 one_shot = true
 
 [node name="Cooldown" type="Timer" parent="."]
@@ -74,5 +73,5 @@ wait_time = 5.0
 one_shot = true
 
 [node name="AttackWindow" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
