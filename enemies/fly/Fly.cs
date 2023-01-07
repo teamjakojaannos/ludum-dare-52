@@ -46,9 +46,14 @@ public partial class Fly : Area2D {
 
         animation.Playing = true;
 
+        // make sure eyes and nose have different masks, otherwise leaving sight makes the item invisible for smell radius
         var eyes = GetNode<Area2D>("SightArea");
         eyes.BodyEntered += on_body_entered;
         eyes.BodyExited += on_body_exited;
+
+        var nose = GetNode<Area2D>("SmellRadius");
+        nose.BodyEntered += on_body_entered;
+        nose.BodyExited += on_body_exited;
 
         random = new Random();
     }
