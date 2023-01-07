@@ -39,6 +39,33 @@ shape = SubResource("RectangleShape2D_h0lcg")
 [node name="Rock" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
 position = Vector2(103, -69)
 
+[node name="Rock4" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
+position = Vector2(77, -69)
+
+[node name="Rock5" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
+position = Vector2(53, -69)
+
+[node name="Rock6" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
+position = Vector2(127, -69)
+
+[node name="Rock7" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
+position = Vector2(103, -92)
+
+[node name="Rock8" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
+position = Vector2(104, -46)
+
+[node name="Rock9" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
+position = Vector2(84, -31)
+
+[node name="Rock10" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
+position = Vector2(81, -108)
+
+[node name="Rock11" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
+position = Vector2(27, -69)
+
+[node name="Rock12" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
+position = Vector2(2, -69)
+
 [node name="Rock2" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
 position = Vector2(174, 41)
 
