@@ -5,6 +5,9 @@ public partial class Main : Node2D {
 	public Control WinUI;
 
 	[Export]
+	public Dialogue DialogueUI;
+
+	[Export]
 	public BackgroundMusic BackgroundMusicPlayer;
 	
 	public void Win() {
@@ -17,6 +20,7 @@ public partial class Main : Node2D {
 
 	public void Reset() {
 		WinUI.Hide();
+		DialogueUI.Hide();
 	}
 
     public override void _Ready() {

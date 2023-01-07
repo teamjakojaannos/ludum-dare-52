@@ -34,6 +34,10 @@ public partial class Dialogue : Control {
         if (this.text_queue.Count != 0) {
             this.text_queue.RemoveAt(0);
         }
+
+        if (this.text_queue.Count == 0) {
+            this.Hide();
+        }
     }
 
     public void update_label_text() {

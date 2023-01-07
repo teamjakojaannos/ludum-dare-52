@@ -11,6 +11,11 @@ public partial class CameraFixedZoom : Camera2D {
 	[Export]
 	public float ZoomFactor = 1.0f;
 
+	private Player player;
+
+    public override void _Ready() {
+        player = GetTree().Root.GetNode<Player>("Main/player");
+    }
 
     public override void _Process(double delta) {
 		var viewport_size = GetViewportRect().Size;
@@ -18,5 +23,7 @@ public partial class CameraFixedZoom : Camera2D {
 		var ratio = viewport_size.x / screen_width;
 
 		Zoom = new Vector2(ratio * ZoomFactor, ratio * ZoomFactor);
+
+		Position = player.Position;
     }
 }

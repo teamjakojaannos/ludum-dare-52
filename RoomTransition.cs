@@ -10,31 +10,51 @@ public partial class RoomTransition : Area2D {
     [Export]
     public Node2D Entrypoint;
 
+    [Export]
+    public bool IsFirstRoom = false;
+
     public override void _Ready() {
-
-        BodyShapeEntered += (body_rid, other, body_shape_index, local_shape_index) => {
-            var player = other as Player;
-            if (player != null) {
-                var camera = GetTree().Root.GetNode<Camera2D>("Main/Camera");
-                camera.Position = To.Position;
-
-                player.TransitionToRoom(Entrypoint);
-
-                CallDeferred(new StringName(nameof(UpdateSceneTree)));
-            }
-        };
+        if (IsFirstRoom) {
+            var player = GetTree().Root.GetNode<Player>("Main/player");
+            TransitionToRoom(player);
+            QueueFree();
+        } else {
+            BodyShapeEntered += (body_rid, other, body_shape_index, local_shape_index) => {
+                var player = other as Player;
+                if (player != null) {
+                    TransitionToRoom(player);
+                }
+            };
+        }
     }
 
-    public override void _Process(double delta) {
+    private void TransitionToRoom(Player player) {
+        var camera = GetTree().Root.GetNode<Camera2D>("Main/Camera");
+        camera.LimitLeft = To.CameraLimitLeft;
+        camera.LimitRight = To.CameraLimitRight;
+        camera.LimitTop = To.CameraLimitTop;
+        camera.LimitBottom = To.CameraLimitBottom;
+        camera.Position = To.Position;
+
+        player.TransitionToRoom(Entrypoint);
+        camera.ResetSmoothing();
+
+        if (!IsFirstRoom) {
+            CallDeferred(new StringName(nameof(UpdateSceneTree)));
+        }
     }
 
     private void UpdateSceneTree() {
         var rooms = GetTree().Root.GetNode("Main/Rooms");
 
-        From.OnPlayerExit();
-        rooms.RemoveChild(From);
+        if (From != null) {
+            From.OnPlayerExit();
+            rooms.RemoveChild(From);
+        }
 
-        rooms.AddChild(To);
-        To.OnPlayerEnter();
+        if (To != null) {
+            rooms.AddChild(To);
+            To.OnPlayerEnter();
+        }
     }
 }

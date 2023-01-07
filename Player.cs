@@ -35,6 +35,21 @@ public partial class Player : CharacterBody2D {
 
     private bool is_dead;
 
+    private bool is_confused;
+    public bool IsConfused {
+        get {
+            return is_confused;
+        }
+        set {
+            is_confused = value;
+            if (value) {
+                GetNode<Wat>("Wat").Show();
+            } else {
+                GetNode<Wat>("Wat").Hide();
+            }
+        }
+    }
+
     public override void _Ready() {
         GetNode<Area2D>("Hitbox").AreaEntered += HandleCollision;
 
@@ -60,18 +75,22 @@ public partial class Player : CharacterBody2D {
         DashPoof.Emitting = false;
 
         is_dead = false;
+
+        Reset();
     }
 
     private void Reset() {
         is_dead = false;
 
         is_dashing = false;
-        dash_cooldown_timer.Stop();
-        DashSweat.Emitting = false;
-        DashPoof.Emitting = false;
+        dash_cooldown_timer?.Stop();
+        if (DashSweat != null) { DashSweat.Emitting = false; }
+        if (DashPoof != null) { DashPoof.Emitting = false; }
 
         velocity = Vector2.Zero;
         current_move_smoothness = MoveSmoothness;
+
+        IsConfused = false;
     }
 
     public void TransitionToRoom(Node2D entrypoint) {

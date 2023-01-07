@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://0hox6eid43h1"]
+[gd_scene load_steps=16 format=3 uid="uid://0hox6eid43h1"]
 
 [ext_resource type="PackedScene" uid="uid://blcrlxm2w0jt4" path="res://player.tscn" id="1_7y16m"]
 [ext_resource type="PackedScene" uid="uid://ddtu463gtav58" path="res://boss_room.tscn" id="1_e0hd2"]
@@ -6,16 +6,20 @@
 [ext_resource type="PackedScene" uid="uid://bp0w8jibe53x7" path="res://spawn_room.tscn" id="3_li774"]
 [ext_resource type="Script" path="res://CameraFixedZoom.cs" id="3_oj2n0"]
 [ext_resource type="Script" path="res://RoomTransition.cs" id="4_1hoxw"]
-[ext_resource type="PackedScene" path="res://fly_room.tscn" id="6_k06wr"]
+[ext_resource type="PackedScene" uid="uid://bm8yuh6v168q0" path="res://fly_room.tscn" id="6_k06wr"]
 [ext_resource type="AudioStream" uid="uid://dqspt6x3u64jj" path="res://music/tutkimusmusa1.0.ogg" id="8_2gy5n"]
 [ext_resource type="AudioStream" uid="uid://bjapuhegmhd4y" path="res://music/taistelumusa1.0.ogg" id="8_k1lj1"]
+[ext_resource type="PackedScene" uid="uid://byc261xcsjlgc" path="res://hud/dialogue.tscn" id="10_kgiyg"]
 [ext_resource type="Script" path="res://BackgroundMusic.cs" id="10_rw3iy"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ssns8"]
+radius = 0.01
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0lcg"]
-size = Vector2(14, 287)
+size = Vector2(60, 14.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ro1hx"]
-size = Vector2(505, 20)
+size = Vector2(61, 12)
 
 [sub_resource type="LabelSettings" id="LabelSettings_pxomi"]
 font_size = 32
@@ -23,45 +27,64 @@ outline_size = 7
 shadow_size = 19
 shadow_color = Color(0, 0, 0, 1)
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("WinUI", "BackgroundMusicPlayer")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("WinUI", "DialogueUI", "BackgroundMusicPlayer")]
 script = ExtResource("1_euqig")
 WinUI = NodePath("CanvasLayer/Container")
+DialogueUI = NodePath("CanvasLayer/Dialogue")
 BackgroundMusicPlayer = NodePath("BackgroundMusic")
+
+[node name="InitialRoomTransition" type="Area2D" parent="." node_paths=PackedStringArray("To", "Entrypoint")]
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("4_1hoxw")
+To = NodePath("../Rooms/SpawnRoom")
+Entrypoint = NodePath("../Rooms/SpawnRoom/InitialEntry")
+IsFirstRoom = true
+
+[node name="Empty" type="CollisionShape2D" parent="InitialRoomTransition"]
+shape = SubResource("CircleShape2D_ssns8")
+disabled = true
 
 [node name="player" parent="." instance=ExtResource("1_7y16m")]
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true
 zoom = Vector2(2.25, 2.25)
+position_smoothing_enabled = true
+editor_draw_drag_margin = true
 script = ExtResource("3_oj2n0")
 
 [node name="Rooms" type="Node2D" parent="."]
 
 [node name="SpawnRoom" parent="Rooms" instance=ExtResource("3_li774")]
-visible = false
 Music = ExtResource("8_2gy5n")
 MusicPitch = 0.25
 
 [node name="BossRoomTransition" type="Area2D" parent="Rooms/SpawnRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
-position = Vector2(267, 0)
+position = Vector2(272, 171)
 script = ExtResource("4_1hoxw")
 From = NodePath("..")
 To = NodePath("../../BossRoom")
 Entrypoint = NodePath("../../BossRoom/BossEntryLeft")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/SpawnRoom/BossRoomTransition"]
-position = Vector2(6, 1.5)
 shape = SubResource("RectangleShape2D_h0lcg")
 
 [node name="FlyRoomTransition" type="Area2D" parent="Rooms/SpawnRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
+position = Vector2(-16, -137)
 script = ExtResource("4_1hoxw")
 From = NodePath("..")
 To = NodePath("../../FlyRoom")
 Entrypoint = NodePath("../../FlyRoom/FlyRoomEntry")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/SpawnRoom/FlyRoomTransition"]
-position = Vector2(-0.5, -156)
+position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_ro1hx")
+
+[node name="InitialEntry" type="Marker2D" parent="Rooms/SpawnRoom"]
+position = Vector2(192, 97)
 
 [node name="BossRoom" parent="Rooms" instance=ExtResource("1_e0hd2")]
 visible = false
@@ -95,6 +118,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Container"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -104,6 +128,8 @@ text = "YOU WIN"
 label_settings = SubResource("LabelSettings_pxomi")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Dialogue" parent="CanvasLayer" instance=ExtResource("10_kgiyg")]
 
 [node name="BackgroundMusic" type="Node" parent="."]
 script = ExtResource("10_rw3iy")
