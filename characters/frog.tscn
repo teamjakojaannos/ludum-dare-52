@@ -1,24 +1,37 @@
-[gd_scene load_steps=9 format=3 uid="uid://wu5v701tnf8f"]
+[gd_scene load_steps=17 format=3 uid="uid://wu5v701tnf8f"]
 
-[ext_resource type="Texture2D" uid="uid://wgt33wyujmmo" path="res://characters/frog.png" id="1_0gxb5"]
 [ext_resource type="Script" path="res://characters/Frog.cs" id="1_i3jdb"]
+[ext_resource type="Texture2D" uid="uid://d2sjrqjiwaspk" path="res://characters/frog_tongue_1.png" id="2_6yfrh"]
 [ext_resource type="Texture2D" uid="uid://y4rqvdjsnh86" path="res://characters/frog_chew_1.png" id="2_jik5x"]
+[ext_resource type="Texture2D" uid="uid://ctole5nbulmil" path="res://characters/frog_tongue_2.png" id="3_rn5ud"]
 [ext_resource type="Texture2D" uid="uid://cw1k2tkiajg4s" path="res://characters/frog_chew_2.png" id="3_tbvby"]
-[ext_resource type="Texture2D" uid="uid://dmsna2y857ufy" path="res://characters/frog_prepared.png" id="5_0vil3"]
+[ext_resource type="Texture2D" uid="uid://cumceglk6j8mk" path="res://characters/frog_tongue_3.png" id="4_k13gj"]
+[ext_resource type="Texture2D" uid="uid://dj7m2w5axaaxr" path="res://characters/frog_tongue_4.png" id="5_4q4o5"]
+[ext_resource type="Texture2D" uid="uid://c01kjb1lvbwhn" path="res://characters/frog_idle_1.png" id="8_2nxd6"]
+[ext_resource type="Texture2D" uid="uid://c5u7ihank6as6" path="res://characters/frog_idle_2.png" id="9_2hfii"]
+[ext_resource type="Texture2D" uid="uid://ck3t511ggwvjk" path="res://characters/frog_idle_3.png" id="10_65god"]
+[ext_resource type="Texture2D" uid="uid://b4dwl1ao4cd0t" path="res://characters/frog_sit_1.png" id="10_dhbrq"]
+[ext_resource type="Texture2D" uid="uid://bd3g4ime08s35" path="res://characters/frog_sit_2.png" id="11_x6dqv"]
+[ext_resource type="Texture2D" uid="uid://dl05bhg3a6ts4" path="res://characters/frog_sit_3.png" id="12_vr13y"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_poy0h"]
 animations = [{
+"frames": [ExtResource("2_6yfrh"), ExtResource("3_rn5ud"), ExtResource("4_k13gj"), ExtResource("5_4q4o5")],
+"loop": true,
+"name": &"attacking",
+"speed": 5.0
+}, {
 "frames": [ExtResource("2_jik5x"), ExtResource("3_tbvby")],
 "loop": true,
 "name": &"chewing",
 "speed": 5.0
 }, {
-"frames": [ExtResource("1_0gxb5")],
+"frames": [ExtResource("8_2nxd6"), ExtResource("9_2hfii"), ExtResource("10_65god")],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }, {
-"frames": [ExtResource("5_0vil3")],
+"frames": [ExtResource("10_dhbrq"), ExtResource("11_x6dqv"), ExtResource("12_vr13y")],
 "loop": true,
 "name": &"prepared",
 "speed": 5.0
@@ -37,7 +50,7 @@ script = ExtResource("1_i3jdb")
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 frames = SubResource("SpriteFrames_poy0h")
-animation = &"prepared"
+animation = &"attacking"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_y0m4w")
