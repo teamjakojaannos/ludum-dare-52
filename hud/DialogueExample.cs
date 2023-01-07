@@ -27,5 +27,6 @@ public partial class DialogueExample : Control {
 
     public void clear_dialogue() {
         GD.Print("Clearing dialogue");
+        this.dialogue.clear_queue();
     }
 }
