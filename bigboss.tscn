@@ -20,6 +20,8 @@ animations = [{
 }]
 
 [node name="BigBoss" type="Area2D"]
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_2bfig")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

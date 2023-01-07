@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class Player : Area2D {
+public partial class Player : CharacterBody2D {
     [Export]
     public float Speed = 100.0f;
     [Export]
@@ -34,7 +34,7 @@ public partial class Player : Area2D {
 	private bool is_dead;
 
     public override void _Ready() {
-		AreaEntered += HandleCollision;
+		GetNode<Area2D>("Hitbox").AreaEntered += HandleCollision;
 
         dash_cooldown_timer = new Timer();
         dash_cooldown_timer.WaitTime = DashCooldown;
@@ -102,6 +102,7 @@ public partial class Player : Area2D {
             DashPoof.Emitting = true;
         }
 
-        Position = Position + velocity * (float)delta;
+		Velocity = velocity;
+		MoveAndSlide();
     }
 }

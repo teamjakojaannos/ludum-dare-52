@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://0hox6eid43h1"]
+[gd_scene load_steps=7 format=3 uid="uid://0hox6eid43h1"]
 
 [ext_resource type="PackedScene" uid="uid://blcrlxm2w0jt4" path="res://player.tscn" id="1_7y16m"]
 [ext_resource type="Texture2D" uid="uid://c40wpwufgldus" path="res://background_scale.png" id="1_ortys"]
 [ext_resource type="Script" path="res://CameraFixedZoom.cs" id="3_oj2n0"]
 [ext_resource type="PackedScene" uid="uid://dxnphfjbugtqj" path="res://bigboss.tscn" id="4_f5gl1"]
+[ext_resource type="PackedScene" uid="uid://cs2e0f1rl6am2" path="res://rock.tscn" id="5_u430w"]
 
 [sub_resource type="Curve2D" id="Curve2D_6hue2"]
 _data = {
@@ -35,3 +36,20 @@ curve = SubResource("Curve2D_6hue2")
 [node name="Follow" type="PathFollow2D" parent="BossPath"]
 position = Vector2(166, -110)
 rotation = 1.48253
+
+[node name="Rocks" type="Node" parent="."]
+
+[node name="1" parent="Rocks" instance=ExtResource("5_u430w")]
+position = Vector2(-184, -93)
+
+[node name="2" parent="Rocks" instance=ExtResource("5_u430w")]
+position = Vector2(40, -95)
+
+[node name="3" parent="Rocks" instance=ExtResource("5_u430w")]
+position = Vector2(58, 90)
+
+[node name="4" parent="Rocks" instance=ExtResource("5_u430w")]
+position = Vector2(-121, 107)
+
+[node name="5" parent="Rocks" instance=ExtResource("5_u430w")]
+position = Vector2(-55, 7)

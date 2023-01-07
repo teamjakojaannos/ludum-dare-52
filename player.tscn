@@ -1,11 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://blcrlxm2w0jt4"]
+[gd_scene load_steps=12 format=3 uid="uid://blcrlxm2w0jt4"]
 
 [ext_resource type="Script" path="res://Player.cs" id="1_60gwu"]
 [ext_resource type="Texture2D" uid="uid://b6lbjk2l4kvej" path="res://player.png" id="2_71cxw"]
 [ext_resource type="Texture2D" uid="uid://cq2q38kk5mb2t" path="res://particle.png" id="3_hgsgi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bopq3"]
-radius = 9.48683
+radius = 11.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dypxp"]
 atlas = ExtResource("2_71cxw")
@@ -47,11 +47,17 @@ damping_max = 500.0
 scale_min = 0.1
 scale_curve = SubResource("CurveTexture_p4qwr")
 
-[node name="player" type="Area2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_5qj2k"]
+radius = 8.0
+
+[node name="player" type="CharacterBody2D"]
+collision_mask = 7
+motion_mode = 1
+platform_on_leave = 2
 script = ExtResource("1_60gwu")
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="MovementCollider" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bopq3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -74,3 +80,10 @@ texture = ExtResource("3_hgsgi")
 lifetime = 0.3
 one_shot = true
 explosiveness = 1.0
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="DamageCollider" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_5qj2k")
+debug_color = Color(0.898039, 0.266667, 0.431373, 0.419608)
