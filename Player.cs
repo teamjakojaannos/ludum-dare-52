@@ -31,10 +31,10 @@ public partial class Player : CharacterBody2D {
     private GPUParticles2D DashSweat;
     private GPUParticles2D DashPoof;
 
-	private bool is_dead;
+    private bool is_dead;
 
     public override void _Ready() {
-		GetNode<Area2D>("Hitbox").AreaEntered += HandleCollision;
+        GetNode<Area2D>("Hitbox").AreaEntered += HandleCollision;
 
         dash_cooldown_timer = new Timer();
         dash_cooldown_timer.WaitTime = DashCooldown;
@@ -54,22 +54,41 @@ public partial class Player : CharacterBody2D {
         DashSweat.Emitting = false;
         DashPoof.Emitting = false;
 
-		is_dead = false;
+        is_dead = false;
     }
 
-	private void HandleCollision(Area2D other) {
-		var boss = other as BigBoss;
-		if (boss != null) {
-			is_dead = true;
-		}
-	}
+    private void Reset() {
+        is_dead = false;
+
+        is_dashing = false;
+        dash_cooldown_timer.Stop();
+        DashSweat.Emitting = false;
+        DashPoof.Emitting = false;
+
+        velocity = Vector2.Zero;
+        current_move_smoothness = MoveSmoothness;
+    }
+
+    public void TransitionToRoom(Node2D entrypoint) {
+        Position = entrypoint.Position;
+        Reset();
+    }
+
+    private void HandleCollision(Area2D other) {
+        var boss = other as BigBoss;
+        if (boss != null) {
+            is_dead = true;
+        }
+    }
 
 
     public override void _Process(double delta) {
-		if (is_dead) {
-			RotationDegrees = -90.0f;
-			return;
-		}
+        if (is_dead) {
+            RotationDegrees = -90.0f;
+            return;
+        } else {
+            RotationDegrees = 0.0f;
+        }
 
         var input_direction = is_dashing
             ? velocity.Normalized()
@@ -102,7 +121,7 @@ public partial class Player : CharacterBody2D {
             DashPoof.Emitting = true;
         }
 
-		Velocity = velocity;
-		MoveAndSlide();
+        Velocity = velocity;
+        MoveAndSlide();
     }
 }

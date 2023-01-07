@@ -65,7 +65,7 @@ public partial class BigBoss : Area2D {
 
     public override void _Process(double delta) {
         var player = GetTree().Root.GetNode<Node2D>("Main/player");
-        target_position = player.GlobalPosition - GlobalPosition;
+        target_position = player.Position;
 
         switch (state) {
             case State.FollowPath:

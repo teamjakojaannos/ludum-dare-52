@@ -3,8 +3,12 @@ using Godot;
 public partial class RoomTransition : Area2D {
     [Export]
     public Room From;
+
     [Export]
     public Room To;
+
+	[Export]
+	public Node2D Entrypoint;
 
     public override void _Ready() {
 		BodyShapeEntered += (body_rid, other, body_shape_index, local_shape_index) => {
@@ -15,6 +19,8 @@ public partial class RoomTransition : Area2D {
 
 				var camera = GetTree().Root.GetNode<Camera2D>("Main/Camera");
 				camera.Position = To.Position;
+
+				player.TransitionToRoom(Entrypoint);
 			}
 		};
     }
