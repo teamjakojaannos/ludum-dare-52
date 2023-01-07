@@ -1,13 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://0hox6eid43h1"]
+[gd_scene load_steps=9 format=3 uid="uid://0hox6eid43h1"]
 
 [ext_resource type="PackedScene" path="res://player.tscn" id="1_7y16m"]
 [ext_resource type="PackedScene" path="res://boss_room.tscn" id="1_e0hd2"]
 [ext_resource type="PackedScene" path="res://spawn_room.tscn" id="3_li774"]
 [ext_resource type="Script" path="res://CameraFixedZoom.cs" id="3_oj2n0"]
 [ext_resource type="Script" path="res://RoomTransition.cs" id="4_1hoxw"]
+[ext_resource type="PackedScene" path="res://fly_room.tscn" id="6_k06wr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0lcg"]
 size = Vector2(14, 287)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ro1hx"]
+size = Vector2(505, 20)
 
 [node name="Main" type="Node2D"]
 
@@ -33,8 +37,24 @@ Entrypoint = NodePath("../../BossRoom/BossEntryLeft")
 position = Vector2(6, 1.5)
 shape = SubResource("RectangleShape2D_h0lcg")
 
+[node name="FlyRoomTransition" type="Area2D" parent="Rooms/SpawnRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
+script = ExtResource("4_1hoxw")
+From = NodePath("..")
+To = NodePath("../../FlyRoom")
+Entrypoint = NodePath("../../FlyRoom/FlyRoomEntry")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/SpawnRoom/FlyRoomTransition"]
+position = Vector2(-0.5, -156)
+shape = SubResource("RectangleShape2D_ro1hx")
+
 [node name="BossRoom" parent="Rooms" instance=ExtResource("1_e0hd2")]
 visible = false
 
 [node name="BossEntryLeft" type="Marker2D" parent="Rooms/BossRoom"]
 position = Vector2(-244, 0)
+
+[node name="FlyRoom" parent="Rooms" instance=ExtResource("6_k06wr")]
+visible = false
+
+[node name="FlyRoomEntry" type="Marker2D" parent="Rooms/FlyRoom"]
+position = Vector2(25, 121)
