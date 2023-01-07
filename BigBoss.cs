@@ -53,6 +53,11 @@ public partial class BigBoss : Area2D {
             explodingRock.CallDeferred(new StringName("Explode"));
 
             Blink(10, 0.1f);
+            state = State.DramaticPause;
+
+            GetTree().CreateTimer(4.0f + 1.5f, false).Timeout += () => {
+                state = State.Retreat;
+            };
         }
     }
 

@@ -11,26 +11,49 @@ public partial class ExplodingRock : Area2D {
 	public float ProjectileSpeedMax = 150.0f;
 
 	[Export]
+	public float ExplodeDuration = 4.0f;
+
+	[Export]
 	public float ProjectileLifetime = 1.25f;
 
     [Export]
-    public int SpawnCount = 8;
+    public int SpawnCount = 16;
 
     private RandomNumberGenerator rng = new RandomNumberGenerator();
 
 	private GPUParticles2D poof;
+
+	private bool is_exploding = false;
 
     public override void _Ready() {
 		poof = GetNode<GPUParticles2D>("Poof");
     }
 
     public void Explode() {
-        for (int i = 0; i < SpawnCount; i++) {
-            SpawnShrapnel();
-        }
-		
+		if (is_exploding) {
+			return;
+		}
+
+		is_exploding = true;
+
+		var emit_interval = ExplodeDuration / SpawnCount;
+
 		poof.Emitting = true;
-		GetTree().CreateTimer(poof.Lifetime, false).Timeout += () => QueueFree();
+		SpawnShrapnel();
+        for (int i = 1; i < SpawnCount; i++) {
+			GetTree().CreateTimer(i * emit_interval, false).Timeout += () => {
+				poof.Emitting = true;
+				SpawnShrapnel();
+			};
+        }
+
+		GetTree().CreateTimer(ExplodeDuration, false).Timeout += () => {
+			poof.Emitting = true;
+
+			GetTree().CreateTimer(poof.Lifetime + 0.1f, false).Timeout += () => QueueFree();
+		};
+		
+		GetTree().CreateTimer(ExplodeDuration + poof.Lifetime + 0.1f, false).Timeout += () => QueueFree();
     }
 
     private void SpawnShrapnel() {

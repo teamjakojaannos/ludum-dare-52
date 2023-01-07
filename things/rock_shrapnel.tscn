@@ -14,10 +14,11 @@ collision_layer = 4
 script = ExtResource("1_mavkh")
 
 [node name="Particle" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
 texture = ExtResource("2_eoj1d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_jy0ol")
 
 [node name="Poof" parent="." instance=ExtResource("3_xd31n")]
-scale = Vector2(0.5, 0.5)
+lifetime = 0.6

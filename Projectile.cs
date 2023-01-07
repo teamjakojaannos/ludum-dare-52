@@ -16,7 +16,8 @@ public partial class Projectile : Area2D {
 				var poof = GetNodeOrNull<GPUParticles2D>("Poof");
 				if (poof != null) {
 					poof.Emitting = true;
-					delete_after = (float) poof.Lifetime;
+					delete_after = (float) poof.Lifetime * 2.0f;
+					GetTree().CreateTimer(poof.Lifetime, false).Timeout += () => Hide();
 				}
 			}
 

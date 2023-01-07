@@ -15,10 +15,11 @@ script = ExtResource("1_xg0je")
 SpawnTemplates = [ExtResource("2_nwlg1")]
 
 [node name="Poof" parent="." instance=ExtResource("2_1g347")]
-scale = Vector2(0.75, 0.75)
+lifetime = 0.75
 
 [node name="Particle" type="Sprite2D" parent="."]
 modulate = Color(0.388235, 0.352941, 0.352941, 1)
+scale = Vector2(3, 3)
 texture = ExtResource("4_x5wit")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

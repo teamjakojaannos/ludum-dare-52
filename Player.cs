@@ -79,6 +79,11 @@ public partial class Player : CharacterBody2D {
         if (boss != null) {
             is_dead = true;
         }
+
+        var projectile = other as Projectile;
+        if (projectile != null) {
+            is_dead = true;
+        }
     }
 
 
