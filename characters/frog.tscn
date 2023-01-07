@@ -20,7 +20,7 @@
 [sub_resource type="SpriteFrames" id="SpriteFrames_poy0h"]
 animations = [{
 "frames": [ExtResource("2_6yfrh"), ExtResource("3_rn5ud"), ExtResource("4_k13gj"), ExtResource("5_4q4o5")],
-"loop": true,
+"loop": false,
 "name": &"attacking",
 "speed": 5.0
 }, {
@@ -41,10 +41,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y0m4w"]
-size = Vector2(64, 64)
+size = Vector2(70, 48)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_uynfl"]
-radius = 82.0061
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k22sr"]
+size = Vector2(91, 93)
 
 [node name="Frog" type="StaticBody2D"]
 collision_layer = 8
@@ -56,6 +56,7 @@ frames = SubResource("SpriteFrames_poy0h")
 animation = &"attacking"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 0)
 shape = SubResource("RectangleShape2D_y0m4w")
 
 [node name="AttackArea" type="Area2D" parent="."]
@@ -63,7 +64,8 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-shape = SubResource("CircleShape2D_uynfl")
+position = Vector2(67.5, -2.5)
+shape = SubResource("RectangleShape2D_k22sr")
 
 [node name="Charge" type="Timer" parent="."]
 one_shot = true
