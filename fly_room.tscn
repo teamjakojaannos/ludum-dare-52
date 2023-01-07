@@ -12,7 +12,7 @@ script = ExtResource("1_fa68n")
 texture = ExtResource("2_b6qyy")
 
 [node name="Frog" parent="." instance=ExtResource("3_le0al")]
-position = Vector2(-175, -127)
+position = Vector2(-171, -80)
 
 [node name="Fly" parent="." instance=ExtResource("5_pp0br")]
 position = Vector2(-121, 94)
