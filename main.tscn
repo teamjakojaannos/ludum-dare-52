@@ -1,7 +1,48 @@
-[gd_scene load_steps=2 format=3 uid="uid://0hox6eid43h1"]
+[gd_scene load_steps=8 format=3 uid="uid://0hox6eid43h1"]
 
+[ext_resource type="PackedScene" uid="uid://blcrlxm2w0jt4" path="res://player.tscn" id="1_7y16m"]
 [ext_resource type="PackedScene" uid="uid://mawe3076nl7v" path="res://boss_room.tscn" id="1_e0hd2"]
+[ext_resource type="Script" path="res://Room.cs" id="3_akw4b"]
+[ext_resource type="Script" path="res://CameraFixedZoom.cs" id="3_oj2n0"]
+[ext_resource type="Script" path="res://RoomTransition.cs" id="4_1hoxw"]
+[ext_resource type="PackedScene" uid="uid://cs2e0f1rl6am2" path="res://rock.tscn" id="5_u430w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h0lcg"]
+size = Vector2(14, 287)
 
 [node name="Main" type="Node2D"]
 
-[node name="BossRoom" parent="." instance=ExtResource("1_e0hd2")]
+[node name="player" parent="." instance=ExtResource("1_7y16m")]
+
+[node name="Camera" type="Camera2D" parent="."]
+current = true
+zoom = Vector2(2.25, 2.25)
+script = ExtResource("3_oj2n0")
+
+[node name="Rooms" type="Node2D" parent="."]
+
+[node name="SpawnRoom" type="Node2D" parent="Rooms"]
+script = ExtResource("3_akw4b")
+StartEnabled = true
+
+[node name="BossRoomTransition" type="Area2D" parent="Rooms/SpawnRoom" node_paths=PackedStringArray("From", "To")]
+position = Vector2(267, 0)
+script = ExtResource("4_1hoxw")
+From = NodePath("..")
+To = NodePath("../../BossRoom")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/SpawnRoom/BossRoomTransition"]
+position = Vector2(6, 1.5)
+shape = SubResource("RectangleShape2D_h0lcg")
+
+[node name="Rock" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
+position = Vector2(103, -69)
+
+[node name="Rock2" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
+position = Vector2(174, 41)
+
+[node name="Rock3" parent="Rooms/SpawnRoom" instance=ExtResource("5_u430w")]
+position = Vector2(-153, -44)
+
+[node name="BossRoom" parent="Rooms" instance=ExtResource("1_e0hd2")]
+position = Vector2(532, 0)

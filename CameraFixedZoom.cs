@@ -5,13 +5,18 @@ public partial class CameraFixedZoom : Camera2D {
 	[Export]
 	public int TileSize = 32;
 
+	[Export]
 	public int ScreenWidthInTiles = 16;
+
+	[Export]
+	public float ZoomFactor = 1.0f;
+
 
     public override void _Process(double delta) {
 		var viewport_size = GetViewportRect().Size;
-		var desired_width = ScreenWidthInTiles * TileSize;
-		var zoom = viewport_size.x / desired_width;
+		var screen_width = (float) ScreenWidthInTiles * TileSize;
+		var ratio = viewport_size.x / screen_width;
 
-		this.Zoom = new Vector2(zoom, zoom);
+		Zoom = new Vector2(ratio * ZoomFactor, ratio * ZoomFactor);
     }
 }
