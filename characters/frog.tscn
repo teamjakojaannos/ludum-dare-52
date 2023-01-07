@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://wu5v701tnf8f"]
+
+[ext_resource type="Texture2D" uid="uid://wgt33wyujmmo" path="res://characters/frog.png" id="1_0gxb5"]
+[ext_resource type="Script" path="res://characters/Frog.cs" id="1_i3jdb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_poy0h"]
+animations = [{
+"frames": [ExtResource("1_0gxb5")],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y0m4w"]
+size = Vector2(64, 64)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uynfl"]
+radius = 82.0061
+
+[node name="Frog" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_i3jdb")
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+frames = SubResource("SpriteFrames_poy0h")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_y0m4w")
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_uynfl")
+
+[connection signal="area_entered" from="AttackArea" to="." method="on_area_entered"]
+[connection signal="body_entered" from="AttackArea" to="." method="on_body_entered"]

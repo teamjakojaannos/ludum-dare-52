@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Fly : RigidBody2D {
+public partial class Fly : Area2D {
 
 	[Export]
 	public float speed = 150.0f;
