@@ -21,6 +21,7 @@ script = ExtResource("3_oj2n0")
 [node name="Rooms" type="Node2D" parent="."]
 
 [node name="SpawnRoom" parent="Rooms" instance=ExtResource("3_li774")]
+visible = false
 
 [node name="BossRoomTransition" type="Area2D" parent="Rooms/SpawnRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
 position = Vector2(267, 0)
@@ -34,7 +35,6 @@ position = Vector2(6, 1.5)
 shape = SubResource("RectangleShape2D_h0lcg")
 
 [node name="BossRoom" parent="Rooms" instance=ExtResource("1_e0hd2")]
-visible = false
 
 [node name="BossEntryLeft" type="Marker2D" parent="Rooms/BossRoom"]
 position = Vector2(-244, 0)

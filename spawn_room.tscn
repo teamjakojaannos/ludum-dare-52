@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dafy481r86g03"]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://Room.cs" id="1_edeay"]
-[ext_resource type="PackedScene" uid="uid://cs2e0f1rl6am2" path="res://rock.tscn" id="2_d4avg"]
+[ext_resource type="PackedScene" uid="uid://cs2e0f1rl6am2" path="res://things/rock.tscn" id="2_d4avg"]
 
 [node name="SpawnRoom" type="Node2D"]
 script = ExtResource("1_edeay")

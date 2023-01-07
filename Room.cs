@@ -5,7 +5,9 @@ public partial class Room : Node2D {
     public bool StartEnabled;
 
     public override void _Ready() {
-        if (!StartEnabled) {
+        if (StartEnabled) {
+            OnPlayerEnter();
+        } else {
             OnPlayerExit();
         }
     }

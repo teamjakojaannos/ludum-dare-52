@@ -32,6 +32,8 @@ public partial class BigBoss : Area2D {
         follow = GetParent().GetNode<PathFollow2D>("BossPath/Follow");
         path = GetParent().GetNode<Path2D>("BossPath");
 
+        AreaEntered += HandleCollision;
+
         dash_attack_timer = new Timer();
         dash_attack_timer.OneShot = true;
         dash_attack_timer.WaitTime = DashCooldown;
@@ -42,6 +44,33 @@ public partial class BigBoss : Area2D {
         state = State.FollowPath;
         target_position = Vector2.Zero;
         speed_mult = 1.0f;
+    }
+
+    private void HandleCollision(Area2D other) {
+        var explodingRock = other as ExplodingRock;
+        if (explodingRock != null) {
+            // HACK: can't destroy shit during event handlers or sth; defer the call to idle time
+            explodingRock.CallDeferred(new StringName("Explode"));
+
+            Blink(10, 0.1f);
+        }
+    }
+
+    private void Blink(int blinks, float interval = 0.5f) {
+        if (blinks == 0) {
+            return;
+        }
+
+        var original_modulate = Modulate;
+        GetTree().CreateTimer(interval / 2.0f, false).Timeout += () => {
+            Modulate = new Color(1.0f, 0.0f, 0.0f);
+
+            GetTree().CreateTimer(interval / 2.0f, false).Timeout += () => {
+                Modulate = original_modulate;
+
+                Blink(--blinks, interval);
+            };
+        };
     }
 
     private void AttackSequence() {

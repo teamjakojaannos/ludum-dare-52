@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1xynel1afh3v"]
+
+[ext_resource type="Texture2D" uid="uid://cq2q38kk5mb2t" path="res://particle.png" id="1_w3n7g"]
+
+[sub_resource type="Curve" id="Curve_do0us"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_p4qwr"]
+curve = SubResource("Curve_do0us")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rnl2a"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 150.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 500.0
+damping_max = 500.0
+scale_min = 0.1
+scale_curve = SubResource("CurveTexture_p4qwr")
+
+[node name="Poof" type="GPUParticles2D"]
+texture_filter = 1
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_rnl2a")
+texture = ExtResource("1_w3n7g")
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0

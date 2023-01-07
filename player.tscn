@@ -1,8 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://blcrlxm2w0jt4"]
+[gd_scene load_steps=9 format=3 uid="uid://blcrlxm2w0jt4"]
 
 [ext_resource type="Script" path="res://Player.cs" id="1_60gwu"]
 [ext_resource type="Texture2D" uid="uid://b6lbjk2l4kvej" path="res://player.png" id="2_71cxw"]
-[ext_resource type="Texture2D" uid="uid://cq2q38kk5mb2t" path="res://particle.png" id="3_hgsgi"]
+[ext_resource type="PackedScene" uid="uid://d1xynel1afh3v" path="res://particles/poof.tscn" id="3_ipw1t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bopq3"]
 radius = 11.0
@@ -26,26 +26,6 @@ particle_flag_disable_z = true
 gravity = Vector3(0, 4, 0)
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
-
-[sub_resource type="Curve" id="Curve_do0us"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_p4qwr"]
-curve = SubResource("Curve_do0us")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rnl2a"]
-particle_flag_disable_z = true
-spread = 180.0
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 100.0
-initial_velocity_max = 150.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-damping_min = 500.0
-damping_max = 500.0
-scale_min = 0.1
-scale_curve = SubResource("CurveTexture_p4qwr")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5qj2k"]
 radius = 8.0
@@ -71,16 +51,7 @@ amount = 6
 process_material = SubResource("ParticleProcessMaterial_7xhh2")
 local_coords = true
 
-[node name="DashParticles" type="GPUParticles2D" parent="."]
-texture_filter = 1
-position = Vector2(0, 11)
-emitting = false
-amount = 20
-process_material = SubResource("ParticleProcessMaterial_rnl2a")
-texture = ExtResource("3_hgsgi")
-lifetime = 0.3
-one_shot = true
-explosiveness = 1.0
+[node name="DashParticles" parent="." instance=ExtResource("3_ipw1t")]
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_mask = 4
