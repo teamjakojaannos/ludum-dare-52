@@ -141,8 +141,12 @@ public partial class Player : CharacterBody2D {
         MoveAndSlide();
 
         if (Velocity.LengthSquared() > 0.01f) {
-            sprite.Animation = "walk";
-            sprite.FlipH = Velocity.x < 0.0f;
+            if (Mathf.Abs(Velocity.x) > Mathf.Abs(Velocity.y)) {
+                sprite.Animation = "walk";
+                sprite.FlipH = Velocity.x < 0.0f;
+            } else {
+                sprite.Animation = Velocity.y > 0.0f ? "walk_down" : "walk_up";
+            }
         } else {
             sprite.Animation = "default";
             sprite.FlipH = false;
