@@ -1,20 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://cddrio631ra6n"]
+[gd_scene load_steps=9 format=3 uid="uid://cddrio631ra6n"]
 
-[ext_resource type="Texture2D" uid="uid://bsxsfkyi3dm7j" path="res://enemies/fly/fly.png" id="1_55apf"]
 [ext_resource type="Script" path="res://enemies/fly/Fly.cs" id="1_usewm"]
-[ext_resource type="Texture2D" uid="uid://dm2x37rocc0q" path="res://enemies/fly/fly_2.png" id="2_2oq1b"]
+[ext_resource type="Texture2D" uid="uid://413kwijru2me" path="res://enemies/fly/fly_frame_1.png" id="2_nmqd6"]
+[ext_resource type="Texture2D" uid="uid://bdgk5njd8cnhr" path="res://enemies/fly/fly_frame_2.png" id="3_8q707"]
+[ext_resource type="Texture2D" uid="uid://ch0o0s80pdghm" path="res://enemies/fly/fly_frame_3.png" id="4_rwjjl"]
+[ext_resource type="Texture2D" uid="uid://dndolv0tkmcbu" path="res://enemies/fly/fly_frame_4.png" id="5_cuybh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ehqq1"]
 animations = [{
-"frames": [ExtResource("1_55apf"), ExtResource("2_2oq1b")],
+"frames": [ExtResource("2_nmqd6"), ExtResource("3_8q707"), ExtResource("4_rwjjl"), ExtResource("5_cuybh")],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sym4n"]
-radius = 3.1566
-height = 18.0
+radius = 8.0
+height = 32.0
 
 [sub_resource type="Curve2D" id="Curve2D_xucqe"]
 _data = {
@@ -32,13 +34,15 @@ script = ExtResource("1_usewm")
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 frames = SubResource("SpriteFrames_ehqq1")
+frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 1)
-rotation = 1.8326
+position = Vector2(3, -1)
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_sym4n")
 
 [node name="Path" type="Path2D" parent="."]
+visible = false
 curve = SubResource("Curve2D_xucqe")
 
 [node name="Follow" type="PathFollow2D" parent="Path"]
