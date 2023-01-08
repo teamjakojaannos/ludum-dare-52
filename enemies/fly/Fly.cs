@@ -67,14 +67,16 @@ public partial class Fly : Area2D {
 
         animation.Playing = true;
 
+        this.BodyEntered += body_collided;
+
         // make sure eyes and nose have different masks, otherwise leaving sight makes the item invisible for smell radius
         var eyes = GetNode<Area2D>("SightArea");
-        eyes.BodyEntered += on_body_entered;
-        eyes.BodyExited += on_body_exited;
+        eyes.BodyEntered += body_entered_sight;
+        eyes.BodyExited += body_exited_sight;
 
         var nose = GetNode<Area2D>("SmellRadius");
-        nose.BodyEntered += on_body_entered;
-        nose.BodyExited += on_body_exited;
+        nose.BodyEntered += body_entered_sight;
+        nose.BodyExited += body_exited_sight;
 
         projectile_cooldown.Timeout += projectile_ready;
 
@@ -268,12 +270,23 @@ public partial class Fly : Area2D {
         this.animation.FlipH = old_position.x > new_position.x;
     }
 
-    private void on_body_entered(Node2D body) {
+    private void body_entered_sight(Node2D body) {
         this.visible_items.Add(body);
     }
 
-    private void on_body_exited(Node2D body) {
+    private void body_exited_sight(Node2D body) {
         this.visible_items.Remove(body);
+    }
+
+    private void body_collided(Node2D other) {
+        var player = other as Player;
+        if (player == null) {
+            return;
+        }
+
+        GD.Print("Hit player");
+        // TODO:
+        // player.take_damage();
     }
 
     private void rotate_and_scale_path(float scale, float rotation) {
