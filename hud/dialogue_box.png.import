@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6u2yk0q0yf76"
-path="res://.godot/imported/ok_button.png-8f36907f7a4b6e642eda16b4f2303a6f.ctex"
+uid="uid://dnbkiey6616yl"
+path="res://.godot/imported/dialogue_box.png-2360460128536c1ca72444230df2c7f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/ok_button.png"
-dest_files=["res://.godot/imported/ok_button.png-8f36907f7a4b6e642eda16b4f2303a6f.ctex"]
+source_file="res://hud/dialogue_box.png"
+dest_files=["res://.godot/imported/dialogue_box.png-2360460128536c1ca72444230df2c7f6.ctex"]
 
 [params]
 
