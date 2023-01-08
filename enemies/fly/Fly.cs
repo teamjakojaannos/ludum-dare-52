@@ -32,12 +32,12 @@ public partial class Fly : Area2D {
 
     private List<Node2D> visible_items = new();
 
-    public Vector2 screen_size;
-
+    // (left-top) (right-bottom)
+    public (Vector2, Vector2) room_size;
 
 
     public override void _Ready() {
-        screen_size = GetViewportRect().Size;
+        room_size = get_room_size_or_screen_size();
 
 
         follow = GetNode<PathFollow2D>("Path/Follow");
@@ -56,6 +56,22 @@ public partial class Fly : Area2D {
         nose.BodyExited += on_body_exited;
 
         random = new Random();
+    }
+
+    private (Vector2, Vector2) get_room_size_or_screen_size() {
+        var parent = GetParent();
+
+        if (parent.GetType() == typeof(Room)) {
+            var room = (Room)parent;
+            var size = (
+                new Vector2(room.CameraLimitLeft, room.CameraLimitTop),
+                new Vector2(room.CameraLimitRight, room.CameraLimitBottom)
+            );
+
+            return size;
+        } else {
+            return (Vector2.Zero, GetViewportRect().Size);
+        }
     }
 
     public override void _Process(double delta) {
@@ -144,7 +160,6 @@ public partial class Fly : Area2D {
         rand = rand.Rotated((float)angle);
 
         var pos = this.Position + rand;
-        pos = pos.Clamp(Vector2.Zero, screen_size);
 
         return pos;
     }
@@ -158,7 +173,8 @@ public partial class Fly : Area2D {
         var velocity = (targe_position - Position).Normalized() * speed;
         var new_position = Position + velocity * delta;
 
-        Position = Position.Lerp(new_position, 0.5f);
+        Position = Position.Lerp(new_position, 0.5f)
+            .Clamp(room_size.Item1, room_size.Item2);
     }
 
     private void flip_animation(Vector2 old_position, Vector2 new_position) {
