@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c48otto8w44mv"
-path="res://.godot/imported/frog_sleep_2.png-38a47eb34669aa8f7bfd447ad917024f.ctex"
+uid="uid://cwpn5pnqtalyj"
+path="res://.godot/imported/frog_sleep_1.png-cb5241bf8bd5a6f78412b2b61ddefcfb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://frog_sleep_2.png"
-dest_files=["res://.godot/imported/frog_sleep_2.png-38a47eb34669aa8f7bfd447ad917024f.ctex"]
+source_file="res://characters/frog/frog_sleep_1.png"
+dest_files=["res://.godot/imported/frog_sleep_1.png-cb5241bf8bd5a6f78412b2b61ddefcfb.ctex"]
 
 [params]
 
