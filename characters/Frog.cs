@@ -12,6 +12,7 @@ public partial class Frog : StaticBody2D {
         AttackOnCooldown,
         AttackCharging,
         Idle,
+        FallingAsleep,
         Sleeping
     };
 
@@ -102,7 +103,7 @@ public partial class Frog : StaticBody2D {
         // start sleeping
 
         // note: animation is set in "on_animation_finished", as the sequence is attack > chew > sleep
-        state = State.Sleeping;
+        state = State.FallingAsleep;
 
         EmitSignal(SignalName.FrogStartsSleeping);
 
@@ -148,13 +149,21 @@ public partial class Frog : StaticBody2D {
     }
 
     private void on_animation_finished() {
-        if (state == State.Sleeping) {
-            animation.Animation = "sleeping";
-        }
-
         if (just_attacked) {
             just_attacked = false;
             animation.Animation = "chewing";
+            return;
+        }
+
+        if (state == State.FallingAsleep) {
+            animation.Animation = "falling asleep";
+            state = State.Sleeping;
+            return;
+        }
+
+        if (state == State.Sleeping) {
+            animation.Animation = "sleeping";
+            return;
         }
     }
 
