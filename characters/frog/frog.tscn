@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://cwpn5pnqtalyj" path="res://frog_sleep_1.png" id="19_ucxxm"]
 [ext_resource type="Texture2D" uid="uid://c48otto8w44mv" path="res://frog_sleep_2.png" id="20_chgpw"]
 [ext_resource type="AudioStream" uid="uid://doillaxa3n74k" path="res://characters/frog/sound_chewing.ogg" id="21_is2g7"]
-[ext_resource type="AudioStream" uid="uid://dq1vdie212wrq" path="res://characters/frog/sound_sleeping.ogg" id="22_ciag3"]
+[ext_resource type="AudioStream" uid="uid://b2tib3sas3cnf" path="res://characters/frog/sound_sleeping.ogg" id="22_ciag3"]
 [ext_resource type="AudioStream" uid="uid://b4dp3d2v1r3v1" path="res://characters/frog/sound_slap.ogg" id="23_fdndf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_poy0h"]
@@ -101,7 +101,7 @@ one_shot = true
 
 [node name="ChewingSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_is2g7")
-volume_db = -25.0
+volume_db = -20.0
 
 [node name="SleepingSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_ciag3")
@@ -109,4 +109,4 @@ volume_db = -25.0
 
 [node name="SlapSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("23_fdndf")
-volume_db = -25.0
+volume_db = -15.0

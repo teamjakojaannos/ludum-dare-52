@@ -172,7 +172,9 @@ public partial class Frog : StaticBody2D {
 
         if (state == State.Sleeping) {
             animation.Animation = "sleeping";
-            audio_sleep.Play();
+            if (!audio_sleep.Playing) {
+                audio_sleep.Play();
+            }
             return;
         }
     }
