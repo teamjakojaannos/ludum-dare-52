@@ -40,6 +40,9 @@ public partial class RoomTransition : Area2D {
         camera.ResetSmoothing();
 
         if (!IsFirstRoom) {
+            // HACK: remove the tomato branch
+            GetTree().Root.GetNodeOrNull<Node2D>("Main/IntroSequence")?.QueueFree();
+
             CallDeferred(new StringName(nameof(UpdateSceneTree)));
         }
     }
