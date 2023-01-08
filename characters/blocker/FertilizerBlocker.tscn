@@ -11,6 +11,7 @@ radius = 31.0161
 size = Vector2(32, 30)
 
 [node name="FertilizerBlocker" type="StaticBody2D" node_paths=PackedStringArray("dialogue_trigger")]
+collision_layer = 8
 script = ExtResource("1_w12hc")
 dialogue_trigger = NodePath("DialogueTrigger")
 dialogue_when_removable = ["Hmm...", "This smells like...", "..like crap.", "", "However, as a plant it should be good for me."]
