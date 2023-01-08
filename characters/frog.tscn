@@ -38,6 +38,11 @@ animations = [{
 "loop": true,
 "name": &"prepared",
 "speed": 5.0
+}, {
+"frames": [ExtResource("8_2nxd6")],
+"loop": true,
+"name": &"sleeping",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y0m4w"]
@@ -53,13 +58,15 @@ script = ExtResource("1_i3jdb")
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 frames = SubResource("SpriteFrames_poy0h")
-animation = &"attacking"
+animation = &"sleeping"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-3, 0)
 shape = SubResource("RectangleShape2D_y0m4w")
 
 [node name="AttackArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 4
 

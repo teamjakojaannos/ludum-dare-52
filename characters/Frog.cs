@@ -4,11 +4,15 @@ using System.Collections.Generic;
 
 public partial class Frog : StaticBody2D {
 
+    [Signal]
+    public delegate void FrogStartsSleepingEventHandler();
+
     enum State {
         ReadyToAttack,
         AttackOnCooldown,
         AttackCharging,
-        Idle
+        Idle,
+        Sleeping
     };
 
     private State state = State.Idle;
@@ -29,6 +33,11 @@ public partial class Frog : StaticBody2D {
     private AnimatedSprite2D animation;
 
     private bool just_attacked = false;
+
+    [Export]
+    public int flies_to_eat_before_sleep = 3;
+
+    private int flies_eaten = 0;
 
 
     public override void _Ready() {
@@ -66,6 +75,7 @@ public partial class Frog : StaticBody2D {
         if (this.state == State.ReadyToAttack) {
             if (enemies_nearby) {
                 attack();
+                check_if_sleepy();
                 return;
             }
         }
@@ -74,6 +84,7 @@ public partial class Frog : StaticBody2D {
 
     private void attack() {
         destroy_nearest_fly();
+        flies_eaten++;
 
         attack_window.Stop();
         cooldown.Start();
@@ -81,6 +92,24 @@ public partial class Frog : StaticBody2D {
         just_attacked = true;
 
         this.state = State.AttackOnCooldown;
+    }
+
+    private void check_if_sleepy() {
+        if (flies_eaten < flies_to_eat_before_sleep) {
+            return;
+        }
+
+        // start sleeping
+
+        // note: animation is set in "on_animation_finished", as the sequence is attack > chew > sleep
+        state = State.Sleeping;
+
+        EmitSignal(SignalName.FrogStartsSleeping);
+
+        // stop all timers just in case
+        cooldown.Stop();
+        attack_charge.Stop();
+        attack_window.Stop();
     }
 
     private void destroy_nearest_fly() {
@@ -119,6 +148,10 @@ public partial class Frog : StaticBody2D {
     }
 
     private void on_animation_finished() {
+        if (state == State.Sleeping) {
+            animation.Animation = "sleeping";
+        }
+
         if (just_attacked) {
             just_attacked = false;
             animation.Animation = "chewing";
