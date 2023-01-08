@@ -22,6 +22,7 @@ public partial class Player : CharacterBody2D {
     public float DashSmoothness = 0.95f;
 
     private Vector2 velocity = Vector2.Zero;
+    private Vector2 impulse_velocity = Vector2.Zero;
     private float current_move_smoothness = 0.0f;
 
     private bool is_dashing = false;
@@ -38,9 +39,13 @@ public partial class Player : CharacterBody2D {
 
     private int last_sfx_walk_frame = 5;
 
+    private int health = 3;
+
     private bool is_dead;
 
     public bool is_game_started;
+
+    private Dialogue dialogue;
 
     private bool is_confused;
     public bool IsConfused {
@@ -76,24 +81,28 @@ public partial class Player : CharacterBody2D {
 
         AddChild(dash_cooldown_timer);
 
-        current_move_smoothness = MoveSmoothness;
-
-        DashSweat = GetNode<GPUParticles2D>("DashSweat");
-        DashPoof = GetNode<GPUParticles2D>("DashParticles");
-        DashSweat.Emitting = false;
-        DashPoof.Emitting = false;
-
-        is_dead = false;
         is_game_started = false;
 
         SfxWalk = GetNode<AudioStreamPlayer>("SFX/Walk");
         SfxDash = GetNode<AudioStreamPlayer>("SFX/Dash");
 
-        Reset();
+        HardReset();
     }
 
     public void StartGame() {
         is_game_started = true;
+    }
+
+    private void HardReset() {
+        DashSweat = GetNode<GPUParticles2D>("DashSweat");
+        DashPoof = GetNode<GPUParticles2D>("DashParticles");
+        DashSweat.Emitting = false;
+        DashPoof.Emitting = false;
+
+        dialogue = GetTree().Root.GetNode<Main>("Main")?.DialogueUI;
+
+        health = 3;
+        Reset();
     }
 
     private void Reset() {
@@ -118,15 +127,38 @@ public partial class Player : CharacterBody2D {
     private void HandleCollision(Area2D other) {
         var boss = other as BigBoss;
         if (boss != null) {
-            is_dead = true;
+            TakeDamage(1);
         }
 
         var projectile = other as Projectile;
         if (projectile != null) {
+            TakeDamage(1);
+        }
+    }
+
+    public void TakeDamage(int amount) {
+        health -= amount;
+
+        if (health == 0) {
             is_dead = true;
         }
     }
 
+    public void Knockback(float force, Vector2 force_location) {
+        var direction = force_location.DirectionTo(Position);
+
+        impulse_velocity += direction * force;
+    }
+
+    private Vector2 InputDirection {
+        get {
+            return is_dead || dialogue.Visible
+                ? Vector2.Zero
+                : is_dashing
+                    ? velocity.Normalized()
+                    : Input.GetVector("move_left", "move_right", "move_up", "move_down");
+        }
+    }
 
     public override void _Process(double delta) {
         if (!is_game_started) {
@@ -137,31 +169,25 @@ public partial class Player : CharacterBody2D {
             RotationDegrees = -90.0f;
             sprite.Animation = "default";
             sprite.Stop();
-            return;
+            is_dashing = false;
         } else {
             RotationDegrees = 0.0f;
 
             if (!sprite.Playing) {
                 sprite.Play();
             }
-        }
+            if (sprite.Animation.ToString().Match("walk*")) {
+                var is_contact_frame = sprite.Frame == 1 || sprite.Frame == 5;
 
-        if (sprite.Animation.ToString().Match("walk*")) {
-            var is_contact_frame = sprite.Frame == 1 || sprite.Frame == 5;
-
-            if (is_contact_frame && last_sfx_walk_frame != sprite.Frame) {
-                SfxWalk.Play();
-                last_sfx_walk_frame = sprite.Frame;
+                if (is_contact_frame && last_sfx_walk_frame != sprite.Frame) {
+                    SfxWalk.Play();
+                    last_sfx_walk_frame = sprite.Frame;
+                }
             }
         }
 
-        var input_direction = is_dashing
-            ? velocity.Normalized()
-            : Input.GetVector("move_left", "move_right", "move_up", "move_down");
-        var speed = is_dashing ? DashSpeed : Speed;
-
-        if (input_direction.LengthSquared() > 0.1f) {
-            var new_velocity = input_direction * speed;
+        if (InputDirection.LengthSquared() > 0.1f) {
+            var new_velocity = InputDirection * (is_dashing ? DashSpeed : Speed);
             var weight = current_move_smoothness * (1.0f - (float)delta);
 
             if (!is_dashing) {
@@ -172,7 +198,7 @@ public partial class Player : CharacterBody2D {
             velocity = velocity * (StopSmoothness * (1.0f - (float)delta));
         }
 
-        var is_dash_ready = dash_cooldown_timer.IsStopped();
+        var is_dash_ready = !is_dead && dash_cooldown_timer.IsStopped();
         if (dash_learned && Input.IsActionJustPressed("dash") && is_dash_ready) {
             GetTree().CreateTimer(DashDuration, false).Timeout += () => {
                 is_dashing = false;
@@ -188,10 +214,15 @@ public partial class Player : CharacterBody2D {
             DashPoof.Emitting = true;
         }
 
-        Velocity = velocity;
+        Velocity = velocity + impulse_velocity;
         MoveAndSlide();
 
-        if (Velocity.LengthSquared() > 0.01f) {
+        impulse_velocity = impulse_velocity.Lerp(Vector2.Zero, 0.1f);
+        if (impulse_velocity.LengthSquared() < 0.01f) {
+            impulse_velocity = Vector2.Zero;
+        }
+
+        if (!is_dead && velocity.LengthSquared() > 0.01f) {
             if (Mathf.Abs(Velocity.x) > Mathf.Abs(Velocity.y)) {
                 sprite.Animation = "walk";
                 sprite.FlipH = Velocity.x < 0.0f;

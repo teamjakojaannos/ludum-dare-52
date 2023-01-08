@@ -1,0 +1,185 @@
+[gd_scene load_steps=14 format=3 uid="uid://bg6m76jlsfn0p"]
+
+[ext_resource type="Script" path="res://enemies/spade/Spade.cs" id="1_wsj0e"]
+[ext_resource type="Texture2D" uid="uid://dn2gdlgf6g7xo" path="res://enemies/spade/danger.png" id="2_88ebw"]
+[ext_resource type="PackedScene" uid="uid://d1xynel1afh3v" path="res://particles/poof.tscn" id="3_w7i40"]
+[ext_resource type="Texture2D" uid="uid://c2a4h3bvilw26" path="res://enemies/spade/lapio.png" id="4_enwme"]
+
+[sub_resource type="Animation" id="Animation_8m0tu"]
+resource_name = "Danger"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("./DangerCircle:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [&"idle", &"anticipation", &"danger"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("./DangerCircle:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("./Poof:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("./Spade:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2, 3.5, 5),
+"transitions": PackedFloat32Array(2.92817, 1, 0.225312),
+"update": 0,
+"values": [Vector2(0, -150), Vector2(0, 0), Vector2(0, -60)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("./Spade:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("./Spade:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2, 3.5, 5),
+"transitions": PackedFloat32Array(2.37841, 1, 2.37841),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("./Spade:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 3.5, 4),
+"transitions": PackedFloat32Array(1, 0.108819, 0.500001),
+"update": 0,
+"values": [0.0, 0.0, 0.1309]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(3.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"DealDamage"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_813jo"]
+_data = {
+"Danger": SubResource("Animation_8m0tu")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5e8u"]
+atlas = ExtResource("2_88ebw")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eurq0"]
+atlas = ExtResource("2_88ebw")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wveny"]
+atlas = ExtResource("2_88ebw")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxnyl"]
+atlas = ExtResource("2_88ebw")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ym0pg"]
+atlas = ExtResource("2_88ebw")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cd8v8"]
+animations = [{
+"frames": [SubResource("AtlasTexture_y5e8u"), SubResource("AtlasTexture_eurq0")],
+"loop": true,
+"name": &"anticipation",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_wveny"), SubResource("AtlasTexture_gxnyl")],
+"loop": true,
+"name": &"danger",
+"speed": 10.0
+}, {
+"frames": [SubResource("AtlasTexture_ym0pg")],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0pr61"]
+radius = 26.3059
+
+[node name="Spade" type="Area2D"]
+script = ExtResource("1_wsj0e")
+KnockbackForce = 250.0
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_813jo")
+}
+
+[node name="DangerCircle" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.470588)
+frames = SubResource("SpriteFrames_cd8v8")
+animation = &"idle"
+playing = true
+
+[node name="Poof" parent="." instance=ExtResource("3_w7i40")]
+modulate = Color(0.501961, 0.278431, 0.141176, 1)
+scale = Vector2(2, 2)
+
+[node name="Spade" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 70
+position = Vector2(0, -150)
+texture = ExtResource("4_enwme")
+offset = Vector2(0, -32)
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0pr61")
+debug_color = Color(0.941176, 0.203922, 0.337255, 0.419608)

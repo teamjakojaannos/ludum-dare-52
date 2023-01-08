@@ -59,7 +59,7 @@ public partial class Room : Node2D {
         GetParent().RemoveChild(this);
     }
 
-    public void OnPlayerEnter() {
+    public virtual void OnPlayerEnter() {
         Show();
 
         GetTree().CreateTimer(0.5f, false).Timeout += () => {
@@ -81,7 +81,7 @@ public partial class Room : Node2D {
         music_player.PlayFadeIn(Music, MusicVolume, MusicPitch);
     }
 
-    public void OnPlayerExit() {
+    public virtual void OnPlayerExit() {
         Hide();
 
         foreach (var child in GetChildren()) {

@@ -14,19 +14,20 @@
 [ext_resource type="AudioStream" uid="uid://bjapuhegmhd4y" path="res://music/taistelumusa1.0.ogg" id="8_k1lj1"]
 [ext_resource type="PackedScene" uid="uid://byc261xcsjlgc" path="res://hud/dialogue.tscn" id="10_kgiyg"]
 [ext_resource type="Script" path="res://BackgroundMusic.cs" id="10_rw3iy"]
+[ext_resource type="PackedScene" uid="uid://bqhicrodfpprn" path="res://gardener_room.tscn" id="11_f2dft"]
 [ext_resource type="Material" uid="uid://bt154vue6mixi" path="res://spawn_room.tres" id="15_4uxj0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ssns8"]
 radius = 0.01
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h0lcg"]
-size = Vector2(60, 14.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ro1hx"]
 size = Vector2(61, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3lxvy"]
 size = Vector2(47, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h0lcg"]
+size = Vector2(60, 15)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_irlsu"]
 size = Vector2(512, 512)
@@ -230,16 +231,6 @@ script = ExtResource("3_oj2n0")
 Music = ExtResource("8_2gy5n")
 MusicPitch = 0.5
 
-[node name="BossRoomTransition" type="Area2D" parent="Rooms/SpawnRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
-position = Vector2(272, 171)
-script = ExtResource("4_1hoxw")
-From = NodePath("..")
-To = NodePath("../../BossRoom")
-Entrypoint = NodePath("../../BossRoom/BossEntryLeft")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/SpawnRoom/BossRoomTransition"]
-shape = SubResource("RectangleShape2D_h0lcg")
-
 [node name="FlyRoomTransition" type="Area2D" parent="Rooms/SpawnRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
 position = Vector2(-16, -137)
 script = ExtResource("4_1hoxw")
@@ -251,8 +242,22 @@ Entrypoint = NodePath("../../FlyRoom/FlyRoomEntry")
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_ro1hx")
 
+[node name="GardenerRoomTransition" type="Area2D" parent="Rooms/SpawnRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
+position = Vector2(272, 171)
+script = ExtResource("4_1hoxw")
+From = NodePath("..")
+To = NodePath("../../GardenerRoom")
+Entrypoint = NodePath("../../GardenerRoom/GardenerEntryTop")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/SpawnRoom/GardenerRoomTransition"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_ro1hx")
+
 [node name="InitialEntry" type="Marker2D" parent="Rooms/SpawnRoom"]
 position = Vector2(-191, 3)
+
+[node name="SpawnRoomEntryBottom" type="Marker2D" parent="Rooms/SpawnRoom"]
+position = Vector2(273, 145)
 
 [node name="BossRoom" parent="Rooms" instance=ExtResource("1_e0hd2")]
 visible = false
@@ -282,6 +287,33 @@ shape = SubResource("RectangleShape2D_3lxvy")
 [node name="SpawnEntryFromFly" type="Marker2D" parent="Rooms/FlyRoom/BackToSpawnRoom"]
 position = Vector2(-17, -75)
 
+[node name="GardenerRoom" parent="Rooms" instance=ExtResource("11_f2dft")]
+visible = false
+
+[node name="SpawnRoomTransition" type="Area2D" parent="Rooms/GardenerRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
+position = Vector2(-208, -141)
+script = ExtResource("4_1hoxw")
+From = NodePath("..")
+To = NodePath("../../SpawnRoom")
+Entrypoint = NodePath("../../SpawnRoom/SpawnRoomEntryBottom")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/GardenerRoom/SpawnRoomTransition"]
+shape = SubResource("RectangleShape2D_h0lcg")
+
+[node name="BossRoomTransition" type="Area2D" parent="Rooms/GardenerRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
+position = Vector2(426, 110)
+script = ExtResource("4_1hoxw")
+From = NodePath("..")
+To = NodePath("../../BossRoom")
+Entrypoint = NodePath("../../BossRoom/BossEntryLeft")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/GardenerRoom/BossRoomTransition"]
+position = Vector2(4, 1)
+shape = SubResource("RectangleShape2D_h0lcg")
+
+[node name="GardenerEntryTop" type="Marker2D" parent="Rooms/GardenerRoom"]
+position = Vector2(-208, -107)
+
 [node name="Overlay" type="Sprite2D" parent="."]
 visible = false
 material = ExtResource("15_4uxj0")
@@ -289,6 +321,7 @@ scale = Vector2(10000, 10000)
 texture = SubResource("PlaceholderTexture2D_irlsu")
 
 [node name="IntroSequence" type="AnimatedSprite2D" parent="."]
+visible = false
 z_index = 70
 position = Vector2(-204, -40)
 frames = SubResource("SpriteFrames_mqq3p")
@@ -316,7 +349,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Container"]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
