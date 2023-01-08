@@ -160,6 +160,7 @@ public partial class Fly : Area2D {
         rand = rand.Rotated((float)angle);
 
         var pos = this.Position + rand;
+        pos = pos.Clamp(room_size.Item1, room_size.Item2);
 
         return pos;
     }
