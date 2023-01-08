@@ -319,7 +319,12 @@ public partial class Fly : Area2D {
         this.visible_items.Remove(body);
     }
 
+    private bool melee_damage_enabled = false;
     private void body_collided(Node2D other) {
+        if (!melee_damage_enabled) {
+            return;
+        }
+
         var player = other as Player;
         if (player == null) {
             return;
