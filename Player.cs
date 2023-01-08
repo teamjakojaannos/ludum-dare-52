@@ -28,6 +28,7 @@ public partial class Player : CharacterBody2D {
     private bool is_dashing = false;
 
     private Timer dash_cooldown_timer;
+    private Timer invulnerable_timer;
 
     private GPUParticles2D DashSweat;
     private GPUParticles2D DashPoof;
@@ -81,6 +82,12 @@ public partial class Player : CharacterBody2D {
 
         AddChild(dash_cooldown_timer);
 
+        invulnerable_timer = new Timer();
+        invulnerable_timer.WaitTime = 0.5f;
+        invulnerable_timer.Autostart = false;
+        invulnerable_timer.OneShot = true;
+        AddChild(invulnerable_timer);
+
         is_game_started = false;
 
         SfxWalk = GetNode<AudioStreamPlayer>("SFX/Walk");
@@ -128,20 +135,44 @@ public partial class Player : CharacterBody2D {
         var boss = other as BigBoss;
         if (boss != null) {
             TakeDamage(1);
+            Knockback(350f, boss.Position);
         }
 
         var projectile = other as Projectile;
         if (projectile != null) {
             TakeDamage(1);
+            Knockback(150f, projectile.Position);
         }
     }
 
     public void TakeDamage(int amount) {
-        health -= amount;
+        if (invulnerable_timer.IsStopped()) {
+            health -= amount;
 
-        if (health == 0) {
-            is_dead = true;
+            if (health == 0) {
+                is_dead = true;
+            }
+
+            invulnerable_timer.Start();
+            Blink(5, 0.15f);
         }
+    }
+
+    private void Blink(int blinks, float interval = 0.5f) {
+        if (blinks == 0) {
+            return;
+        }
+
+        var original_modulate = Modulate;
+        GetTree().CreateTimer(interval / 2.0f, false).Timeout += () => {
+            Modulate = new Color(0.0f, 0.0f, 0.0f);
+
+            GetTree().CreateTimer(interval / 2.0f, false).Timeout += () => {
+                Modulate = original_modulate;
+
+                Blink(--blinks, interval);
+            };
+        };
     }
 
     public void Knockback(float force, Vector2 force_location) {

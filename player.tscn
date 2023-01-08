@@ -313,6 +313,7 @@ local_coords = true
 [node name="DashParticles" parent="." instance=ExtResource("3_ipw1t")]
 
 [node name="Hitbox" type="Area2D" parent="."]
+visible = false
 collision_mask = 4
 
 [node name="DamageCollider" type="CollisionShape2D" parent="Hitbox"]
