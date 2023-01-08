@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://0hox6eid43h1"]
+[gd_scene load_steps=57 format=3 uid="uid://0hox6eid43h1"]
 
 [ext_resource type="PackedScene" uid="uid://blcrlxm2w0jt4" path="res://player.tscn" id="1_7y16m"]
 [ext_resource type="PackedScene" uid="uid://ddtu463gtav58" path="res://boss_room.tscn" id="1_e0hd2"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://bjapuhegmhd4y" path="res://music/taistelumusa1.0.ogg" id="8_k1lj1"]
 [ext_resource type="PackedScene" uid="uid://byc261xcsjlgc" path="res://hud/dialogue.tscn" id="10_kgiyg"]
 [ext_resource type="Script" path="res://BackgroundMusic.cs" id="10_rw3iy"]
+[ext_resource type="Material" uid="uid://bt154vue6mixi" path="res://spawn_room.tres" id="15_4uxj0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ssns8"]
 radius = 0.01
@@ -23,6 +24,9 @@ size = Vector2(60, 14.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ro1hx"]
 size = Vector2(61, 12)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_irlsu"]
+size = Vector2(512, 512)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pgnnj"]
 atlas = ExtResource("7_ld5gn")
@@ -247,16 +251,6 @@ shape = SubResource("RectangleShape2D_ro1hx")
 [node name="InitialEntry" type="Marker2D" parent="Rooms/SpawnRoom"]
 position = Vector2(-191, 3)
 
-[node name="IntroSequence" type="AnimatedSprite2D" parent="Rooms/SpawnRoom/InitialEntry"]
-z_index = 70
-position = Vector2(-13, -43)
-frames = SubResource("SpriteFrames_mqq3p")
-animation = &"idle"
-playing = true
-script = ExtResource("8_ittkd")
-FallDialogueLines = ["Ouch", "...", "That hurt"]
-FallDialogue2Lines = ["kissat koiria", "fdsfg"]
-
 [node name="BossRoom" parent="Rooms" instance=ExtResource("1_e0hd2")]
 visible = false
 Music = ExtResource("8_c338q")
@@ -272,7 +266,24 @@ Music = ExtResource("8_k1lj1")
 [node name="FlyRoomEntry" type="Marker2D" parent="Rooms/FlyRoom"]
 position = Vector2(25, 121)
 
+[node name="Overlay" type="Sprite2D" parent="."]
+visible = false
+material = ExtResource("15_4uxj0")
+scale = Vector2(10000, 10000)
+texture = SubResource("PlaceholderTexture2D_irlsu")
+
+[node name="IntroSequence" type="AnimatedSprite2D" parent="."]
+z_index = 70
+position = Vector2(-204, -40)
+frames = SubResource("SpriteFrames_mqq3p")
+animation = &"idle"
+playing = true
+script = ExtResource("8_ittkd")
+FallDialogueLines = ["Ouch", "...", "That hurt"]
+FallDialogue2Lines = ["kissat koiria", "fdsfg"]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
 
 [node name="Container" type="Control" parent="CanvasLayer"]
 layout_mode = 3
