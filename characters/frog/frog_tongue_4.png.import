@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dj7m2w5axaaxr"
-path="res://.godot/imported/frog_tongue_4.png-4e2302c2992f34c961444f5ae2c66de5.ctex"
+path="res://.godot/imported/frog_tongue_4.png-b3a0bdaec484d9c7dcf5f63ac4c8fe48.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/frog_tongue_4.png"
-dest_files=["res://.godot/imported/frog_tongue_4.png-4e2302c2992f34c961444f5ae2c66de5.ctex"]
+source_file="res://characters/frog/frog_tongue_4.png"
+dest_files=["res://.godot/imported/frog_tongue_4.png-b3a0bdaec484d9c7dcf5f63ac4c8fe48.ctex"]
 
 [params]
 

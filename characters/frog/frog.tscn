@@ -1,0 +1,112 @@
+[gd_scene load_steps=27 format=3 uid="uid://cygqa0klmq4x1"]
+
+[ext_resource type="Script" path="res://characters/frog/Frog.cs" id="1_0fi8k"]
+[ext_resource type="Texture2D" uid="uid://d2sjrqjiwaspk" path="res://characters/frog/frog_tongue_1.png" id="2_c4he0"]
+[ext_resource type="Texture2D" uid="uid://ctole5nbulmil" path="res://characters/frog/frog_tongue_2.png" id="3_1t7xq"]
+[ext_resource type="Texture2D" uid="uid://cumceglk6j8mk" path="res://characters/frog/frog_tongue_3.png" id="4_ci6m6"]
+[ext_resource type="Texture2D" uid="uid://dj7m2w5axaaxr" path="res://characters/frog/frog_tongue_4.png" id="5_tyvbw"]
+[ext_resource type="Texture2D" uid="uid://y4rqvdjsnh86" path="res://characters/frog/frog_chew_1.png" id="6_8jp48"]
+[ext_resource type="Texture2D" uid="uid://cw1k2tkiajg4s" path="res://characters/frog/frog_chew_2.png" id="7_c2j6v"]
+[ext_resource type="Texture2D" uid="uid://bmna1lt5oel51" path="res://characters/frog/frog_chew_3.png" id="8_1k0cx"]
+[ext_resource type="Texture2D" uid="uid://citag6hywgvl" path="res://characters/frog/frog_chew_4.png" id="9_38vds"]
+[ext_resource type="Texture2D" uid="uid://xgsp8ob4jbj4" path="res://characters/frog/frog_chew_5.png" id="10_sfl3n"]
+[ext_resource type="Texture2D" uid="uid://c01kjb1lvbwhn" path="res://characters/frog/frog_idle_1.png" id="11_1bd1q"]
+[ext_resource type="Texture2D" uid="uid://c5u7ihank6as6" path="res://characters/frog/frog_idle_2.png" id="12_5jsh0"]
+[ext_resource type="Texture2D" uid="uid://ck3t511ggwvjk" path="res://characters/frog/frog_idle_3.png" id="13_ljnbt"]
+[ext_resource type="Texture2D" uid="uid://b4dwl1ao4cd0t" path="res://characters/frog/frog_sit_1.png" id="14_yx0yk"]
+[ext_resource type="Texture2D" uid="uid://bd3g4ime08s35" path="res://characters/frog/frog_sit_2.png" id="15_cidki"]
+[ext_resource type="Texture2D" uid="uid://dl05bhg3a6ts4" path="res://characters/frog/frog_sit_3.png" id="16_oyibc"]
+[ext_resource type="Texture2D" uid="uid://bon85s0mlylhb" path="res://characters/frog/frog_fallingAsleep_1.png" id="17_8kieh"]
+[ext_resource type="Texture2D" uid="uid://wucs7eym0ays" path="res://characters/frog/frog_fallingAsleep_2.png" id="18_6paau"]
+[ext_resource type="Texture2D" uid="uid://cwpn5pnqtalyj" path="res://frog_sleep_1.png" id="19_ucxxm"]
+[ext_resource type="Texture2D" uid="uid://c48otto8w44mv" path="res://frog_sleep_2.png" id="20_chgpw"]
+[ext_resource type="AudioStream" uid="uid://doillaxa3n74k" path="res://characters/frog/sound_chewing.ogg" id="21_is2g7"]
+[ext_resource type="AudioStream" uid="uid://dq1vdie212wrq" path="res://characters/frog/sound_sleeping.ogg" id="22_ciag3"]
+[ext_resource type="AudioStream" uid="uid://b4dp3d2v1r3v1" path="res://characters/frog/sound_slap.ogg" id="23_fdndf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_poy0h"]
+animations = [{
+"frames": [ExtResource("2_c4he0"), ExtResource("3_1t7xq"), ExtResource("4_ci6m6"), ExtResource("5_tyvbw")],
+"loop": false,
+"name": &"attacking",
+"speed": 5.0
+}, {
+"frames": [ExtResource("6_8jp48"), ExtResource("7_c2j6v"), ExtResource("6_8jp48"), ExtResource("7_c2j6v"), ExtResource("8_1k0cx"), ExtResource("9_38vds"), ExtResource("10_sfl3n")],
+"loop": true,
+"name": &"chewing",
+"speed": 5.0
+}, {
+"frames": [ExtResource("11_1bd1q"), ExtResource("12_5jsh0"), ExtResource("13_ljnbt")],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [ExtResource("14_yx0yk"), ExtResource("15_cidki"), ExtResource("16_oyibc"), ExtResource("17_8kieh"), ExtResource("18_6paau")],
+"loop": false,
+"name": &"falling asleep",
+"speed": 5.0
+}, {
+"frames": [ExtResource("14_yx0yk"), ExtResource("15_cidki"), ExtResource("16_oyibc")],
+"loop": true,
+"name": &"prepared",
+"speed": 5.0
+}, {
+"frames": [ExtResource("19_ucxxm"), ExtResource("20_chgpw")],
+"loop": true,
+"name": &"sleeping",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y0m4w"]
+size = Vector2(70, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k22sr"]
+size = Vector2(58, 47)
+
+[node name="Frog" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_0fi8k")
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+frames = SubResource("SpriteFrames_poy0h")
+animation = &"falling asleep"
+frame = 1
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-3, 0)
+shape = SubResource("RectangleShape2D_y0m4w")
+
+[node name="AttackArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(51, 1.5)
+shape = SubResource("RectangleShape2D_k22sr")
+
+[node name="Charge" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="AttackWindow" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="ChewingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_is2g7")
+volume_db = -25.0
+
+[node name="SleepingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_ciag3")
+volume_db = -25.0
+
+[node name="SlapSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_fdndf")
+volume_db = -25.0

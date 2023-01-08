@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xgsp8ob4jbj4"
-path="res://.godot/imported/frog_chew_5.png-19c52398c0a685532550b075d895f391.ctex"
+uid="uid://citag6hywgvl"
+path="res://.godot/imported/frog_chew_4.png-4e1bba97349e6d21226cf726f2e84023.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/frog_chew_5.png"
-dest_files=["res://.godot/imported/frog_chew_5.png-19c52398c0a685532550b075d895f391.ctex"]
+source_file="res://characters/frog/frog_chew_4.png"
+dest_files=["res://.godot/imported/frog_chew_4.png-4e1bba97349e6d21226cf726f2e84023.ctex"]
 
 [params]
 
