@@ -1,14 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://dfodv4yw8hgq7"]
 
-[ext_resource type="Texture2D" uid="uid://cjlcg1pdlf0lk" path="res://characters/fertilizer/dung.png" id="1_sicwj"]
 [ext_resource type="Script" path="res://characters/blocker/FertilizerBlocker.cs" id="1_w12hc"]
 [ext_resource type="Script" path="res://DialogueTrigger.cs" id="2_1uci2"]
+[ext_resource type="Texture2D" uid="uid://b6lka1xc611q5" path="res://characters/fertilizer/fertilizer_sack.png" id="3_h7rei"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oy1so"]
-radius = 31.0161
+radius = 30.1496
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aujyw"]
-size = Vector2(32, 30)
+size = Vector2(27, 26)
 
 [node name="FertilizerBlocker" type="StaticBody2D" node_paths=PackedStringArray("dialogue_trigger")]
 collision_layer = 8
@@ -25,9 +25,7 @@ lines = ["Now's not the time for that."]
 shape = SubResource("CircleShape2D_oy1so")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
-texture = ExtResource("1_sicwj")
+texture = ExtResource("3_h7rei")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_aujyw")
