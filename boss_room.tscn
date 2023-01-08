@@ -92,8 +92,8 @@ position = Vector2(-3, -11)
 curve = SubResource("Curve2D_6hue2")
 
 [node name="Follow" type="PathFollow2D" parent="BossPath"]
-position = Vector2(175.228, 0.689415)
-rotation = 1.48023
+position = Vector2(175.228, 0.689232)
+rotation = 1.48024
 progress = 146.95
 
 [node name="Rocks" type="Node2D" parent="."]

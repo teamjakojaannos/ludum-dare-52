@@ -15,6 +15,7 @@ public partial class BossRoom : Room {
         base.OnPlayerEnter();
 
 		animation = GetNode<AnimationPlayer>("Animation");
+		GetNode<CanvasLayer>("UICanvas")?.Hide();
         dialogue = GetTree().Root.GetNode<Main>("Main")?.DialogueUI;
         GetTree().CreateTimer(1.5f).Timeout += EntryDialogue;
     }

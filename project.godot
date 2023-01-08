@@ -63,6 +63,7 @@ next_dialogue={
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Characters"
 2d_physics/layer_5="Fertilizer"
+2d_physics/layer_6="Obstacle (no-collide projectile)"
 
 [rendering]
 

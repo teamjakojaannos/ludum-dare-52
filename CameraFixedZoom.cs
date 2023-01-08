@@ -10,6 +10,9 @@ public partial class CameraFixedZoom : Camera2D {
 
 	[Export]
 	public float ZoomFactor = 1.0f;
+	
+	[Export]
+	public Vector2 IntroOffset = Vector2.Up * 8.0f;
 
 	private Player player;
 
@@ -24,6 +27,6 @@ public partial class CameraFixedZoom : Camera2D {
 
 		Zoom = new Vector2(ratio * ZoomFactor, ratio * ZoomFactor);
 
-		Position = player.Position;
+		Position = player.Position + IntroOffset;
     }
 }

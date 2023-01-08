@@ -224,6 +224,7 @@ zoom = Vector2(2.25, 2.25)
 position_smoothing_enabled = true
 editor_draw_drag_margin = true
 script = ExtResource("3_oj2n0")
+IntroOffset = Vector2(0, -40)
 
 [node name="Rooms" type="Node2D" parent="."]
 
@@ -237,6 +238,7 @@ script = ExtResource("4_1hoxw")
 From = NodePath("..")
 To = NodePath("../../FlyRoom")
 Entrypoint = NodePath("../../FlyRoom/FlyRoomEntry")
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/SpawnRoom/FlyRoomTransition"]
 position = Vector2(-0.5, 0)
@@ -272,7 +274,7 @@ visible = false
 Music = ExtResource("8_k1lj1")
 
 [node name="FlyRoomEntry" type="Marker2D" parent="Rooms/FlyRoom"]
-position = Vector2(-176, 104)
+position = Vector2(-144, 175)
 
 [node name="BackToSpawnRoom" type="Area2D" parent="Rooms/FlyRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
 script = ExtResource("4_1hoxw")
@@ -281,7 +283,7 @@ To = NodePath("../../SpawnRoom")
 Entrypoint = NodePath("SpawnEntryFromFly")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/FlyRoom/BackToSpawnRoom"]
-position = Vector2(-175.5, 174)
+position = Vector2(-143, 216)
 shape = SubResource("RectangleShape2D_3lxvy")
 
 [node name="SpawnEntryFromFly" type="Marker2D" parent="Rooms/FlyRoom/BackToSpawnRoom"]
@@ -321,9 +323,8 @@ scale = Vector2(10000, 10000)
 texture = SubResource("PlaceholderTexture2D_irlsu")
 
 [node name="IntroSequence" type="AnimatedSprite2D" parent="."]
-visible = false
 z_index = 70
-position = Vector2(-204, -40)
+position = Vector2(-204, -52)
 frames = SubResource("SpriteFrames_mqq3p")
 animation = &"idle"
 playing = true
@@ -349,6 +350,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Container"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

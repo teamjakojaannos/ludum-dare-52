@@ -11,7 +11,7 @@ void fragment() {
 	
 	vec4 player_start = vec4(
 		0.2 * screen_size.x,
-		0.5 * screen_size.y,
+		0.6 * screen_size.y,
 		0.0,
 		0.0
 	);

@@ -100,6 +100,7 @@ public partial class IntroSequence : AnimatedSprite2D {
         target_bright_dist = 200.0f;
         target_darkness_dist_factor = 10f;
         target_camera_zoom = 1.0f;
+        camera.IntroOffset = Vector2.Zero;
 
         if (!player.is_game_started) {
             player.StartGame();

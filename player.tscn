@@ -289,11 +289,11 @@ script = ExtResource("1_60gwu")
 metadata/_edit_lock_ = true
 
 [node name="MovementCollider" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
+position = Vector2(0, -9)
 shape = SubResource("CircleShape2D_bopq3")
 
 [node name="Wat" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -32)
+position = Vector2(0, -44)
 scale = Vector2(0.85, 0.85)
 frames = SubResource("SpriteFrames_qnfk3")
 playing = true
@@ -301,19 +301,21 @@ script = ExtResource("3_rqgnu")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+position = Vector2(0, -12)
 frames = SubResource("SpriteFrames_moxy5")
 
 [node name="DashSweat" type="GPUParticles2D" parent="."]
-position = Vector2(0, -2)
+position = Vector2(0, -14)
 emitting = false
 amount = 6
 process_material = SubResource("ParticleProcessMaterial_7xhh2")
 local_coords = true
 
 [node name="DashParticles" parent="." instance=ExtResource("3_ipw1t")]
+position = Vector2(0, -12)
 
 [node name="Hitbox" type="Area2D" parent="."]
-visible = false
+position = Vector2(0, -12)
 collision_mask = 4
 
 [node name="DamageCollider" type="CollisionShape2D" parent="Hitbox"]
