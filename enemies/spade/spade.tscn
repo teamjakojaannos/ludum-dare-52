@@ -154,6 +154,7 @@ animations = [{
 radius = 26.3059
 
 [node name="Spade" type="Area2D"]
+z_index = 70
 script = ExtResource("1_wsj0e")
 KnockbackForce = 250.0
 

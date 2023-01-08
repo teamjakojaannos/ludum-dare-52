@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://bm46qfu1bofk4" path="res://characters/DASH.ogg" id="10_c217m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bopq3"]
-radius = 11.0
+radius = 5.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_drxwn"]
 atlas = ExtResource("2_gc71w")
@@ -282,17 +282,20 @@ radius = 8.0
 
 [node name="player" type="CharacterBody2D"]
 z_index = 69
-collision_mask = 11
+y_sort_enabled = true
+collision_mask = 43
 motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_60gwu")
 metadata/_edit_lock_ = true
 
 [node name="MovementCollider" type="CollisionShape2D" parent="."]
-position = Vector2(0, -9)
+y_sort_enabled = true
+position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_bopq3")
 
 [node name="Wat" type="AnimatedSprite2D" parent="."]
+z_index = 420
 position = Vector2(0, -44)
 scale = Vector2(0.85, 0.85)
 frames = SubResource("SpriteFrames_qnfk3")
