@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cddrio631ra6n"]
+[gd_scene load_steps=12 format=3 uid="uid://cddrio631ra6n"]
 
 [ext_resource type="Script" path="res://enemies/fly/Fly.cs" id="1_usewm"]
 [ext_resource type="Texture2D" uid="uid://413kwijru2me" path="res://enemies/fly/fly_frame_1.png" id="2_nmqd6"]

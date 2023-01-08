@@ -4,3 +4,5 @@
 
 [resource]
 shader = ExtResource("1_fcmk3")
+shader_parameter/bright_dist = null
+shader_parameter/darkness_dist_factor = null
