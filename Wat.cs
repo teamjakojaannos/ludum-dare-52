@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class Wat : Sprite2D {
+public partial class Wat : AnimatedSprite2D {
     [Export]
     public float JiggleAmount = 4.0f;
 

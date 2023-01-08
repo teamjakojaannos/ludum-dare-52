@@ -1,8 +1,8 @@
-[gd_scene load_steps=59 format=3 uid="uid://blcrlxm2w0jt4"]
+[gd_scene load_steps=72 format=3 uid="uid://blcrlxm2w0jt4"]
 
 [ext_resource type="Script" path="res://Player.cs" id="1_60gwu"]
 [ext_resource type="Texture2D" uid="uid://blftyj05rrdum" path="res://characters/tomatoidle.png" id="2_0h7g0"]
-[ext_resource type="Texture2D" uid="uid://d2xl60uf6vjsl" path="res://hud/wat.png" id="2_5cetj"]
+[ext_resource type="Texture2D" uid="uid://ca1owgt6ii3i" path="res://hud/kysmerkki.png" id="2_gc71w"]
 [ext_resource type="PackedScene" uid="uid://d1xynel1afh3v" path="res://particles/poof.tscn" id="3_ipw1t"]
 [ext_resource type="Texture2D" uid="uid://dic1apnoc0srt" path="res://characters/tomatosidewaywalk.png" id="3_jj3j1"]
 [ext_resource type="Script" path="res://Wat.cs" id="3_rqgnu"]
@@ -13,6 +13,62 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bopq3"]
 radius = 11.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drxwn"]
+atlas = ExtResource("2_gc71w")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3uduf"]
+atlas = ExtResource("2_gc71w")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e07l8"]
+atlas = ExtResource("2_gc71w")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbngw"]
+atlas = ExtResource("2_gc71w")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cesn7"]
+atlas = ExtResource("2_gc71w")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65ox6"]
+atlas = ExtResource("2_gc71w")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_toqat"]
+atlas = ExtResource("2_gc71w")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ct286"]
+atlas = ExtResource("2_gc71w")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1tl2"]
+atlas = ExtResource("2_gc71w")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8yxq"]
+atlas = ExtResource("2_gc71w")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqxi0"]
+atlas = ExtResource("2_gc71w")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hee03"]
+atlas = ExtResource("2_gc71w")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qnfk3"]
+animations = [{
+"frames": [SubResource("AtlasTexture_drxwn"), SubResource("AtlasTexture_3uduf"), SubResource("AtlasTexture_e07l8"), SubResource("AtlasTexture_dbngw"), SubResource("AtlasTexture_cesn7"), SubResource("AtlasTexture_65ox6"), SubResource("AtlasTexture_toqat"), SubResource("AtlasTexture_ct286"), SubResource("AtlasTexture_q1tl2"), SubResource("AtlasTexture_w8yxq"), SubResource("AtlasTexture_iqxi0"), SubResource("AtlasTexture_hee03")],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k5q47"]
 atlas = ExtResource("2_0h7g0")
@@ -236,9 +292,11 @@ metadata/_edit_lock_ = true
 position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_bopq3")
 
-[node name="Wat" type="Sprite2D" parent="."]
+[node name="Wat" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -32)
-texture = ExtResource("2_5cetj")
+scale = Vector2(0.85, 0.85)
+frames = SubResource("SpriteFrames_qnfk3")
+playing = true
 script = ExtResource("3_rqgnu")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
