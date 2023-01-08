@@ -51,6 +51,7 @@ public partial class BigBoss : Area2D {
     }
 
     private bool is_dead = false;
+    private bool is_encounter_started = false;
 
 
     public override void _Ready() {
@@ -69,7 +70,7 @@ public partial class BigBoss : Area2D {
         dash_attack_timer.Timeout += AttackSequence;
         AddChild(dash_attack_timer);
 
-        state = State.FollowPath;
+        state = State.DramaticPause;
         target_position = Vector2.Zero;
         speed_mult = 1.0f;
 
@@ -80,19 +81,22 @@ public partial class BigBoss : Area2D {
         Healthbar.Value = health;
     }
 
+    public void PlayIntroSfx() {
+        sfx.Autoplay = false;
+        sfx.Stream = SfxIntro;
+        sfx.Finished += LoopIdle;
+        sfx.Play();
+    }
+
     public void StartEncounter() {
         state = State.DramaticPause;
 
-        sfx.Stream = SfxIntro;
-        sfx.Autoplay = false;
-
-        sfx.Finished += LoopIdle;
-        sfx.Play();
-
-        GetTree().CreateTimer(2.0f, false).Timeout += () => {
+        GetTree().CreateTimer(0.5f, false).Timeout += () => {
             state = State.FollowPath;
             dash_attack_timer.Start();
         };
+
+        is_encounter_started = true;
     }
 
     private void LoopIdle() {
@@ -182,6 +186,10 @@ public partial class BigBoss : Area2D {
     }
 
     public override void _Process(double delta) {
+        if (!is_encounter_started) {
+            return;
+        }
+
         var player = GetTree().Root.GetNode<Node2D>("Main/player");
         target_position = player.Position;
 

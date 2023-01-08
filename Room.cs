@@ -65,11 +65,6 @@ public partial class Room : Node2D {
         GetTree().CreateTimer(0.5f, false).Timeout += () => {
             foreach (var child in GetChildren()) {
                 child.ProcessMode = ProcessModeEnum.Inherit;
-
-                var boss = child as BigBoss;
-                if (boss != null) {
-                    boss.StartEncounter();
-                }
             }
         };
 
