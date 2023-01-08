@@ -39,8 +39,8 @@ public partial class Dialogue : Control {
         }
 
         if (this.text_queue.Count == 0) {
-            EmitSignal(nameof(DialogueFinished));
             this.Hide();
+            EmitSignal(nameof(DialogueFinished));
         }
     }
 

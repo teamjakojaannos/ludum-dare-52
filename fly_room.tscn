@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bm8yuh6v168q0"]
+[gd_scene load_steps=10 format=3 uid="uid://bm8yuh6v168q0"]
 
 [ext_resource type="Script" path="res://Room.cs" id="1_fa68n"]
 [ext_resource type="Texture2D" uid="uid://c40wpwufgldus" path="res://background_scale.png" id="2_b6qyy"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bt71ngvkigiia" path="res://characters/fertilizer/fertilizer.tscn" id="5_ysn6d"]
 [ext_resource type="TileSet" uid="uid://bkr6fw3ilgafx" path="res://greenery/greenery_tile_set.tres" id="6_td38s"]
 [ext_resource type="Script" path="res://things/FlyRoomQuest.cs" id="7_na5dn"]
+[ext_resource type="PackedScene" uid="uid://dfodv4yw8hgq7" path="res://characters/blocker/FertilizerBlocker.tscn" id="8_2qvcd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tnyv0"]
 size = Vector2(512, 352)
@@ -49,3 +50,6 @@ position = Vector2(92, -90)
 
 [node name="FlyRoomQuest" type="Node" parent="."]
 script = ExtResource("7_na5dn")
+
+[node name="Blocker" parent="." instance=ExtResource("8_2qvcd")]
+position = Vector2(-176, 145)

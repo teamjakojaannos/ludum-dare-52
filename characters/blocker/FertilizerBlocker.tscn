@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfodv4yw8hgq7"]
+
+[ext_resource type="Texture2D" uid="uid://cjlcg1pdlf0lk" path="res://characters/fertilizer/dung.png" id="1_sicwj"]
+[ext_resource type="Script" path="res://characters/blocker/FertilizerBlocker.cs" id="1_w12hc"]
+[ext_resource type="Script" path="res://DialogueTrigger.cs" id="2_1uci2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oy1so"]
+radius = 31.0161
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aujyw"]
+size = Vector2(32, 30)
+
+[node name="FertilizerBlocker" type="StaticBody2D" node_paths=PackedStringArray("dialogue_trigger")]
+script = ExtResource("1_w12hc")
+dialogue_trigger = NodePath("DialogueTrigger")
+dialogue_when_removable = ["Hmm...", "This smells like...", "..like crap.", "", "However, as a plant it should be good for me."]
+dialogue_after_removed = ["Oh sprout I feel fast now!", "I feel like dashing around!"]
+
+[node name="DialogueTrigger" type="Area2D" parent="."]
+script = ExtResource("2_1uci2")
+lines = ["Now's not the time for that."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueTrigger"]
+shape = SubResource("CircleShape2D_oy1so")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_sicwj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_aujyw")
