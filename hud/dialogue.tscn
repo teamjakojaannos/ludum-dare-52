@@ -1,8 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://byc261xcsjlgc"]
+[gd_scene load_steps=9 format=3 uid="uid://byc261xcsjlgc"]
 
 [ext_resource type="Script" path="res://hud/Dialogue.cs" id="1_l5f6k"]
 [ext_resource type="Texture2D" uid="uid://dnbkiey6616yl" path="res://hud/dialogue_box.png" id="2_tu7ux"]
 [ext_resource type="Texture2D" uid="uid://bk4o1gu2djktx" path="res://hud/arrow.png" id="3_0bgpt"]
+[ext_resource type="FontFile" uid="uid://dj0pjtkgtnvjx" path="res://fonts/RosesareFF0000.ttf" id="3_icc2s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v5d18"]
+font = ExtResource("3_icc2s")
+font_size = 18
+font_color = Color(0, 0, 0, 0.470588)
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_astlg"]
+font = ExtResource("3_icc2s")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="InputEventAction" id="InputEventAction_7h3p6"]
 action = &"next_dialogue"
@@ -10,7 +23,7 @@ action = &"next_dialogue"
 [sub_resource type="Shortcut" id="Shortcut_1d1b6"]
 events = [SubResource("InputEventAction_7h3p6")]
 
-[node name="Dialogue" type="Control" node_paths=PackedStringArray("label")]
+[node name="Dialogue" type="Control" node_paths=PackedStringArray("label", "previous_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,10 +31,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l5f6k")
-label = NodePath("Background/Label")
+label = NodePath("Background/Current")
+previous_label = NodePath("Background/Previous")
 
 [node name="Background" type="TextureRect" parent="."]
-layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -33,35 +46,39 @@ offset_right = 315.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("2_tu7ux")
+flip_h = true
 
-[node name="Label" type="Label" parent="Background"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Previous" type="Label" parent="Background"]
+texture_filter = 4
 offset_left = 23.0
-offset_top = 13.0
-offset_right = -118.0
-offset_bottom = -13.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_top = 22.0
+offset_right = 606.0
+offset_bottom = 43.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "The previous line of text"
+label_settings = SubResource("LabelSettings_v5d18")
+vertical_alignment = 1
+clip_text = true
+
+[node name="Current" type="Label" parent="Background"]
+texture_filter = 1
+offset_left = 23.0
+offset_top = 48.0
+offset_right = 606.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "A quick brown fox jumped, etc."
+label_settings = SubResource("LabelSettings_astlg")
 vertical_alignment = 1
 clip_text = true
 
 [node name="ButtonOk" type="TextureButton" parent="Background"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -111.0
-offset_top = -35.0
-offset_right = -17.0
-offset_bottom = 35.0
-grow_horizontal = 0
-grow_vertical = 2
+custom_minimum_size = Vector2(44, 28)
+offset_left = 570.0
+offset_top = 53.0
+offset_right = 614.0
+offset_bottom = 81.0
+size_flags_vertical = 8
 shortcut_in_tooltip = false
 shortcut = SubResource("Shortcut_1d1b6")
 texture_normal = ExtResource("3_0bgpt")

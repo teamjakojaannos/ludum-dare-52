@@ -7,9 +7,16 @@ public partial class Dialogue : Control {
 
     [Export]
     public Label label;
+    [Export]
+    public Label previous_label;
 
     [Signal]
     public delegate void DialogueFinishedEventHandler();
+
+    public override void _Ready() {
+        this.label.Text = "";
+        this.previous_label.Text = "";
+    }
 
     public void clear_queue() {
         this.text_queue.Clear();
@@ -39,6 +46,8 @@ public partial class Dialogue : Control {
         }
 
         if (this.text_queue.Count == 0) {
+            this.label.Text = "";
+            this.previous_label.Text = "";
             this.Hide();
             EmitSignal(nameof(DialogueFinished));
         }
@@ -51,6 +60,7 @@ public partial class Dialogue : Control {
         }
 
         var text = this.text_queue[0];
+        this.previous_label.Text = this.label.Text;
         this.label.Text = text;
     }
 }

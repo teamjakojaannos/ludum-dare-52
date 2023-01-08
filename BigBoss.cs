@@ -11,7 +11,7 @@ public partial class BigBoss : Area2D {
     public float DashCooldown = 5.0f;
 
     [Export]
-    public ProgressBar Healthbar;
+    public TextureProgressBar Healthbar;
 
     private Path2D path;
     private PathFollow2D follow;
