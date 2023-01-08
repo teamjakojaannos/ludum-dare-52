@@ -79,7 +79,7 @@ shape = SubResource("CircleShape2D_58egt")
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_dyglj")
-volume_db = -15.0
+volume_db = -25.0
 autoplay = true
 
 [node name="AttackCooldown" type="Timer" parent="."]
