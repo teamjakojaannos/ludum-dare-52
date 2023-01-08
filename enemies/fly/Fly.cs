@@ -8,10 +8,10 @@ public partial class Fly : Area2D {
     public PackedScene projectile_template;
 
     [Export]
-    public float projectile_speed = 250.0f;
+    public float projectile_speed = 200.0f;
 
     [Export]
-    public float projectile_lifetime = 1.5f;
+    public float projectile_lifetime = 0.75f;
 
     [Export]
     public Timer projectile_cooldown;
@@ -235,7 +235,7 @@ public partial class Fly : Area2D {
     }
 
     private void shoot_projectile(Vector2 shoot_target) {
-        var projectile = projectile_template.Instantiate<Projectile>();
+        var projectile = projectile_template.Instantiate<FlyProjectile>();
 
         var speed = projectile_speed;
 
