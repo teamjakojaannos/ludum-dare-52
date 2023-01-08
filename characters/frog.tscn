@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://wu5v701tnf8f"]
+[gd_scene load_steps=24 format=3 uid="uid://wu5v701tnf8f"]
 
 [ext_resource type="Script" path="res://characters/Frog.cs" id="1_i3jdb"]
 [ext_resource type="Texture2D" uid="uid://d2sjrqjiwaspk" path="res://characters/frog_tongue_1.png" id="2_6yfrh"]
@@ -16,6 +16,10 @@
 [ext_resource type="Texture2D" uid="uid://xgsp8ob4jbj4" path="res://characters/frog_chew_5.png" id="10_qmltf"]
 [ext_resource type="Texture2D" uid="uid://bd3g4ime08s35" path="res://characters/frog_sit_2.png" id="11_x6dqv"]
 [ext_resource type="Texture2D" uid="uid://dl05bhg3a6ts4" path="res://characters/frog_sit_3.png" id="12_vr13y"]
+[ext_resource type="Texture2D" uid="uid://bon85s0mlylhb" path="res://characters/frog_fallingAsleep_1.png" id="17_f03as"]
+[ext_resource type="Texture2D" uid="uid://wucs7eym0ays" path="res://characters/frog_fallingAsleep_2.png" id="18_1f6n0"]
+[ext_resource type="Texture2D" uid="uid://cwpn5pnqtalyj" path="res://frog_sleep_1.png" id="19_25ybp"]
+[ext_resource type="Texture2D" uid="uid://c48otto8w44mv" path="res://frog_sleep_2.png" id="20_mhp7t"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_poy0h"]
 animations = [{
@@ -34,15 +38,20 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }, {
+"frames": [ExtResource("10_dhbrq"), ExtResource("11_x6dqv"), ExtResource("12_vr13y"), ExtResource("17_f03as"), ExtResource("18_1f6n0")],
+"loop": false,
+"name": &"falling asleep",
+"speed": 5.0
+}, {
 "frames": [ExtResource("10_dhbrq"), ExtResource("11_x6dqv"), ExtResource("12_vr13y")],
 "loop": true,
 "name": &"prepared",
 "speed": 5.0
 }, {
-"frames": [ExtResource("8_2nxd6")],
+"frames": [ExtResource("19_25ybp"), ExtResource("20_mhp7t")],
 "loop": true,
 "name": &"sleeping",
-"speed": 5.0
+"speed": 2.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y0m4w"]
@@ -58,7 +67,8 @@ script = ExtResource("1_i3jdb")
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 frames = SubResource("SpriteFrames_poy0h")
-animation = &"sleeping"
+animation = &"falling asleep"
+frame = 1
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 visible = false
