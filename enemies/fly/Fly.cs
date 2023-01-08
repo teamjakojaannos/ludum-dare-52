@@ -55,6 +55,9 @@ public partial class Fly : Area2D {
     // (left-top) (right-bottom)
     public (Vector2, Vector2) room_size;
 
+    [Export]
+    public int melee_damage = 1;
+
     private Node2D player;
 
     public override void _Ready() {
@@ -87,7 +90,31 @@ public partial class Fly : Area2D {
             }
         };
 
+        this.target_position = this.Position;
+
         random = new Random();
+
+        randomize_fields();
+    }
+
+    private void randomize_fields() {
+        var speed_multiplier = random_float(1.0f, 1.75f);
+        this.speed *= speed_multiplier;
+        this.animation.SpeedScale = speed_multiplier;
+
+
+        var projectile_speed_mult = random_float(0.75f, 1.5f);
+        this.projectile_speed *= projectile_speed_mult;
+
+        var attack_cd_mult = random_float(0.5f, 1.0f);
+        this.projectile_cooldown.WaitTime *= attack_cd_mult;
+
+        var charge_time_mult = random_float(0.5f, 1.0f);
+        this.charge_timer.WaitTime = 1.0f;
+    }
+
+    private float random_float(float min, float max) {
+        return (float)(random.NextDouble() * (max - min) + min);
     }
 
     private (Vector2, Vector2) get_room_size_or_screen_size() {
@@ -185,11 +212,25 @@ public partial class Fly : Area2D {
             return player;
         }
 
+        var dungs = visible_items.FindAll(node => node.GetType() == typeof(Fertilizer));
+        if (dungs.Count == 0) {
+            return null;
+        }
+        if (dungs.Count == 1) {
+            return dungs[0];
+        }
 
-        // lol we hungry just find first one
-        var dung = visible_items.Find(node => node.GetType() == typeof(Fertilizer));
-        // doesn't matter if it's null
-        return dung;
+        var nearest = dungs[0];
+        var nearest_dist = nearest.Position.DistanceSquaredTo(this.Position);
+
+        foreach (var dung in dungs) {
+            var dist = dung.Position.DistanceSquaredTo(this.Position);
+            if (dist < nearest_dist) {
+                nearest = dung;
+            }
+        }
+
+        return nearest;
     }
 
 
@@ -284,9 +325,7 @@ public partial class Fly : Area2D {
             return;
         }
 
-        GD.Print("Hit player");
-        // TODO:
-        // player.take_damage();
+        player.TakeDamage(melee_damage);
     }
 
     private void rotate_and_scale_path(float scale, float rotation) {

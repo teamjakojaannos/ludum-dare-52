@@ -37,16 +37,19 @@ position = Vector2(-171, -80)
 position = Vector2(91, -49)
 
 [node name="Fly2" parent="." instance=ExtResource("5_pp0br")]
-position = Vector2(228, -16)
+position = Vector2(229, 55)
 
 [node name="Fly3" parent="." instance=ExtResource("5_pp0br")]
 position = Vector2(184, -120)
 
-[node name="Fertilizer2" parent="." instance=ExtResource("5_ysn6d")]
-position = Vector2(82, -9)
-
 [node name="Fertilizer" parent="." instance=ExtResource("5_ysn6d")]
 position = Vector2(92, -90)
+
+[node name="Fertilizer2" parent="." instance=ExtResource("5_ysn6d")]
+position = Vector2(222, 115)
+
+[node name="Fertilizer3" parent="." instance=ExtResource("5_ysn6d")]
+position = Vector2(224, -125)
 
 [node name="FlyRoomQuest" type="Node" parent="."]
 script = ExtResource("7_na5dn")

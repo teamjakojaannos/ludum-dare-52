@@ -7,6 +7,12 @@ public partial class FlyProjectile : Area2D {
     public Vector2 Velocity = Vector2.Zero;
 
     [Export]
+    public int damage = 1;
+
+    [Export]
+    public float push_force = 100.0f;
+
+    [Export]
     public float Lifetime = 1.0f;
 
     public override void _Ready() {
@@ -21,8 +27,8 @@ public partial class FlyProjectile : Area2D {
     public void on_collision(Node other) {
         var player = other as Player;
         if (player != null) {
-            // TODO:
-            // player.take_damage();
+            player.TakeDamage(1);
+            player.Knockback(push_force, this.Position);
         }
 
         QueueFree();
