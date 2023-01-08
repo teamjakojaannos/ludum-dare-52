@@ -57,6 +57,8 @@ public partial class Player : CharacterBody2D {
         }
     }
 
+    private bool dash_learned = false;
+
     public override void _Ready() {
         GetNode<Area2D>("Hitbox").AreaEntered += HandleCollision;
 
@@ -171,7 +173,7 @@ public partial class Player : CharacterBody2D {
         }
 
         var is_dash_ready = dash_cooldown_timer.IsStopped();
-        if (Input.IsActionJustPressed("dash") && is_dash_ready) {
+        if (dash_learned && Input.IsActionJustPressed("dash") && is_dash_ready) {
             GetTree().CreateTimer(DashDuration, false).Timeout += () => {
                 is_dashing = false;
             };
@@ -200,5 +202,9 @@ public partial class Player : CharacterBody2D {
             sprite.Animation = "default";
             sprite.FlipH = false;
         }
+    }
+
+    public void learn_dash() {
+        dash_learned = true;
     }
 }

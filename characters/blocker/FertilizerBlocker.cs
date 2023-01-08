@@ -17,6 +17,8 @@ public partial class FertilizerBlocker : StaticBody2D {
     [Export]
     public Array<string> dialogue_after_removed = new();
 
+    private Player player;
+
 
 
     private bool removable = false;
@@ -24,6 +26,11 @@ public partial class FertilizerBlocker : StaticBody2D {
     public override void _Ready() {
         dialogue = GetTree().Root.GetNode<Main>("Main")?.DialogueUI;
         dialogue_trigger = GetNode<DialogueTrigger>("DialogueTrigger");
+
+        player = GetTree().Root.GetNodeOrNull<Player>("Main/player");
+        if (player == null) {
+            GD.Print("Can't find player");
+        }
     }
 
     public void make_removable() {
@@ -37,6 +44,10 @@ public partial class FertilizerBlocker : StaticBody2D {
 
     private void removal_dialogue_finished() {
         dialogue.DialogueFinished -= removal_dialogue_finished;
+
+        if (player != null) {
+            player.learn_dash();
+        }
 
         this.QueueFree();
 
