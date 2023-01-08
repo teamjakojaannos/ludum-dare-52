@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://0hox6eid43h1"]
+[gd_scene load_steps=58 format=3 uid="uid://0hox6eid43h1"]
 
 [ext_resource type="PackedScene" uid="uid://blcrlxm2w0jt4" path="res://player.tscn" id="1_7y16m"]
 [ext_resource type="PackedScene" uid="uid://ddtu463gtav58" path="res://boss_room.tscn" id="1_e0hd2"]
@@ -24,6 +24,9 @@ size = Vector2(60, 14.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ro1hx"]
 size = Vector2(61, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3lxvy"]
+size = Vector2(47, 38)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_irlsu"]
 size = Vector2(512, 512)
@@ -264,7 +267,20 @@ visible = false
 Music = ExtResource("8_k1lj1")
 
 [node name="FlyRoomEntry" type="Marker2D" parent="Rooms/FlyRoom"]
-position = Vector2(25, 121)
+position = Vector2(-176, 104)
+
+[node name="BackToSpawnRoom" type="Area2D" parent="Rooms/FlyRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
+script = ExtResource("4_1hoxw")
+From = NodePath("..")
+To = NodePath("../../SpawnRoom")
+Entrypoint = NodePath("SpawnEntryFromFly")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/FlyRoom/BackToSpawnRoom"]
+position = Vector2(-175.5, 174)
+shape = SubResource("RectangleShape2D_3lxvy")
+
+[node name="SpawnEntryFromFly" type="Marker2D" parent="Rooms/FlyRoom/BackToSpawnRoom"]
+position = Vector2(-17, -75)
 
 [node name="Overlay" type="Sprite2D" parent="."]
 visible = false
