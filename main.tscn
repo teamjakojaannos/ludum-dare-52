@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://0hox6eid43h1"]
+[gd_scene load_steps=55 format=3 uid="uid://0hox6eid43h1"]
 
 [ext_resource type="PackedScene" uid="uid://blcrlxm2w0jt4" path="res://player.tscn" id="1_7y16m"]
 [ext_resource type="PackedScene" uid="uid://ddtu463gtav58" path="res://boss_room.tscn" id="1_e0hd2"]
@@ -7,7 +7,10 @@
 [ext_resource type="Script" path="res://CameraFixedZoom.cs" id="3_oj2n0"]
 [ext_resource type="Script" path="res://RoomTransition.cs" id="4_1hoxw"]
 [ext_resource type="PackedScene" uid="uid://bm8yuh6v168q0" path="res://fly_room.tscn" id="6_k06wr"]
+[ext_resource type="Texture2D" uid="uid://cx4m4xoxeget6" path="res://intro/INTRO.png" id="7_ld5gn"]
 [ext_resource type="AudioStream" uid="uid://dqspt6x3u64jj" path="res://music/tutkimusmusa1.0.ogg" id="8_2gy5n"]
+[ext_resource type="AudioStream" uid="uid://m6oerk8m1d8k" path="res://bigboss/bossimusa.ogg" id="8_c338q"]
+[ext_resource type="Script" path="res://IntroSequence.cs" id="8_ittkd"]
 [ext_resource type="AudioStream" uid="uid://bjapuhegmhd4y" path="res://music/taistelumusa1.0.ogg" id="8_k1lj1"]
 [ext_resource type="PackedScene" uid="uid://byc261xcsjlgc" path="res://hud/dialogue.tscn" id="10_kgiyg"]
 [ext_resource type="Script" path="res://BackgroundMusic.cs" id="10_rw3iy"]
@@ -20,6 +23,164 @@ size = Vector2(60, 14.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ro1hx"]
 size = Vector2(61, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgnnj"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(0, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0048"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(128, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krjsr"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(256, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ji15"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(384, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42kyi"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(512, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gv522"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(640, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brw16"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(768, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2575"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(896, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qgju"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(1024, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4oso"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(1152, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbldd"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(1280, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3k5cv"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(1408, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqwgm"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(1536, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3kx7"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(1664, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dinid"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(1792, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vubp5"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(1920, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eeixu"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(2048, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20fiu"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(2176, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75atp"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(2304, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ba4sb"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(2432, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fdow"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(2560, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxtxu"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(2688, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcaou"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(2944, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_farjt"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(2816, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md4c7"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(2944, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cr7je"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(3072, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37s15"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(3200, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6ll7"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(3328, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kewux"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(3456, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57qct"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(3584, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvswb"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(3712, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27jml"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(3840, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6jpf"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(3968, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7206k"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(4096, 0, 128, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1k7kj"]
+atlas = ExtResource("7_ld5gn")
+region = Rect2(4224, 0, 128, 144)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mqq3p"]
+animations = [{
+"frames": [SubResource("AtlasTexture_pgnnj"), SubResource("AtlasTexture_k0048"), SubResource("AtlasTexture_krjsr"), SubResource("AtlasTexture_6ji15"), SubResource("AtlasTexture_42kyi"), SubResource("AtlasTexture_gv522"), SubResource("AtlasTexture_brw16"), SubResource("AtlasTexture_u2575"), SubResource("AtlasTexture_6qgju"), SubResource("AtlasTexture_o4oso"), SubResource("AtlasTexture_tbldd"), SubResource("AtlasTexture_3k5cv"), SubResource("AtlasTexture_mqwgm"), SubResource("AtlasTexture_f3kx7"), SubResource("AtlasTexture_dinid"), SubResource("AtlasTexture_vubp5"), SubResource("AtlasTexture_eeixu"), SubResource("AtlasTexture_20fiu"), SubResource("AtlasTexture_75atp"), SubResource("AtlasTexture_ba4sb"), SubResource("AtlasTexture_3fdow"), SubResource("AtlasTexture_yxtxu"), SubResource("AtlasTexture_tcaou"), SubResource("AtlasTexture_farjt")],
+"loop": false,
+"name": &"fall",
+"speed": 7.0
+}, {
+"frames": [SubResource("AtlasTexture_md4c7"), SubResource("AtlasTexture_cr7je"), SubResource("AtlasTexture_37s15"), SubResource("AtlasTexture_f6ll7"), SubResource("AtlasTexture_kewux"), SubResource("AtlasTexture_57qct"), SubResource("AtlasTexture_rvswb"), SubResource("AtlasTexture_27jml"), SubResource("AtlasTexture_j6jpf"), SubResource("AtlasTexture_7206k")],
+"loop": false,
+"name": &"get_up",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_1k7kj")],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pxomi"]
 font_size = 32
@@ -60,7 +221,7 @@ script = ExtResource("3_oj2n0")
 
 [node name="SpawnRoom" parent="Rooms" instance=ExtResource("3_li774")]
 Music = ExtResource("8_2gy5n")
-MusicPitch = 0.25
+MusicPitch = 0.5
 
 [node name="BossRoomTransition" type="Area2D" parent="Rooms/SpawnRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
 position = Vector2(272, 171)
@@ -84,12 +245,22 @@ position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_ro1hx")
 
 [node name="InitialEntry" type="Marker2D" parent="Rooms/SpawnRoom"]
-position = Vector2(192, 97)
+position = Vector2(-191, 3)
+
+[node name="IntroSequence" type="AnimatedSprite2D" parent="Rooms/SpawnRoom/InitialEntry"]
+z_index = 70
+position = Vector2(-13, -43)
+frames = SubResource("SpriteFrames_mqq3p")
+animation = &"idle"
+playing = true
+script = ExtResource("8_ittkd")
+FallDialogueLines = ["Ouch", "...", "That hurt"]
+FallDialogue2Lines = ["kissat koiria", "fdsfg"]
 
 [node name="BossRoom" parent="Rooms" instance=ExtResource("1_e0hd2")]
 visible = false
-Music = ExtResource("8_k1lj1")
-MusicPitch = 1.5
+Music = ExtResource("8_c338q")
+MusicVolume = -35.0
 
 [node name="BossEntryLeft" type="Marker2D" parent="Rooms/BossRoom"]
 position = Vector2(-244, 0)
@@ -118,6 +289,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Container"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class Wat : Sprite2D {
     [Export]

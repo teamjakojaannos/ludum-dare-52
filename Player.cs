@@ -33,7 +33,14 @@ public partial class Player : CharacterBody2D {
 
     private AnimatedSprite2D sprite;
 
+    private AudioStreamPlayer SfxWalk;
+    private AudioStreamPlayer SfxDash;
+
+    private int last_sfx_walk_frame = 5;
+
     private bool is_dead;
+
+    public bool is_game_started;
 
     private bool is_confused;
     public bool IsConfused {
@@ -75,8 +82,16 @@ public partial class Player : CharacterBody2D {
         DashPoof.Emitting = false;
 
         is_dead = false;
+        is_game_started = false;
+
+        SfxWalk = GetNode<AudioStreamPlayer>("SFX/Walk");
+        SfxDash = GetNode<AudioStreamPlayer>("SFX/Dash");
 
         Reset();
+    }
+
+    public void StartGame() {
+        is_game_started = true;
     }
 
     private void Reset() {
@@ -112,6 +127,10 @@ public partial class Player : CharacterBody2D {
 
 
     public override void _Process(double delta) {
+        if (!is_game_started) {
+            return;
+        }
+
         if (is_dead) {
             RotationDegrees = -90.0f;
             sprite.Animation = "default";
@@ -122,6 +141,15 @@ public partial class Player : CharacterBody2D {
 
             if (!sprite.Playing) {
                 sprite.Play();
+            }
+        }
+
+        if (sprite.Animation.ToString().Match("walk*")) {
+            var is_contact_frame = sprite.Frame == 1 || sprite.Frame == 5;
+
+            if (is_contact_frame && last_sfx_walk_frame != sprite.Frame) {
+                SfxWalk.Play();
+                last_sfx_walk_frame = sprite.Frame;
             }
         }
 
@@ -147,6 +175,8 @@ public partial class Player : CharacterBody2D {
             GetTree().CreateTimer(DashDuration, false).Timeout += () => {
                 is_dashing = false;
             };
+
+            SfxDash.Play();
 
             is_dashing = true;
             dash_cooldown_timer.Start();

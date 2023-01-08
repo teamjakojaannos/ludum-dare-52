@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 
 public partial class Dialogue : Control {
@@ -9,6 +8,9 @@ public partial class Dialogue : Control {
     [Export]
     public Label label;
 
+    [Signal]
+    public delegate void DialogueFinishedEventHandler();
+
     public void clear_queue() {
         this.text_queue.Clear();
 
@@ -16,6 +18,7 @@ public partial class Dialogue : Control {
     }
 
     public void set_queue(List<string> lines) {
+        Show();
         clear_queue();
 
         foreach (var line in lines) {
@@ -36,6 +39,7 @@ public partial class Dialogue : Control {
         }
 
         if (this.text_queue.Count == 0) {
+            EmitSignal(nameof(DialogueFinished));
             this.Hide();
         }
     }

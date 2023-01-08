@@ -42,3 +42,10 @@ top-down RPG
     - Hans on liian spicy tapaus kanille?
 
 
+# Turhaa paskaa
+
+- "What's brown and sticky?" "A stick." "[You got a stick!]" "(it is complete and utterly useless)"
+- Puu haistattelee
+- 
+
+

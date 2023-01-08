@@ -78,9 +78,12 @@ offset_top = 8.0
 offset_bottom = 48.0
 
 [node name="Label" type="Label" parent="UICanvas/VBoxContainer"]
-layout_mode = 2
+offset_right = 691.0
+offset_bottom = 26.0
 text = "Lawn Mower the Slayer of Crops"
 horizontal_alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="UICanvas/VBoxContainer"]
-layout_mode = 2
+offset_top = 30.0
+offset_right = 691.0
+offset_bottom = 57.0

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bdgk5njd8cnhr" path="res://enemies/fly/fly_frame_2.png" id="3_8q707"]
 [ext_resource type="Texture2D" uid="uid://ch0o0s80pdghm" path="res://enemies/fly/fly_frame_3.png" id="4_rwjjl"]
 [ext_resource type="Texture2D" uid="uid://dndolv0tkmcbu" path="res://enemies/fly/fly_frame_4.png" id="5_cuybh"]
+[ext_resource type="AudioStream" uid="uid://dqpssdluqgsjr" path="res://enemies/fly/FLY.ogg" id="6_dyglj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ehqq1"]
 animations = [{
@@ -67,3 +68,8 @@ collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SmellRadius"]
 shape = SubResource("CircleShape2D_58egt")
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_dyglj")
+volume_db = -15.0
+autoplay = true

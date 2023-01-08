@@ -30,7 +30,6 @@ public partial class DialogueTrigger : Area2D {
 			var dialogue_visible = dialogue?.Visible ?? false;
 			if (player != null && dialogue != null && !dialogue.Visible) {
 				dialogue.set_queue(new List<string>(lines));
-				dialogue.Show();
 			}
 		}
     }
