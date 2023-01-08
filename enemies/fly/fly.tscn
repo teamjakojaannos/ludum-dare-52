@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cddrio631ra6n"]
+[gd_scene load_steps=13 format=3 uid="uid://cddrio631ra6n"]
 
 [ext_resource type="Script" path="res://enemies/fly/Fly.cs" id="1_usewm"]
 [ext_resource type="Texture2D" uid="uid://413kwijru2me" path="res://enemies/fly/fly_frame_1.png" id="2_nmqd6"]
+[ext_resource type="PackedScene" uid="uid://bfm3hwee66ifn" path="res://enemies/fly/fly_projectile.tscn" id="2_p63fk"]
 [ext_resource type="Texture2D" uid="uid://bdgk5njd8cnhr" path="res://enemies/fly/fly_frame_2.png" id="3_8q707"]
 [ext_resource type="Texture2D" uid="uid://ch0o0s80pdghm" path="res://enemies/fly/fly_frame_3.png" id="4_rwjjl"]
 [ext_resource type="Texture2D" uid="uid://dndolv0tkmcbu" path="res://enemies/fly/fly_frame_4.png" id="5_cuybh"]
@@ -31,11 +32,14 @@ radius = 110.005
 [sub_resource type="CircleShape2D" id="CircleShape2D_58egt"]
 radius = 267.002
 
-[node name="Fly" type="Area2D"]
+[node name="Fly" type="Area2D" node_paths=PackedStringArray("projectile_cooldown", "charge_timer")]
 z_index = 70
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_usewm")
+projectile_template = ExtResource("2_p63fk")
+projectile_cooldown = NodePath("AttackCooldown")
+charge_timer = NodePath("AttackCharge")
 speed = 100.0
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
@@ -76,3 +80,11 @@ shape = SubResource("CircleShape2D_58egt")
 stream = ExtResource("6_dyglj")
 volume_db = -15.0
 autoplay = true
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="AttackCharge" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true

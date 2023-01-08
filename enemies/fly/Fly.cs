@@ -4,6 +4,26 @@ using System.Collections.Generic;
 
 public partial class Fly : Area2D {
 
+    [Export]
+    public PackedScene projectile_template;
+
+    [Export]
+    public float projectile_speed = 250.0f;
+
+    [Export]
+    public float projectile_lifetime = 1.5f;
+
+    [Export]
+    public Timer projectile_cooldown;
+
+    private bool ready_to_shoot = true;
+
+    private bool charging_shot = false;
+
+    /// how long the fly will charge a shot before firing
+    [Export]
+    public Timer charge_timer;
+
     /// the fly will try to go this close to the current target
     [Export]
     public float target_distance = 5.0f;
@@ -35,6 +55,7 @@ public partial class Fly : Area2D {
     // (left-top) (right-bottom)
     public (Vector2, Vector2) room_size;
 
+    private Node2D player;
 
     public override void _Ready() {
         room_size = get_room_size_or_screen_size();
@@ -54,6 +75,15 @@ public partial class Fly : Area2D {
         var nose = GetNode<Area2D>("SmellRadius");
         nose.BodyEntered += on_body_entered;
         nose.BodyExited += on_body_exited;
+
+        projectile_cooldown.Timeout += projectile_ready;
+
+        charge_timer.Timeout += () => {
+            if (player != null) {
+                shoot_projectile(player.Position);
+                charging_shot = false;
+            }
+        };
 
         random = new Random();
     }
@@ -82,6 +112,18 @@ public partial class Fly : Area2D {
             var new_scale = random.NextDouble() + 0.5;
             var new_rotation = (random.NextDouble() - 0.5) * Math.PI;
             rotate_and_scale_path((float)new_scale, (float)new_rotation);
+        }
+
+        if (charging_shot) {
+            rotate_towards_player();
+            return;
+        }
+
+        if (ready_to_shoot) {
+            var started_charge = charge_shot_if_player_visible();
+            if (started_charge) {
+                return;
+            }
         }
 
         this.target_position = get_target();
@@ -176,6 +218,50 @@ public partial class Fly : Area2D {
 
         Position = Position.Lerp(new_position, 0.5f)
             .Clamp(room_size.Item1, room_size.Item2);
+    }
+
+    public bool charge_shot_if_player_visible() {
+        var player = visible_items.Find(node => node.GetType() == typeof(Player));
+        if (player == null) {
+            return false;
+        }
+
+
+        charge_timer.Start();
+        charging_shot = true;
+        this.player = player;
+
+        return true;
+    }
+
+    private void shoot_projectile(Vector2 shoot_target) {
+        var projectile = projectile_template.Instantiate<Projectile>();
+
+        var speed = projectile_speed;
+
+        var velocity = (shoot_target - this.Position).Normalized() * projectile_speed;
+
+        projectile.Velocity = velocity;
+        projectile.Lifetime = projectile_lifetime;
+
+        projectile.GlobalPosition = GlobalPosition;
+        GetParent().AddChild(projectile);
+
+        projectile_cooldown.Start();
+        ready_to_shoot = false;
+
+    }
+
+    private void projectile_ready() {
+        this.ready_to_shoot = true;
+    }
+
+    private void rotate_towards_player() {
+        if (player == null) {
+            return;
+        }
+
+        this.animation.FlipH = player.Position.x < this.Position.x;
     }
 
     private void flip_animation(Vector2 old_position, Vector2 new_position) {
