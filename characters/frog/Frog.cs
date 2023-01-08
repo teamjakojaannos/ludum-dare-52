@@ -40,6 +40,10 @@ public partial class Frog : StaticBody2D {
 
     private int flies_eaten = 0;
 
+    public AudioStreamPlayer audio_chew;
+    public AudioStreamPlayer audio_sleep;
+    public AudioStreamPlayer audio_slap;
+
 
     public override void _Ready() {
         animation = GetNode<AnimatedSprite2D>("Animation");
@@ -59,6 +63,9 @@ public partial class Frog : StaticBody2D {
         attack_window = GetNode<Timer>("AttackWindow");
         attack_window.Timeout += missed_window_to_attack;
 
+        audio_chew = GetNode<AudioStreamPlayer>("ChewingSound");
+        audio_sleep = GetNode<AudioStreamPlayer>("SleepingSound");
+        audio_slap = GetNode<AudioStreamPlayer>("SlapSound");
 
         animation.AnimationFinished += on_animation_finished;
     }
@@ -85,6 +92,7 @@ public partial class Frog : StaticBody2D {
 
     private void attack() {
         destroy_nearest_fly();
+        audio_slap.Play();
         flies_eaten++;
 
         attack_window.Stop();
@@ -152,6 +160,7 @@ public partial class Frog : StaticBody2D {
         if (just_attacked) {
             just_attacked = false;
             animation.Animation = "chewing";
+            audio_chew.Play();
             return;
         }
 
@@ -163,6 +172,7 @@ public partial class Frog : StaticBody2D {
 
         if (state == State.Sleeping) {
             animation.Animation = "sleeping";
+            audio_sleep.Play();
             return;
         }
     }
