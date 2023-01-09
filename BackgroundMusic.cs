@@ -30,6 +30,15 @@ public partial class BackgroundMusic : Node {
         current.Play();
     }
 
+    public void Stop() {
+        fade.Stop();
+        var tmp = current;
+        current = fade;
+        fade = tmp;
+
+        target_volume = SILENCE_VOLUME;
+    }
+
     public override void _Process(double delta) {
         if (current.Playing) {
             current.VolumeDb = Mathf.Lerp(current.VolumeDb, target_volume, 0.01f);

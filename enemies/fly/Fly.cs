@@ -120,7 +120,7 @@ public partial class Fly : Area2D {
     private (Vector2, Vector2) get_room_size_or_screen_size() {
         var parent = GetParent();
 
-        if (parent.GetType() == typeof(Room)) {
+        if (parent.GetType().IsAssignableTo(typeof(Room))) {
             var room = (Room)parent;
             var size = (
                 new Vector2(room.CameraLimitLeft, room.CameraLimitTop),
@@ -134,6 +134,9 @@ public partial class Fly : Area2D {
     }
 
     public override void _Process(double delta) {
+        if (GetTree().Root.GetNode<Main>("Main").DialogueUI.Visible) {
+            return;
+        }
         passed_time += delta;
 
         if (passed_time >= randomize_time) {

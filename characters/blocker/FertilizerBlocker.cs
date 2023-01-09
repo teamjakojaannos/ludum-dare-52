@@ -31,10 +31,13 @@ public partial class FertilizerBlocker : StaticBody2D {
         if (player == null) {
             GD.Print("Can't find player");
         }
+
+        dialogue_trigger.Inactive = true;
     }
 
     public void make_removable() {
         removable = true;
+        dialogue_trigger.Inactive = false;
 
         dialogue_trigger.lines.Clear();
         dialogue_trigger.lines = new Array<string>(dialogue_when_removable);

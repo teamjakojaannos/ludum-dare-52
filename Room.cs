@@ -56,13 +56,17 @@ public partial class Room : Node2D {
     }
 
     private void Detach() {
+        GD.Print($"Detaching {this.Name}");
         GetParent().RemoveChild(this);
     }
 
     public virtual void OnPlayerEnter() {
         Show();
 
+        var player = GetTree().Root.GetNode<Player>("Main/player");
+        player.ProcessMode = ProcessModeEnum.Disabled;
         GetTree().CreateTimer(0.5f, false).Timeout += () => {
+            player.ProcessMode = ProcessModeEnum.Inherit;
             foreach (var child in GetChildren()) {
                 child.ProcessMode = ProcessModeEnum.Inherit;
             }

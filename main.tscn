@@ -330,6 +330,7 @@ position = Vector2(-208, -107)
 
 [node name="FlyIntroRoom" parent="Rooms" instance=ExtResource("12_b8tr0")]
 visible = false
+Music = ExtResource("8_2gy5n")
 
 [node name="BottomTransition" type="Area2D" parent="Rooms/FlyIntroRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
 script = ExtResource("4_1hoxw")
@@ -359,6 +360,7 @@ position = Vector2(231, 82)
 
 [node name="SecondFlyRoom" parent="Rooms" instance=ExtResource("13_r7sl1")]
 visible = false
+Music = ExtResource("8_2gy5n")
 
 [node name="LeftTransition" type="Area2D" parent="Rooms/SecondFlyRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
 script = ExtResource("4_1hoxw")
@@ -388,13 +390,13 @@ position = Vector2(204, 144)
 
 [node name="Overlay" type="Sprite2D" parent="."]
 visible = false
+z_index = 79
 material = ExtResource("15_4uxj0")
 scale = Vector2(10000, 10000)
 texture = SubResource("PlaceholderTexture2D_irlsu")
 
 [node name="IntroSequence" type="AnimatedSprite2D" parent="."]
-visible = false
-z_index = 70
+z_index = 80
 position = Vector2(-204, -52)
 frames = SubResource("SpriteFrames_mqq3p")
 animation = &"idle"
@@ -421,6 +423,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Container"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

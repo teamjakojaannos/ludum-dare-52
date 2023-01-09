@@ -8,6 +8,8 @@ public partial class DialogueTrigger : Area2D {
 
     private bool is_player_near = false;
 
+    public bool Inactive = false;
+
 	public override void _Ready() {
         BodyEntered += (other) => {
             var player = other as Player;
@@ -27,7 +29,7 @@ public partial class DialogueTrigger : Area2D {
     }
 
     public override void _Process(double delta) {
-		if (Input.IsActionJustPressed("next_dialogue")) {
+		if (Input.IsActionJustPressed("next_dialogue") && !Inactive) {
 			var dialogue = GetTree().Root.GetNode<Main>("Main")?.DialogueUI;
 			var player = GetTree().Root.GetNode<Player>("Main/player");
 

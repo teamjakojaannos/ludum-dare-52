@@ -11,15 +11,16 @@ radius = 30.1496
 size = Vector2(27, 26)
 
 [node name="FertilizerBlocker" type="StaticBody2D" node_paths=PackedStringArray("dialogue_trigger")]
-collision_layer = 8
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_w12hc")
 dialogue_trigger = NodePath("DialogueTrigger")
 dialogue_when_removable = ["Hmm...", "This smells like...", "..like crap.", "", "However, as a plant it should be good for me."]
 dialogue_after_removed = ["Oh sprout I feel fast now!", "I feel like dashing around!"]
 
 [node name="DialogueTrigger" type="Area2D" parent="."]
+collision_layer = 0
 script = ExtResource("2_1uci2")
-lines = ["Now's not the time for that."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueTrigger"]
 shape = SubResource("CircleShape2D_oy1so")

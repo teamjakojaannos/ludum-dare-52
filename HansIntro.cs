@@ -29,9 +29,9 @@ public partial class HansIntro : Node2D {
     private void AngryFlyDialogueFinished() {
         dialogue.DialogueFinished -= AngryFlyDialogueFinished;
 
-		player.IsConfused = true;
+		player.ProcessMode = ProcessModeEnum.Disabled;
 		GetTree().CreateTimer(1.5f).Timeout += () => {
-			player.IsConfused = false;
+            player.ProcessMode = ProcessModeEnum.Inherit;
 
 			dialogue.DialogueFinished += HansComingInDialogueFinished;
 			dialogue.set_queue(new System.Collections.Generic.List<string>(HansComingInLines));
@@ -42,5 +42,17 @@ public partial class HansIntro : Node2D {
 		dialogue.DialogueFinished -= HansComingInDialogueFinished;
 
 		animation.Play("HansIntro");
+        animation.AnimationFinished += HansLeft;
 	}
+
+    public void HansLeft(StringName name) {
+        animation.AnimationFinished -= HansLeft;
+
+        var lines = new System.Collections.Generic.List<string>();
+        lines.Add("The fly dropped something!");
+        dialogue.set_queue(lines);
+
+        var blocker = GetNodeOrNull<FertilizerBlocker>("../Blocker");
+        blocker.make_removable();
+    }
 }
