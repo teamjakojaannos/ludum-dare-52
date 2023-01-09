@@ -423,7 +423,6 @@ script = ExtResource("3_oj2n0")
 y_sort_enabled = true
 
 [node name="SpawnRoom" parent="Rooms" instance=ExtResource("3_li774")]
-z_index = 0
 StartEnabled = true
 Music = ExtResource("8_2gy5n")
 MusicPitch = 0.5
@@ -592,6 +591,7 @@ position = Vector2(-18, -126)
 [node name="CarrotRoom" parent="Rooms" instance=ExtResource("14_7einq")]
 visible = false
 y_sort_enabled = true
+Music = ExtResource("8_k1lj1")
 
 [node name="LeftTransition" type="Area2D" parent="Rooms/CarrotRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
 script = ExtResource("4_1hoxw")
@@ -621,6 +621,7 @@ position = Vector2(580, -80)
 
 [node name="TntShack" parent="Rooms" instance=ExtResource("15_e0bdr")]
 visible = false
+Music = ExtResource("8_2gy5n")
 
 [node name="Transition" type="Area2D" parent="Rooms/TntShack" node_paths=PackedStringArray("From", "To", "Entrypoint")]
 script = ExtResource("4_1hoxw")
