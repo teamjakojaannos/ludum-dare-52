@@ -8,7 +8,7 @@ public partial class Fly : Area2D {
     public PackedScene projectile_template;
 
     [Export]
-    public float projectile_speed = 200.0f;
+    public float projectile_speed = 185.0f;
 
     [Export]
     public float projectile_lifetime = 0.75f;
@@ -103,7 +103,7 @@ public partial class Fly : Area2D {
         this.animation.SpeedScale = speed_multiplier;
 
 
-        var projectile_speed_mult = random_float(0.75f, 1.5f);
+        var projectile_speed_mult = random_float(0.90f, 1.1f);
         this.projectile_speed *= projectile_speed_mult;
 
         var attack_cd_mult = random_float(0.5f, 1.0f);
