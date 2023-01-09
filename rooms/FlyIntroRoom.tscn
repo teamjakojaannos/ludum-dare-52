@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://7gs6wcaj8pjb"]
+[gd_scene load_steps=10 format=3 uid="uid://7gs6wcaj8pjb"]
 
 [ext_resource type="Script" path="res://Room.cs" id="1_36bx3"]
 [ext_resource type="TileSet" uid="uid://bkr6fw3ilgafx" path="res://greenery/greenery_tile_set.tres" id="2_cjb6l"]
-[ext_resource type="Texture2D" uid="uid://6gb86degxydr" path="res://characters/compost_bin.png" id="3_3oxgj"]
 [ext_resource type="PackedScene" uid="uid://bt71ngvkigiia" path="res://characters/fertilizer/fertilizer.tscn" id="4_t57m3"]
-[ext_resource type="PackedScene" uid="uid://cddrio631ra6n" path="res://enemies/fly/fly.tscn" id="5_vunvx"]
+[ext_resource type="PackedScene" uid="uid://8saeumnunocv" path="res://enemies/fly/fly.tscn" id="5_vunvx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4pf3b"]
 size = Vector2(512, 352)
@@ -20,9 +19,6 @@ size = Vector2(25.75, 515)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5drp"]
 size = Vector2(25.75, 515.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtjo7"]
-size = Vector2(27, 36)
 
 [node name="FlyIntroRoom" type="Node2D"]
 y_sort_enabled = true
@@ -42,7 +38,7 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array(-327679, 65536, 5, -262143, 65536, 6, -327678, 131072, 5, -262142, 131072, 6, 196604, 0, 6, 262143, 0, 6, -65533, 393216, 0, 65532, 458752, 1, 1, 458752, 1, -131067, 458752, 1, -65537, 458752, 0, 131077, 393216, 0, 6, 393216, 0, -6, 327680, 2, -196611, 327680, 2, -65540, 393216, 0, 262139, 458752, 0, 393211, 393216, 0, 393209, 327680, 2, 393208, 0, 6, -196616, 0, 6, 458746, 327680, 2)
+layer_1/tile_data = PackedInt32Array(-327679, 65536, 5, -262143, 65536, 6, -327678, 131072, 5, -262142, 131072, 6, 196604, 0, 6, 262143, 0, 6, -65533, 393216, 0, 65532, 458752, 1, 1, 458752, 1, -131067, 458752, 1, -65537, 458752, 0, 131077, 393216, 0, 6, 393216, 0, -6, 327680, 2, -196611, 327680, 2, -65540, 393216, 0, 262139, 458752, 0, 393211, 393216, 0, 393209, 327680, 2, 393208, 0, 6, -196616, 0, 6, 458746, 327680, 2, -65528, 524288, 0, -65529, 524288, 2, 7, 589824, 1, 65543, 524288, 3, 65544, 524288, 0, 327687, 524288, 3, 262151, 589824, 1, 196615, 524288, 2, 196616, 524288, 0, 327688, 524288, 0)
 
 [node name="Bounds" type="Area2D" parent="."]
 visible = false
@@ -70,18 +66,6 @@ shape = SubResource("RectangleShape2D_ekl2h")
 position = Vector2(0, -173)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_t5drp")
-
-[node name="CompostBin" type="StaticBody2D" parent="."]
-position = Vector2(-193, -117)
-collision_layer = 2
-collision_mask = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="CompostBin"]
-texture = ExtResource("3_3oxgj")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CompostBin"]
-position = Vector2(1, 11)
-shape = SubResource("RectangleShape2D_gtjo7")
 
 [node name="Fertilizer" parent="." instance=ExtResource("4_t57m3")]
 position = Vector2(-232, -35)

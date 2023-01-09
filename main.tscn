@@ -30,7 +30,7 @@ radius = 0.01
 size = Vector2(61, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3lxvy"]
-size = Vector2(47, 38)
+size = Vector2(95, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0lcg"]
 size = Vector2(60, 15)
@@ -42,6 +42,7 @@ size = Vector2(60, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evmpv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lcd77"]
+size = Vector2(103, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x80d8"]
 size = Vector2(36, 17)
@@ -409,16 +410,18 @@ visible = false
 Music = ExtResource("8_k1lj1")
 
 [node name="FlyRoomEntry" type="Marker2D" parent="Rooms/FlyRoom"]
-position = Vector2(-144, 175)
+visible = false
+position = Vector2(-47, 149)
 
 [node name="BottomTransition" type="Area2D" parent="Rooms/FlyRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
+visible = false
 script = ExtResource("4_1hoxw")
 From = NodePath("..")
 To = NodePath("../../SecondFlyRoom")
-Entrypoint = NodePath("../../SecondFlyRoom/RightEntry")
+Entrypoint = NodePath("../../SecondFlyRoom/TopEntry")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/FlyRoom/BottomTransition"]
-position = Vector2(-143, 216)
+position = Vector2(-50.5, 186.5)
 shape = SubResource("RectangleShape2D_3lxvy")
 
 [node name="GardenerRoom" parent="Rooms" instance=ExtResource("11_f2dft")]
@@ -492,21 +495,21 @@ Entrypoint = NodePath("../../FlyIntroRoom/RightEntry")
 position = Vector2(-252, 82)
 shape = SubResource("RectangleShape2D_evmpv")
 
-[node name="RightTransition" type="Area2D" parent="Rooms/SecondFlyRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
+[node name="TopTransition" type="Area2D" parent="Rooms/SecondFlyRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
 script = ExtResource("4_1hoxw")
 From = NodePath("..")
 To = NodePath("../../FlyRoom")
 Entrypoint = NodePath("../../FlyRoom/FlyRoomEntry")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/SecondFlyRoom/RightTransition"]
-position = Vector2(241, 144)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/SecondFlyRoom/TopTransition"]
+position = Vector2(-13.5, -165)
 shape = SubResource("RectangleShape2D_lcd77")
 
 [node name="LeftEntry" type="Marker2D" parent="Rooms/SecondFlyRoom"]
 position = Vector2(-211, 81)
 
-[node name="RightEntry" type="Marker2D" parent="Rooms/SecondFlyRoom"]
-position = Vector2(204, 144)
+[node name="TopEntry" type="Marker2D" parent="Rooms/SecondFlyRoom"]
+position = Vector2(-18, -126)
 
 [node name="CarrotRoom" parent="Rooms" instance=ExtResource("14_7einq")]
 visible = false
