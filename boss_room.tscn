@@ -143,7 +143,8 @@ scale = Vector2(3, 3)
 size_flags_horizontal = 3
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="UICanvas/VBoxContainer"]
-layout_mode = 2
+offset_right = 192.0
+offset_bottom = 32.0
 value = 75.0
 texture_under = ExtResource("5_fvhqt")
 texture_progress = ExtResource("6_stxua")
@@ -151,13 +152,13 @@ texture_progress = ExtResource("6_stxua")
 [node name="Lobu" type="Control" parent="UICanvas"]
 visible = false
 layout_mode = 3
+anchors_preset = 0
 offset_right = 1158.0
 offset_bottom = 647.0
 
 [node name="TextureRect" type="TextureRect" parent="UICanvas/Lobu"]
 texture_filter = 1
 custom_minimum_size = Vector2(1152, 576)
-layout_mode = 0
 offset_left = -87.0
 offset_top = -3.0
 offset_right = 1239.0
@@ -166,7 +167,6 @@ texture = ExtResource("7_c8mqe")
 stretch_mode = 6
 
 [node name="Label" type="Label" parent="UICanvas/Lobu"]
-layout_mode = 0
 offset_left = 308.0
 offset_top = 386.0
 offset_right = 382.0
@@ -175,7 +175,6 @@ text = "Minjaux"
 label_settings = SubResource("LabelSettings_kvj34")
 
 [node name="Label2" type="Label" parent="UICanvas/Lobu"]
-layout_mode = 1
 offset_left = 390.0
 offset_top = 265.0
 offset_right = 448.0
@@ -184,7 +183,6 @@ text = "Lassi"
 label_settings = SubResource("LabelSettings_kvj34")
 
 [node name="Label3" type="Label" parent="UICanvas/Lobu"]
-layout_mode = 1
 offset_left = 476.0
 offset_top = 382.0
 offset_right = 550.0
@@ -193,7 +191,6 @@ text = "Noodle"
 label_settings = SubResource("LabelSettings_kvj34")
 
 [node name="Label5" type="Label" parent="UICanvas/Lobu"]
-layout_mode = 1
 offset_left = 664.0
 offset_top = 385.0
 offset_right = 738.0
@@ -202,7 +199,6 @@ text = "toilari"
 label_settings = SubResource("LabelSettings_kvj34")
 
 [node name="Label6" type="Label" parent="UICanvas/Lobu"]
-layout_mode = 1
 offset_left = 765.0
 offset_top = 228.0
 offset_right = 839.0
@@ -211,7 +207,6 @@ text = "Alex"
 label_settings = SubResource("LabelSettings_kvj34")
 
 [node name="Label4" type="Label" parent="UICanvas/Lobu"]
-layout_mode = 1
 offset_left = 544.0
 offset_top = 237.0
 offset_right = 654.0
@@ -220,7 +215,6 @@ text = "Mayrakissa"
 label_settings = SubResource("LabelSettings_kvj34")
 
 [node name="Label5" type="Label" parent="UICanvas/Lobu/Label4"]
-layout_mode = 1
 offset_left = 10.0
 offset_top = -1.0
 offset_right = 17.0
@@ -230,7 +224,6 @@ text = ":"
 label_settings = SubResource("LabelSettings_kvj34")
 
 [node name="Label6" type="Label" parent="UICanvas/Lobu/Label4"]
-layout_mode = 1
 offset_left = 46.0
 offset_top = -1.0
 offset_right = 53.0
@@ -240,7 +233,6 @@ text = ":"
 label_settings = SubResource("LabelSettings_kvj34")
 
 [node name="Label7" type="Label" parent="UICanvas/Lobu"]
-layout_mode = 0
 offset_left = 299.0
 offset_top = 127.0
 offset_right = 841.0

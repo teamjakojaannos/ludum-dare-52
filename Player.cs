@@ -28,7 +28,7 @@ public partial class Player : CharacterBody2D {
     private bool is_dashing = false;
 
     private Timer dash_cooldown_timer;
-    private Timer invulnerable_timer;
+    public Timer invulnerable_timer;
 
     private GPUParticles2D DashSweat;
     private GPUParticles2D DashPoof;

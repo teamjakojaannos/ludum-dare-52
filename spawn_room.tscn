@@ -93,7 +93,6 @@ animations = [{
 size = Vector2(56, 14)
 
 [node name="SpawnRoom" type="Node2D"]
-z_index = 80
 y_sort_enabled = true
 script = ExtResource("1_gxvlu")
 

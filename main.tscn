@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://0hox6eid43h1"]
+[gd_scene load_steps=87 format=3 uid="uid://0hox6eid43h1"]
 
 [ext_resource type="PackedScene" uid="uid://blcrlxm2w0jt4" path="res://player.tscn" id="1_7y16m"]
 [ext_resource type="PackedScene" uid="uid://ddtu463gtav58" path="res://boss_room.tscn" id="1_e0hd2"]
@@ -332,12 +332,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="LabelSettings" id="LabelSettings_pxomi"]
-font_size = 32
-outline_size = 7
-shadow_size = 19
-shadow_color = Color(0, 0, 0, 1)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_k6g5h"]
 atlas = ExtResource("22_cudgu")
 region = Rect2(64, 0, 32, 32)
@@ -396,7 +390,7 @@ animations = [{
 [node name="Main" type="Node2D" node_paths=PackedStringArray("WinUI", "DialogueUI", "BackgroundMusicPlayer")]
 y_sort_enabled = true
 script = ExtResource("1_euqig")
-WinUI = NodePath("CanvasLayer/Container")
+WinUI = NodePath("")
 DialogueUI = NodePath("CanvasLayer/Dialogue")
 BackgroundMusicPlayer = NodePath("BackgroundMusic")
 
@@ -508,6 +502,7 @@ shape = SubResource("RectangleShape2D_3lxvy")
 
 [node name="GardenerRoom" parent="Rooms" instance=ExtResource("11_f2dft")]
 visible = false
+Music = ExtResource("8_k1lj1")
 
 [node name="SpawnRoomTransition" type="Area2D" parent="Rooms/GardenerRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
 position = Vector2(-256, -111)
@@ -596,6 +591,7 @@ position = Vector2(-18, -126)
 
 [node name="CarrotRoom" parent="Rooms" instance=ExtResource("14_7einq")]
 visible = false
+y_sort_enabled = true
 
 [node name="LeftTransition" type="Area2D" parent="Rooms/CarrotRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
 script = ExtResource("4_1hoxw")
@@ -677,32 +673,6 @@ FallDialogue2Lines = ["Uh... My head hurts", "It is dim in here", "I should go o
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 3
-
-[node name="Container" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -20.0
-offset_right = 100.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/Container"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "YOU WIN"
-label_settings = SubResource("LabelSettings_pxomi")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Dialogue" parent="CanvasLayer" instance=ExtResource("10_kgiyg")]
 

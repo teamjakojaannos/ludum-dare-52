@@ -22,7 +22,7 @@ public partial class RoomTransition : Area2D {
         } else {
             BodyShapeEntered += (body_rid, other, body_shape_index, local_shape_index) => {
                 var player = other as Player;
-                if (player != null) {
+                if (player != null && player.invulnerable_timer.IsStopped()) {
                     TransitionToRoom(player);
                 }
             };
@@ -37,6 +37,7 @@ public partial class RoomTransition : Area2D {
         camera.LimitBottom = To.CameraLimitBottom;
         camera.Position = To.Position;
 
+        player.invulnerable_timer.Start();
         player.TransitionToRoom(Entrypoint);
         camera.ResetSmoothing();
 

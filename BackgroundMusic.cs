@@ -18,6 +18,10 @@ public partial class BackgroundMusic : Node {
     }
 
     public void PlayFadeIn(AudioStream track, float volume = -15.0f, float pitch = 1.0f) {
+        if (track == current.Stream) {
+            return;
+        }
+
         fade.Stop();
         var tmp = current;
         current = fade;

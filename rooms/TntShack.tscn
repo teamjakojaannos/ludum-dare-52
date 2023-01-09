@@ -24,6 +24,7 @@ size = Vector2(25.75, 540.375)
 radius = 29.0172
 
 [node name="TntShack" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_pkfor")
 
 [node name="TileMap" type="TileMap" parent="."]
