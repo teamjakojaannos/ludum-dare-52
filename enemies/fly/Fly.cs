@@ -100,6 +100,7 @@ public partial class Fly : Area2D {
         };
 
         this.target_position = this.Position;
+        this.player = null;
 
         random = new Random();
 
