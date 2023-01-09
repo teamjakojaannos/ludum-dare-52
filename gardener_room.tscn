@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bqhicrodfpprn"]
+[gd_scene load_steps=17 format=3 uid="uid://bqhicrodfpprn"]
 
 [ext_resource type="Script" path="res://GardenerRoom.cs" id="1_0sgud"]
 [ext_resource type="TileSet" uid="uid://bkr6fw3ilgafx" path="res://greenery/greenery_tile_set.tres" id="2_dbpn3"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://Kantopommi.cs" id="5_3y01h"]
 [ext_resource type="Texture2D" uid="uid://5g3k6r1fp5u2" path="res://things/kivi.png" id="6_djgl6"]
 [ext_resource type="PackedScene" uid="uid://cb5hae6d1sok4" path="res://enemies/worm/worm.tscn" id="7_0cu72"]
+[ext_resource type="Texture2D" uid="uid://faf5y0xgrlnv" path="res://environment props/flowers.png" id="8_2ka1b"]
+[ext_resource type="Texture2D" uid="uid://b8fkmoj0k3xom" path="res://environment props/flowers3.png" id="9_42noh"]
+[ext_resource type="Texture2D" uid="uid://r3i2jd4i28xj" path="res://environment props/flowers2.png" id="10_3e81b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kfls2"]
 size = Vector2(672, 352)
@@ -123,3 +126,31 @@ curve = SubResource("Curve2D_i14re")
 [node name="PathFollow2D3" type="PathFollow2D" parent="Path2D3"]
 position = Vector2(175, 18)
 rotation = 3.14159
+
+[node name="Flowers" type="Sprite2D" parent="."]
+position = Vector2(-209, -145)
+texture = ExtResource("8_2ka1b")
+
+[node name="Flowers3" type="Sprite2D" parent="."]
+position = Vector2(-206, -55)
+texture = ExtResource("9_42noh")
+
+[node name="Flowers2" type="Sprite2D" parent="."]
+position = Vector2(-175, -75)
+texture = ExtResource("10_3e81b")
+
+[node name="Flowers4" type="Sprite2D" parent="."]
+position = Vector2(-85, -16)
+texture = ExtResource("10_3e81b")
+
+[node name="Flowers5" type="Sprite2D" parent="."]
+position = Vector2(-46, 115)
+texture = ExtResource("8_2ka1b")
+
+[node name="Flowers6" type="Sprite2D" parent="."]
+position = Vector2(-2, 112)
+texture = ExtResource("9_42noh")
+
+[node name="Flowers7" type="Sprite2D" parent="."]
+position = Vector2(-5, -142)
+texture = ExtResource("10_3e81b")

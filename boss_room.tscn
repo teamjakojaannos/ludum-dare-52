@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ddtu463gtav58"]
+[gd_scene load_steps=18 format=3 uid="uid://ddtu463gtav58"]
 
 [ext_resource type="Script" path="res://bigboss/BossRoom.cs" id="1_qf4dc"]
 [ext_resource type="PackedScene" uid="uid://dxnphfjbugtqj" path="res://bigboss.tscn" id="4_67fha"]
@@ -6,6 +6,13 @@
 [ext_resource type="TileSet" uid="uid://bkr6fw3ilgafx" path="res://greenery/greenery_tile_set.tres" id="5_eklr2"]
 [ext_resource type="Texture2D" uid="uid://ct4khgv5nnwta" path="res://bigboss/hpbar.png" id="5_fvhqt"]
 [ext_resource type="Texture2D" uid="uid://jh8egbybv2gn" path="res://bigboss/hpbar_filling.png" id="6_stxua"]
+[ext_resource type="Texture2D" uid="uid://dodtruq8scb24" path="res://environment props/kivi3.png" id="7_opdiq"]
+[ext_resource type="Texture2D" uid="uid://drli7s00kiswd" path="res://environment props/frog.png" id="8_gsoj0"]
+[ext_resource type="Texture2D" uid="uid://faf5y0xgrlnv" path="res://environment props/flowers.png" id="9_ognn7"]
+[ext_resource type="Texture2D" uid="uid://b8fkmoj0k3xom" path="res://environment props/flowers3.png" id="10_kutnl"]
+[ext_resource type="Texture2D" uid="uid://r3i2jd4i28xj" path="res://environment props/flowers2.png" id="11_jt1km"]
+[ext_resource type="Texture2D" uid="uid://ckuwpy5fn2jq6" path="res://environment props/flower2.png" id="12_vpjpl"]
+[ext_resource type="Texture2D" uid="uid://dk5qfo3fn1vf2" path="res://environment props/kanto.png" id="13_4adc1"]
 
 [sub_resource type="Animation" id="Animation_njrci"]
 resource_name = "BossIntro"
@@ -132,3 +139,149 @@ offset_bottom = 32.0
 value = 75.0
 texture_under = ExtResource("5_fvhqt")
 texture_progress = ExtResource("6_stxua")
+
+[node name="Kivi3" type="Sprite2D" parent="."]
+position = Vector2(-241, -91)
+texture = ExtResource("7_opdiq")
+
+[node name="Frog" type="Sprite2D" parent="."]
+position = Vector2(-158, -136)
+texture = ExtResource("8_gsoj0")
+
+[node name="Flowers" type="Sprite2D" parent="."]
+position = Vector2(-237, 118)
+texture = ExtResource("9_ognn7")
+
+[node name="Flowers3" type="Sprite2D" parent="."]
+position = Vector2(-179, 121)
+texture = ExtResource("10_kutnl")
+
+[node name="Flowers2" type="Sprite2D" parent="."]
+position = Vector2(-241, -49)
+texture = ExtResource("9_ognn7")
+
+[node name="Flowers4" type="Sprite2D" parent="."]
+position = Vector2(-115, -133)
+texture = ExtResource("10_kutnl")
+
+[node name="Flowers5" type="Sprite2D" parent="."]
+position = Vector2(-26, -45)
+texture = ExtResource("9_ognn7")
+
+[node name="Flowers6" type="Sprite2D" parent="."]
+position = Vector2(88, -133)
+texture = ExtResource("10_kutnl")
+
+[node name="Flowers7" type="Sprite2D" parent="."]
+position = Vector2(229, -140)
+texture = ExtResource("9_ognn7")
+
+[node name="Flowers8" type="Sprite2D" parent="."]
+position = Vector2(124, 54)
+texture = ExtResource("10_kutnl")
+
+[node name="Flowers9" type="Sprite2D" parent="."]
+position = Vector2(244, 23)
+texture = ExtResource("9_ognn7")
+
+[node name="Flowers10" type="Sprite2D" parent="."]
+position = Vector2(7, 56)
+texture = ExtResource("10_kutnl")
+
+[node name="Flowers11" type="Sprite2D" parent="."]
+position = Vector2(-50, 54)
+texture = ExtResource("11_jt1km")
+
+[node name="Flower2" type="Sprite2D" parent="."]
+position = Vector2(-240, 52)
+texture = ExtResource("12_vpjpl")
+
+[node name="Flower3" type="Sprite2D" parent="."]
+position = Vector2(-192, -80)
+texture = ExtResource("12_vpjpl")
+
+[node name="Flower4" type="Sprite2D" parent="."]
+position = Vector2(-9, -31)
+texture = ExtResource("12_vpjpl")
+
+[node name="Flower5" type="Sprite2D" parent="."]
+position = Vector2(146, -138)
+texture = ExtResource("12_vpjpl")
+
+[node name="Flower6" type="Sprite2D" parent="."]
+position = Vector2(27, 133)
+texture = ExtResource("12_vpjpl")
+
+[node name="Flowers12" type="Sprite2D" parent="."]
+position = Vector2(-22, 117)
+texture = ExtResource("10_kutnl")
+
+[node name="Flowers13" type="Sprite2D" parent="."]
+position = Vector2(51, 50)
+texture = ExtResource("9_ognn7")
+
+[node name="Flowers14" type="Sprite2D" parent="."]
+position = Vector2(-157, -90)
+texture = ExtResource("10_kutnl")
+
+[node name="Flowers15" type="Sprite2D" parent="."]
+position = Vector2(-160, 25)
+texture = ExtResource("11_jt1km")
+
+[node name="Flowers16" type="Sprite2D" parent="."]
+position = Vector2(-223, 24)
+texture = ExtResource("10_kutnl")
+
+[node name="Flowers17" type="Sprite2D" parent="."]
+position = Vector2(-134, 89)
+texture = ExtResource("9_ognn7")
+
+[node name="Flowers18" type="Sprite2D" parent="."]
+position = Vector2(65, -21)
+texture = ExtResource("10_kutnl")
+
+[node name="Flowers19" type="Sprite2D" parent="."]
+position = Vector2(121, -142)
+texture = ExtResource("11_jt1km")
+
+[node name="Kivi4" type="Sprite2D" parent="."]
+position = Vector2(-220, -90)
+texture = ExtResource("7_opdiq")
+
+[node name="Kivi5" type="Sprite2D" parent="."]
+position = Vector2(-116, -149)
+texture = ExtResource("7_opdiq")
+
+[node name="Kivi6" type="Sprite2D" parent="."]
+position = Vector2(224, -132)
+texture = ExtResource("7_opdiq")
+
+[node name="Kivi7" type="Sprite2D" parent="."]
+position = Vector2(212, 154)
+texture = ExtResource("7_opdiq")
+
+[node name="Kivi8" type="Sprite2D" parent="."]
+position = Vector2(83, 146)
+texture = ExtResource("7_opdiq")
+
+[node name="Kivi9" type="Sprite2D" parent="."]
+position = Vector2(-168, 109)
+texture = ExtResource("7_opdiq")
+
+[node name="Kivi10" type="Sprite2D" parent="."]
+position = Vector2(-7, -52)
+texture = ExtResource("7_opdiq")
+
+[node name="Kivi11" type="Sprite2D" parent="."]
+position = Vector2(72, -110)
+texture = ExtResource("7_opdiq")
+
+[node name="Kanto2" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-34, -140)
+texture = ExtResource("13_4adc1")
+
+[node name="Kanto" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-229, 103)
+texture = ExtResource("13_4adc1")

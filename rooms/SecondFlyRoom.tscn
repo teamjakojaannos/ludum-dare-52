@@ -1,9 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://ik8tjv87xdnw"]
+[gd_scene load_steps=18 format=3 uid="uid://ik8tjv87xdnw"]
 
 [ext_resource type="Script" path="res://Room.cs" id="1_0re16"]
 [ext_resource type="TileSet" uid="uid://bkr6fw3ilgafx" path="res://greenery/greenery_tile_set.tres" id="2_eryv8"]
 [ext_resource type="PackedScene" uid="uid://bt71ngvkigiia" path="res://characters/fertilizer/fertilizer.tscn" id="3_6xd7p"]
 [ext_resource type="PackedScene" uid="uid://8saeumnunocv" path="res://enemies/fly/fly.tscn" id="4_4styu"]
+[ext_resource type="Texture2D" uid="uid://faf5y0xgrlnv" path="res://environment props/flowers.png" id="5_4wslg"]
+[ext_resource type="Texture2D" uid="uid://r3i2jd4i28xj" path="res://environment props/flowers2.png" id="6_4waig"]
+[ext_resource type="Texture2D" uid="uid://b8fkmoj0k3xom" path="res://environment props/flowers3.png" id="7_cgdyb"]
+[ext_resource type="Texture2D" uid="uid://ckuwpy5fn2jq6" path="res://environment props/flower2.png" id="8_3uyuo"]
+[ext_resource type="Texture2D" uid="uid://dk5qfo3fn1vf2" path="res://environment props/kanto.png" id="9_l1o4g"]
+[ext_resource type="Texture2D" uid="uid://dmhw0lnql6e2k" path="res://environment props/frog_flipped.png" id="10_u45wg"]
+[ext_resource type="Texture2D" uid="uid://drli7s00kiswd" path="res://environment props/frog.png" id="11_8ymuw"]
+[ext_resource type="Texture2D" uid="uid://dodtruq8scb24" path="res://environment props/kivi3.png" id="12_oylsi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uybo8"]
 size = Vector2(512, 352)
@@ -78,3 +86,210 @@ position = Vector2(80, -21)
 
 [node name="Fertilizer3" parent="." instance=ExtResource("3_6xd7p")]
 position = Vector2(-194, 94)
+
+[node name="Flowers" type="Sprite2D" parent="."]
+position = Vector2(-264, 116)
+texture = ExtResource("5_4wslg")
+
+[node name="Flowers2" type="Sprite2D" parent="."]
+position = Vector2(-157, 185)
+texture = ExtResource("6_4waig")
+
+[node name="Flowers3" type="Sprite2D" parent="."]
+position = Vector2(-203, 178)
+texture = ExtResource("5_4wslg")
+
+[node name="Flowers4" type="Sprite2D" parent="."]
+position = Vector2(-182, 60)
+texture = ExtResource("7_cgdyb")
+
+[node name="Flowers5" type="Sprite2D" parent="."]
+position = Vector2(-245, -15)
+texture = ExtResource("6_4waig")
+
+[node name="Flowers6" type="Sprite2D" parent="."]
+position = Vector2(-45, 40)
+texture = ExtResource("7_cgdyb")
+
+[node name="Flowers7" type="Sprite2D" parent="."]
+position = Vector2(-100, -99)
+texture = ExtResource("5_4wslg")
+
+[node name="Flowers8" type="Sprite2D" parent="."]
+position = Vector2(192, 139)
+texture = ExtResource("6_4waig")
+
+[node name="Flowers9" type="Sprite2D" parent="."]
+position = Vector2(163, 40)
+texture = ExtResource("5_4wslg")
+
+[node name="Flowers10" type="Sprite2D" parent="."]
+position = Vector2(269, 198)
+texture = ExtResource("7_cgdyb")
+
+[node name="Flowers11" type="Sprite2D" parent="."]
+position = Vector2(149, 203)
+texture = ExtResource("6_4waig")
+
+[node name="Flowers12" type="Sprite2D" parent="."]
+position = Vector2(-57, 189)
+texture = ExtResource("5_4wslg")
+
+[node name="Flower2" type="Sprite2D" parent="."]
+position = Vector2(-226, 190)
+texture = ExtResource("8_3uyuo")
+
+[node name="Flower3" type="Sprite2D" parent="."]
+position = Vector2(-4, 177)
+texture = ExtResource("8_3uyuo")
+
+[node name="Flower4" type="Sprite2D" parent="."]
+position = Vector2(-32, 108)
+texture = ExtResource("8_3uyuo")
+
+[node name="Flowers13" type="Sprite2D" parent="."]
+position = Vector2(44, 191)
+texture = ExtResource("7_cgdyb")
+
+[node name="Flowers14" type="Sprite2D" parent="."]
+position = Vector2(-132, 17)
+texture = ExtResource("5_4wslg")
+
+[node name="Flowers15" type="Sprite2D" parent="."]
+position = Vector2(-205, -51)
+texture = ExtResource("7_cgdyb")
+
+[node name="Flowers16" type="Sprite2D" parent="."]
+position = Vector2(-247, -175)
+texture = ExtResource("5_4wslg")
+
+[node name="Flower5" type="Sprite2D" parent="."]
+position = Vector2(-219, -182)
+texture = ExtResource("8_3uyuo")
+
+[node name="Flowers17" type="Sprite2D" parent="."]
+position = Vector2(-206, -177)
+texture = ExtResource("6_4waig")
+
+[node name="Flowers18" type="Sprite2D" parent="."]
+position = Vector2(13, -134)
+texture = ExtResource("7_cgdyb")
+
+[node name="Flowers19" type="Sprite2D" parent="."]
+position = Vector2(66, -116)
+texture = ExtResource("5_4wslg")
+
+[node name="Flowers20" type="Sprite2D" parent="."]
+position = Vector2(16, -56)
+texture = ExtResource("7_cgdyb")
+
+[node name="Flowers21" type="Sprite2D" parent="."]
+position = Vector2(60, -58)
+texture = ExtResource("6_4waig")
+
+[node name="Flowers22" type="Sprite2D" parent="."]
+position = Vector2(138, -52)
+texture = ExtResource("7_cgdyb")
+
+[node name="Flowers23" type="Sprite2D" parent="."]
+position = Vector2(108, -111)
+texture = ExtResource("5_4wslg")
+
+[node name="Flowers24" type="Sprite2D" parent="."]
+position = Vector2(150, -106)
+texture = ExtResource("7_cgdyb")
+
+[node name="Flowers25" type="Sprite2D" parent="."]
+position = Vector2(175, 65)
+texture = ExtResource("6_4waig")
+
+[node name="Flowers26" type="Sprite2D" parent="."]
+position = Vector2(184, 107)
+texture = ExtResource("7_cgdyb")
+
+[node name="Flowers27" type="Sprite2D" parent="."]
+position = Vector2(-84, 100)
+texture = ExtResource("6_4waig")
+
+[node name="Flowers28" type="Sprite2D" parent="."]
+position = Vector2(78, 105)
+texture = ExtResource("7_cgdyb")
+
+[node name="Flower6" type="Sprite2D" parent="."]
+position = Vector2(18, 118)
+texture = ExtResource("8_3uyuo")
+
+[node name="Flower7" type="Sprite2D" parent="."]
+position = Vector2(-101, 26)
+texture = ExtResource("8_3uyuo")
+
+[node name="Flower8" type="Sprite2D" parent="."]
+position = Vector2(-157, -44)
+texture = ExtResource("8_3uyuo")
+
+[node name="Kanto3" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-106, 195)
+texture = ExtResource("9_l1o4g")
+
+[node name="Kanto2" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(160, -2)
+texture = ExtResource("9_l1o4g")
+
+[node name="Kanto" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-183, -53)
+texture = ExtResource("9_l1o4g")
+
+[node name="FrogFlipped" type="Sprite2D" parent="."]
+position = Vector2(238, -23)
+texture = ExtResource("10_u45wg")
+
+[node name="FrogFlipped2" type="Sprite2D" parent="."]
+position = Vector2(167, -129)
+texture = ExtResource("10_u45wg")
+
+[node name="Frog" type="Sprite2D" parent="."]
+position = Vector2(-157, -177)
+texture = ExtResource("11_8ymuw")
+
+[node name="Frog2" type="Sprite2D" parent="."]
+position = Vector2(-32, 78)
+texture = ExtResource("11_8ymuw")
+
+[node name="Kivi3" type="Sprite2D" parent="."]
+position = Vector2(-130, -123)
+texture = ExtResource("12_oylsi")
+
+[node name="Kivi4" type="Sprite2D" parent="."]
+position = Vector2(192, 87)
+texture = ExtResource("12_oylsi")
+
+[node name="Kivi5" type="Sprite2D" parent="."]
+position = Vector2(39, -132)
+texture = ExtResource("12_oylsi")
+
+[node name="Kivi6" type="Sprite2D" parent="."]
+position = Vector2(-156, -61)
+texture = ExtResource("12_oylsi")
+
+[node name="Kivi7" type="Sprite2D" parent="."]
+position = Vector2(60, 113)
+texture = ExtResource("12_oylsi")
+
+[node name="Kivi8" type="Sprite2D" parent="."]
+position = Vector2(-54, 25)
+texture = ExtResource("12_oylsi")
+
+[node name="Kivi9" type="Sprite2D" parent="."]
+position = Vector2(-264, 153)
+texture = ExtResource("12_oylsi")
+
+[node name="Kivi10" type="Sprite2D" parent="."]
+position = Vector2(90, 189)
+texture = ExtResource("12_oylsi")
+
+[node name="Kivi11" type="Sprite2D" parent="."]
+position = Vector2(-30, 186)
+texture = ExtResource("12_oylsi")
