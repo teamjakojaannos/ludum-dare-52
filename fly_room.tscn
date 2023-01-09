@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Room.cs" id="1_fa68n"]
 [ext_resource type="Texture2D" uid="uid://c40wpwufgldus" path="res://background_scale.png" id="2_b6qyy"]
-[ext_resource type="PackedScene" uid="uid://wu5v701tnf8f" path="res://characters/frog.tscn" id="3_le0al"]
+[ext_resource type="PackedScene" uid="uid://wu5v701tnf8f" path="res://characters/frog/frog.tscn" id="3_le0al"]
 [ext_resource type="PackedScene" uid="uid://cddrio631ra6n" path="res://enemies/fly/fly.tscn" id="5_pp0br"]
 [ext_resource type="PackedScene" uid="uid://bt71ngvkigiia" path="res://characters/fertilizer/fertilizer.tscn" id="5_ysn6d"]
 [ext_resource type="TileSet" uid="uid://bkr6fw3ilgafx" path="res://greenery/greenery_tile_set.tres" id="6_td38s"]
