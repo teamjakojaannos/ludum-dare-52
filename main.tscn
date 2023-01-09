@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://ik8tjv87xdnw" path="res://rooms/SecondFlyRoom.tscn" id="13_r7sl1"]
 [ext_resource type="PackedScene" uid="uid://bkboy05kp1g0i" path="res://rooms/CarrotRoom.tscn" id="14_7einq"]
 [ext_resource type="Material" uid="uid://bt154vue6mixi" path="res://spawn_room.tres" id="15_4uxj0"]
-[ext_resource type="PackedScene" uid="uid://b8f1frynb62v7" path="res://rooms/TntShack.tscn" id="15_e0bdr"]
+[ext_resource type="PackedScene" uid="uid://mkai8b3enlfc" path="res://rooms/TntShack.tscn" id="15_e0bdr"]
 [ext_resource type="Texture2D" uid="uid://dblgq63hq7lg0" path="res://intro/intro_background_foreground.png" id="15_i6xyt"]
 [ext_resource type="Texture2D" uid="uid://b215ue385atn2" path="res://hud/tomatohealthslice.png" id="22_cudgu"]
 [ext_resource type="Script" path="res://Healthbar.cs" id="22_sjjx4"]
@@ -429,6 +429,7 @@ script = ExtResource("3_oj2n0")
 y_sort_enabled = true
 
 [node name="SpawnRoom" parent="Rooms" instance=ExtResource("3_li774")]
+z_index = 0
 StartEnabled = true
 Music = ExtResource("8_2gy5n")
 MusicPitch = 0.5
@@ -646,7 +647,7 @@ libraries = {
 [node name="CameraOverlay" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(0, 0, 0, 1)
-z_index = 80
+z_index = 90
 position = Vector2(-295, -267)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("5_r23nj")
@@ -658,13 +659,14 @@ centered = false
 
 [node name="Overlay" type="Sprite2D" parent="."]
 visible = false
-z_index = 80
+z_index = 90
 material = ExtResource("15_4uxj0")
 scale = Vector2(10000, 10000)
 texture = SubResource("PlaceholderTexture2D_irlsu")
 
 [node name="IntroSequence" type="AnimatedSprite2D" parent="."]
-z_index = 81
+visible = false
+z_index = 91
 position = Vector2(-204, -52)
 frames = SubResource("SpriteFrames_mqq3p")
 animation = &"idle"
@@ -692,7 +694,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Container"]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

@@ -47,6 +47,7 @@ public partial class IntroSequence : AnimatedSprite2D {
         animation = GetNode<AnimationPlayer>("../IntroAnimationPlayer");
 
         if (Visible) {
+            GetNode<CanvasLayer>("../CanvasLayer")?.GetNode<Control>("Health").Hide();
             overlay_shader.SetShaderParameter("bright_dist", 0.0f);
             overlay_shader.SetShaderParameter("darkness_dist_factor", 0.0f);
 
@@ -164,6 +165,8 @@ public partial class IntroSequence : AnimatedSprite2D {
     private void ReleasePlayer() {
         camera_overlay.Hide();
         dialogue.DialogueFinished -= ReleasePlayer;
+
+        GetNode<CanvasLayer>("../CanvasLayer")?.GetNode<Control>("Health").Show();
 
         target_bright_dist = 200.0f;
         target_darkness_dist_factor = 10f;

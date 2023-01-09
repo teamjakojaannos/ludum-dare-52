@@ -304,10 +304,13 @@ script = ExtResource("3_rqgnu")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -12)
+position = Vector2(0, -1)
 frames = SubResource("SpriteFrames_moxy5")
+centered = false
+offset = Vector2(-16, -27)
 
 [node name="DashSweat" type="GPUParticles2D" parent="."]
+z_index = 10
 position = Vector2(0, -14)
 emitting = false
 amount = 6

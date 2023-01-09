@@ -5,9 +5,9 @@ public partial class SpawnRoom : Room {
 		base.OnPlayerEnter();
 
 		var player = GetTree().Root.GetNode<Player>("Main/player");
-		var hans = GetNode<Node2D>("Hans");
-		var gretaA = GetNode<Node2D>("GretaA");
-		var gretaB = GetNode<Node2D>("GretaB");
+		var hans = GetNodeOrNull<Node2D>("Hans");
+		var gretaA = GetNodeOrNull<Node2D>("GretaA");
+		var gretaB = GetNodeOrNull<Node2D>("GretaB");
 		if (player.dash_learned) {
 			hans?.Show();
 
