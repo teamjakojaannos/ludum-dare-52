@@ -49,6 +49,9 @@ public partial class Player : CharacterBody2D {
     private Dialogue dialogue;
 
     private bool is_confused;
+
+    public bool has_tnt = false;
+
     public bool IsConfused {
         get {
             return is_confused;
@@ -83,6 +86,8 @@ public partial class Player : CharacterBody2D {
         };
 
         AddChild(dash_cooldown_timer);
+
+        has_tnt = false;
 
         invulnerable_timer = new Timer();
         invulnerable_timer.WaitTime = 0.5f;

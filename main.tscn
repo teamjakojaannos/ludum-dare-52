@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://0hox6eid43h1"]
+[gd_scene load_steps=87 format=3 uid="uid://0hox6eid43h1"]
 
 [ext_resource type="PackedScene" uid="uid://blcrlxm2w0jt4" path="res://player.tscn" id="1_7y16m"]
 [ext_resource type="PackedScene" uid="uid://ddtu463gtav58" path="res://boss_room.tscn" id="1_e0hd2"]
@@ -10,15 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://bm8yuh6v168q0" path="res://fly_room.tscn" id="6_k06wr"]
 [ext_resource type="Texture2D" uid="uid://cx4m4xoxeget6" path="res://intro/INTRO.png" id="7_ld5gn"]
 [ext_resource type="AudioStream" uid="uid://dqspt6x3u64jj" path="res://music/tutkimusmusa1.0.ogg" id="8_2gy5n"]
-[ext_resource type="AudioStream" uid="uid://m6oerk8m1d8k" path="res://bigboss/bossimusa.ogg" id="8_c338q"]
 [ext_resource type="Script" path="res://IntroSequence.cs" id="8_ittkd"]
 [ext_resource type="AudioStream" uid="uid://bjapuhegmhd4y" path="res://music/taistelumusa1.0.ogg" id="8_k1lj1"]
+[ext_resource type="AudioStream" uid="uid://bj3wi00xcn417" path="res://bigboss/bossimusa3.ogg" id="8_vbh4j"]
 [ext_resource type="PackedScene" uid="uid://byc261xcsjlgc" path="res://hud/dialogue.tscn" id="10_kgiyg"]
 [ext_resource type="Script" path="res://BackgroundMusic.cs" id="10_rw3iy"]
 [ext_resource type="PackedScene" uid="uid://bqhicrodfpprn" path="res://gardener_room.tscn" id="11_f2dft"]
 [ext_resource type="PackedScene" uid="uid://7gs6wcaj8pjb" path="res://rooms/FlyIntroRoom.tscn" id="12_b8tr0"]
 [ext_resource type="PackedScene" uid="uid://ik8tjv87xdnw" path="res://rooms/SecondFlyRoom.tscn" id="13_r7sl1"]
-[ext_resource type="PackedScene" path="res://rooms/CarrotRoom.tscn" id="14_7einq"]
+[ext_resource type="PackedScene" uid="uid://bkboy05kp1g0i" path="res://rooms/CarrotRoom.tscn" id="14_7einq"]
 [ext_resource type="Material" uid="uid://bt154vue6mixi" path="res://spawn_room.tres" id="15_4uxj0"]
 [ext_resource type="Texture2D" uid="uid://dblgq63hq7lg0" path="res://intro/intro_background_foreground.png" id="15_i6xyt"]
 [ext_resource type="Texture2D" uid="uid://c2a4h3bvilw26" path="res://enemies/spade/lapio.png" id="15_ogogp"]
@@ -28,14 +28,20 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ssns8"]
 radius = 0.01
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rjbfu"]
+size = Vector2(53, 15)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ro1hx"]
-size = Vector2(61, 12)
+size = Vector2(14, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ayj8y"]
+size = Vector2(49, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3lxvy"]
 size = Vector2(95, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0lcg"]
-size = Vector2(60, 15)
+size = Vector2(19, 43)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pbtgi"]
 
@@ -419,6 +425,7 @@ script = ExtResource("3_oj2n0")
 y_sort_enabled = true
 
 [node name="SpawnRoom" parent="Rooms" instance=ExtResource("3_li774")]
+visible = false
 StartEnabled = true
 Music = ExtResource("8_2gy5n")
 MusicPitch = 0.5
@@ -432,7 +439,19 @@ Entrypoint = NodePath("../../FlyIntroRoom/BottomEntry")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/SpawnRoom/TopTransition"]
-position = Vector2(-0.5, 0)
+position = Vector2(-2.5, 7.5)
+shape = SubResource("RectangleShape2D_rjbfu")
+
+[node name="RightTransition" type="Area2D" parent="Rooms/SpawnRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
+position = Vector2(422, 17)
+script = ExtResource("4_1hoxw")
+From = NodePath("..")
+To = NodePath("../../GardenerRoom")
+Entrypoint = NodePath("../../GardenerRoom/GardenerEntryTop")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/SpawnRoom/RightTransition"]
+position = Vector2(-2, 4)
 shape = SubResource("RectangleShape2D_ro1hx")
 
 [node name="BottomTransition" type="Area2D" parent="Rooms/SpawnRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
@@ -443,22 +462,24 @@ To = NodePath("../../CarrotRoom")
 Entrypoint = NodePath("../../CarrotRoom/EntryLeft")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/SpawnRoom/BottomTransition"]
-position = Vector2(-0.5, 0)
-shape = SubResource("RectangleShape2D_ro1hx")
+position = Vector2(0.5, -8.5)
+shape = SubResource("RectangleShape2D_ayj8y")
 
 [node name="InitialEntry" type="Marker2D" parent="Rooms/SpawnRoom"]
 position = Vector2(-191, 3)
 
 [node name="SpawnRoomEntryBottom" type="Marker2D" parent="Rooms/SpawnRoom"]
-position = Vector2(273, 145)
+position = Vector2(273, 133)
 
 [node name="SpawnRoomEntryTop" type="Marker2D" parent="Rooms/SpawnRoom"]
 position = Vector2(-15, -101)
 
+[node name="SpawnRoomEntryRight" type="Marker2D" parent="Rooms/SpawnRoom"]
+position = Vector2(391, 17)
+
 [node name="BossRoom" parent="Rooms" instance=ExtResource("1_e0hd2")]
 visible = false
-Music = ExtResource("8_c338q")
-MusicVolume = -35.0
+Music = ExtResource("8_vbh4j")
 
 [node name="BossEntryLeft" type="Marker2D" parent="Rooms/BossRoom"]
 position = Vector2(-244, 0)
@@ -486,13 +507,14 @@ shape = SubResource("RectangleShape2D_3lxvy")
 visible = false
 
 [node name="SpawnRoomTransition" type="Area2D" parent="Rooms/GardenerRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
-position = Vector2(-208, -141)
+position = Vector2(-256, -111)
 script = ExtResource("4_1hoxw")
 From = NodePath("..")
 To = NodePath("../../SpawnRoom")
-Entrypoint = NodePath("../../SpawnRoom/SpawnRoomEntryBottom")
+Entrypoint = NodePath("../../SpawnRoom/SpawnRoomEntryRight")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/GardenerRoom/SpawnRoomTransition"]
+position = Vector2(-4.5, 0.5)
 shape = SubResource("RectangleShape2D_h0lcg")
 
 [node name="BossRoomTransition" type="Area2D" parent="Rooms/GardenerRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
@@ -503,11 +525,11 @@ To = NodePath("../../BossRoom")
 Entrypoint = NodePath("../../BossRoom/BossEntryLeft")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/GardenerRoom/BossRoomTransition"]
-position = Vector2(4, 1)
+position = Vector2(-6, 2)
 shape = SubResource("RectangleShape2D_h0lcg")
 
 [node name="GardenerEntryTop" type="Marker2D" parent="Rooms/GardenerRoom"]
-position = Vector2(-208, -107)
+position = Vector2(-232, -110)
 
 [node name="FlyIntroRoom" parent="Rooms" instance=ExtResource("12_b8tr0")]
 visible = false
@@ -658,7 +680,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Container"]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -673,6 +694,7 @@ vertical_alignment = 1
 
 [node name="Health" type="Control" parent="CanvasLayer"]
 layout_mode = 3
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 18.0

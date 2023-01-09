@@ -40,7 +40,7 @@ public partial class Worm : Area2D {
     private double chance_to_reverse = 0.3;
 
 #pragma warning disable CS0162
-    private const bool damage_enabled = false; // for testing, I dont like to restart the game a million times
+    private const bool damage_enabled = true; // for testing, I dont like to restart the game a million times
 
     private bool reversing = false;
     private float base_walk_time;
@@ -171,6 +171,7 @@ public partial class Worm : Area2D {
 
         if (damage_enabled) {
             player.TakeDamage(damage);
+            player.Knockback(150f, Position);
         } else {
             GD.Print("Worm hit player");
         }

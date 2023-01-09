@@ -6,10 +6,18 @@ public partial class SpawnRoom : Room {
 
 		var player = GetTree().Root.GetNode<Player>("Main/player");
 		var hans = GetNode<Node2D>("Hans");
+		var gretaA = GetNode<Node2D>("GretaA");
+		var gretaB = GetNode<Node2D>("GretaB");
 		if (player.dash_learned) {
-			hans.Show();
+			hans?.Show();
+
+			gretaA?.QueueFree();
+			gretaB?.Show();
 		} else {
 			hans.Hide();
+
+			gretaB?.Hide();
+			gretaA?.Show();
 		}
     }
 }

@@ -54,7 +54,7 @@ point_count = 11
 
 [node name="BossRoom" type="Node2D"]
 script = ExtResource("1_qf4dc")
-BossIntroLines = ["...what was that?"]
+BossIntroLines = ["...what was that?", "...why do I hear boss music?"]
 BossDialogueLines = ["Stop right there", "I'm gonna turn your little escape", "Into a nice puree"]
 
 [node name="Animation" type="AnimationPlayer" parent="."]

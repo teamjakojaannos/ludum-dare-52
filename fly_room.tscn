@@ -578,7 +578,7 @@ size = Vector2(512, 512)
 [node name="FlyRoom" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_72vv8")
-EntryDialogueLines = ["Hmm", "That frog looks hungry", "...I wonder", "if he woud like some flies", "[use \"fertilizer\" to attract flies]"]
+EntryDialogueLines = ["Hmm", "That frog looks hungry", "...I wonder", "if he would like some flies", "[use \"fertilizer\" to attract flies]"]
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -1
