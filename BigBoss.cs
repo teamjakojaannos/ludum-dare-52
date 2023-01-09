@@ -23,7 +23,7 @@ public partial class BigBoss : Area2D {
 
     private float speed_mult = 1.0f;
 
-    public int health = 4;
+    public int health = 1;
 
     private AudioStreamPlayer sfx;
 

@@ -11,8 +11,7 @@ public partial class CameraFixedZoom : Camera2D {
     [Export]
     public float ZoomFactor = 1.0f;
 
-    [Export]
-    public Vector2 IntroOffset = Vector2.Up * 8.0f;
+    public Vector2 IntroOffset;
 
     public bool OverridePlayerPosition = false;
 

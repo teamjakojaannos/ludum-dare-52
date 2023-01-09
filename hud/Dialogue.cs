@@ -10,8 +10,13 @@ public partial class Dialogue : Control {
     [Export]
     public Label previous_label;
 
+    private int idx;
+
     [Signal]
     public delegate void DialogueFinishedEventHandler();
+
+    [Signal]
+    public delegate void DialogueAdvancedEventHandler(int idx);
 
     public override void _Ready() {
         this.label.Text = "";
@@ -21,6 +26,7 @@ public partial class Dialogue : Control {
     public void clear_queue() {
         this.text_queue.Clear();
         this.previous_label.Text = "";
+        idx = 0;
 
         update_label_text();
     }
@@ -41,9 +47,11 @@ public partial class Dialogue : Control {
         update_label_text();
     }
 
-    public void advance_text_queue() {
+    public void advance_text_queue() {;
         if (this.text_queue.Count != 0) {
             this.text_queue.RemoveAt(0);
+
+            EmitSignal(nameof(DialogueAdvanced), ++idx);
         }
 
         if (this.text_queue.Count == 0) {

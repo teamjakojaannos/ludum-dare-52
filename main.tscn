@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://0hox6eid43h1"]
+[gd_scene load_steps=70 format=3 uid="uid://0hox6eid43h1"]
 
 [ext_resource type="PackedScene" uid="uid://blcrlxm2w0jt4" path="res://player.tscn" id="1_7y16m"]
 [ext_resource type="PackedScene" uid="uid://ddtu463gtav58" path="res://boss_room.tscn" id="1_e0hd2"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bp0w8jibe53x7" path="res://spawn_room.tscn" id="3_li774"]
 [ext_resource type="Script" path="res://CameraFixedZoom.cs" id="3_oj2n0"]
 [ext_resource type="Script" path="res://RoomTransition.cs" id="4_1hoxw"]
+[ext_resource type="Texture2D" uid="uid://br6q45byxdqc" path="res://intro/intro_background_applied.png" id="5_r23nj"]
 [ext_resource type="PackedScene" uid="uid://bm8yuh6v168q0" path="res://fly_room.tscn" id="6_k06wr"]
 [ext_resource type="Texture2D" uid="uid://cx4m4xoxeget6" path="res://intro/INTRO.png" id="7_ld5gn"]
 [ext_resource type="AudioStream" uid="uid://dqspt6x3u64jj" path="res://music/tutkimusmusa1.0.ogg" id="8_2gy5n"]
@@ -18,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://7gs6wcaj8pjb" path="res://rooms/FlyIntroRoom.tscn" id="12_b8tr0"]
 [ext_resource type="PackedScene" uid="uid://ik8tjv87xdnw" path="res://rooms/SecondFlyRoom.tscn" id="13_r7sl1"]
 [ext_resource type="Material" uid="uid://bt154vue6mixi" path="res://spawn_room.tres" id="15_4uxj0"]
+[ext_resource type="Texture2D" uid="uid://dblgq63hq7lg0" path="res://intro/intro_background_foreground.png" id="15_i6xyt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ssns8"]
 radius = 0.01
@@ -38,6 +40,116 @@ size = Vector2(60, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evmpv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lcd77"]
+
+[sub_resource type="Animation" id="Animation_tk3hk"]
+resource_name = "Intro"
+length = 10.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera:offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1.41421, 0.028164),
+"update": 0,
+"values": [Vector2(250, -100), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraOverlay:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(0.615571, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CameraOverlay:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-295, -267), Vector2(-350, -267)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CameraOverlay/CameraOverlay2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(50, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4ygop"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraOverlay:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-295, -267)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraOverlay/CameraOverlay2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1.41421),
+"update": 0,
+"values": [Vector2(250, -100)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CameraOverlay:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.615571),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jsyex"]
+_data = {
+"Intro": SubResource("Animation_tk3hk"),
+"RESET": SubResource("Animation_4ygop")
+}
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_irlsu"]
 size = Vector2(512, 512)
@@ -230,12 +342,13 @@ disabled = true
 [node name="player" parent="." instance=ExtResource("1_7y16m")]
 
 [node name="Camera" type="Camera2D" parent="."]
+z_index = 99
+offset = Vector2(250, -100)
 current = true
 zoom = Vector2(2.25, 2.25)
 position_smoothing_enabled = true
 editor_draw_drag_margin = true
 script = ExtResource("3_oj2n0")
-IntroOffset = Vector2(0, -40)
 
 [node name="Rooms" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -388,23 +501,41 @@ position = Vector2(-211, 81)
 [node name="RightEntry" type="Marker2D" parent="Rooms/SecondFlyRoom"]
 position = Vector2(204, 144)
 
+[node name="IntroAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jsyex")
+}
+
+[node name="CameraOverlay" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 1)
+z_index = 80
+position = Vector2(-295, -267)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("5_r23nj")
+centered = false
+
+[node name="CameraOverlay2" type="Sprite2D" parent="CameraOverlay"]
+texture = ExtResource("15_i6xyt")
+centered = false
+
 [node name="Overlay" type="Sprite2D" parent="."]
 visible = false
-z_index = 79
+z_index = 80
 material = ExtResource("15_4uxj0")
 scale = Vector2(10000, 10000)
 texture = SubResource("PlaceholderTexture2D_irlsu")
 
 [node name="IntroSequence" type="AnimatedSprite2D" parent="."]
-visible = false
-z_index = 80
+z_index = 81
 position = Vector2(-204, -52)
 frames = SubResource("SpriteFrames_mqq3p")
 animation = &"idle"
 playing = true
 script = ExtResource("8_ittkd")
+HistoryLessonLines = ["For decades", "The Heinouz Ketchup Company", "Farmed crops in (relative) peace.", "(Ethics can be subjective)", "(If you have good lawyers)", "((This is not legal advice))", "...", "Anyway...", "One day, they announced", "a new product", "\"The Heinouz Habanero\"", "The Habanero partisans mobilized", "Capsaicin induced revolts spread", "all around the greenhouse.", "But the Heinouz persevered", "The unrest was silenced", "The crops lived under oppression", "Only for the next harvest", "Unhappily ever after"]
 FallDialogueLines = ["Ouch", "...", "That hurt"]
-FallDialogue2Lines = ["kissat koiria", "fdsfg"]
+FallDialogue2Lines = ["Uh... My head hurts", "It is dim in here", "I should go outside"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 3
@@ -424,6 +555,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Container"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
