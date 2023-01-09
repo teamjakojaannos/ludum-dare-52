@@ -60,7 +60,7 @@ public partial class FertilizerBlocker : StaticBody2D {
 
     private void HeadingBackDialogue() {
         dialogue.DialogueFinished -= HeadingBackDialogue;
-        GetTree().Root.GetNode<Main>("Main").TeleportToGreenhouse();
+        //GetTree().Root.GetNode<Main>("Main").TeleportToGreenhouse();
         this.QueueFree();
     }
 

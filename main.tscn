@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://CameraFixedZoom.cs" id="3_oj2n0"]
 [ext_resource type="Script" path="res://RoomTransition.cs" id="4_1hoxw"]
 [ext_resource type="Texture2D" uid="uid://br6q45byxdqc" path="res://intro/intro_background_applied.png" id="5_r23nj"]
-[ext_resource type="PackedScene" uid="uid://bm8yuh6v168q0" path="res://fly_room.tscn" id="6_k06wr"]
+[ext_resource type="PackedScene" uid="uid://b8h5s38r6n27p" path="res://fly_room.tscn" id="6_k06wr"]
 [ext_resource type="Texture2D" uid="uid://cx4m4xoxeget6" path="res://intro/INTRO.png" id="7_ld5gn"]
 [ext_resource type="AudioStream" uid="uid://dqspt6x3u64jj" path="res://music/tutkimusmusa1.0.ogg" id="8_2gy5n"]
 [ext_resource type="Script" path="res://IntroSequence.cs" id="8_ittkd"]
@@ -429,7 +429,6 @@ script = ExtResource("3_oj2n0")
 y_sort_enabled = true
 
 [node name="SpawnRoom" parent="Rooms" instance=ExtResource("3_li774")]
-visible = false
 StartEnabled = true
 Music = ExtResource("8_2gy5n")
 MusicPitch = 0.5
@@ -497,7 +496,6 @@ visible = false
 position = Vector2(-47, 149)
 
 [node name="BottomTransition" type="Area2D" parent="Rooms/FlyRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
-visible = false
 script = ExtResource("4_1hoxw")
 From = NodePath("..")
 To = NodePath("../../SecondFlyRoom")
@@ -666,7 +664,6 @@ scale = Vector2(10000, 10000)
 texture = SubResource("PlaceholderTexture2D_irlsu")
 
 [node name="IntroSequence" type="AnimatedSprite2D" parent="."]
-visible = false
 z_index = 81
 position = Vector2(-204, -52)
 frames = SubResource("SpriteFrames_mqq3p")
@@ -695,6 +692,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Container"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
