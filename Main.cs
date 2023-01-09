@@ -59,7 +59,11 @@ public partial class Main : Node2D {
 		DialogueUI.DialogueFinished += () => {
 			// TODO: roll the credits
 			GetTree().CreateTimer(1.5f).Timeout += () => {
-				GetTree().Quit();
+				GetTree().Root.GetNodeOrNull<Control>("Main/Rooms/BossRoom/UICanvas/Lobu")?.Show();
+
+				GetTree().CreateTimer(15.0f).Timeout += () => {
+					GetTree().Quit();
+				};
 			};
 		};
 

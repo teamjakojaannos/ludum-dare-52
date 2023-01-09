@@ -14,6 +14,8 @@ public partial class BossRoom : Room {
     public override void OnPlayerEnter() {
         base.OnPlayerEnter();
 
+		GetNodeOrNull<Control>("UICanvas/Lobu")?.Hide();
+
 		animation = GetNode<AnimationPlayer>("Animation");
 		GetNode<CanvasLayer>("UICanvas")?.Hide();
         dialogue = GetTree().Root.GetNode<Main>("Main")?.DialogueUI;
