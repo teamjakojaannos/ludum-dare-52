@@ -26,4 +26,11 @@ public partial class Main : Node2D {
     public override void _Ready() {
         Reset();
     }
+
+	public void TeleportToGreenhouse() {
+		var player = GetNode<Player>("player");
+		var transition = GetNode<RoomTransition>("InitialRoomTransition");
+		transition.IsFirstRoom = false;
+		transition.TransitionToRoom(player);
+	}
 }

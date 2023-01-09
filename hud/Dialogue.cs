@@ -20,6 +20,7 @@ public partial class Dialogue : Control {
 
     public void clear_queue() {
         this.text_queue.Clear();
+        this.previous_label.Text = "";
 
         update_label_text();
     }

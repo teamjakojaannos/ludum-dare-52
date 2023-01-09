@@ -44,8 +44,14 @@ public partial class Frog : StaticBody2D {
     public AudioStreamPlayer audio_sleep;
     public AudioStreamPlayer audio_slap;
 
+    public AnimatedSprite2D indicator;
+
 
     public override void _Ready() {
+        indicator = GetNode<AnimatedSprite2D>("Indicator");
+        indicator.Play("no_target");
+        indicator.Hide();
+
         animation = GetNode<AnimatedSprite2D>("Animation");
         animation.Animation = "default";
         animation.Playing = true;
@@ -154,6 +160,7 @@ public partial class Frog : StaticBody2D {
         animation.Animation = "prepared";
         state = State.AttackCharging;
         attack_charge.Start();
+        indicator.Play("charging");
     }
 
     private void on_animation_finished() {
@@ -161,11 +168,16 @@ public partial class Frog : StaticBody2D {
             just_attacked = false;
             animation.Animation = "chewing";
             audio_chew.Play();
+            indicator.Play("glom");
+            GetTree().CreateTimer(0.25f).Timeout += () => {
+                if (indicator.Animation == "glom") { indicator.Play("no_target"); }
+            };
             return;
         }
 
         if (state == State.FallingAsleep) {
             animation.Animation = "falling asleep";
+            indicator.Hide();
             state = State.Sleeping;
             return;
         }
@@ -211,5 +223,6 @@ public partial class Frog : StaticBody2D {
     private void missed_window_to_attack() {
         state = State.Idle;
         animation.Animation = "default";
+        indicator.Play("no_target");
     }
 }

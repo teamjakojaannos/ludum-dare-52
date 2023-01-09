@@ -11,6 +11,9 @@ public partial class HansIntro : Node2D {
 	[Export]
 	public Array<string> HansComingInLines = new();
 
+    [Export]
+    public AudioStream PostSequenceMusic;
+
     public override void _Ready() {
         animation = GetNode<AnimationPlayer>("Animation");
         dialogue = GetTree().Root.GetNode<Main>("Main")?.DialogueUI;
@@ -29,10 +32,8 @@ public partial class HansIntro : Node2D {
     private void AngryFlyDialogueFinished() {
         dialogue.DialogueFinished -= AngryFlyDialogueFinished;
 
-		player.ProcessMode = ProcessModeEnum.Disabled;
+		player.InputFrozen = true;
 		GetTree().CreateTimer(1.5f).Timeout += () => {
-            player.ProcessMode = ProcessModeEnum.Inherit;
-
 			dialogue.DialogueFinished += HansComingInDialogueFinished;
 			dialogue.set_queue(new System.Collections.Generic.List<string>(HansComingInLines));
 		};
@@ -50,9 +51,23 @@ public partial class HansIntro : Node2D {
 
         var lines = new System.Collections.Generic.List<string>();
         lines.Add("The fly dropped something!");
+        lines.Add("I should grab that");
+        lines.Add("and then follow that Hans guy");
+
+        dialogue.DialogueFinished += HansLeftDialogueFinished;
         dialogue.set_queue(lines);
+    }
+
+    private void HansLeftDialogueFinished() {
+        dialogue.DialogueFinished -= HansLeftDialogueFinished;
 
         var blocker = GetNodeOrNull<FertilizerBlocker>("../Blocker");
+        player.InputFrozen = false;
         blocker.make_removable();
+        GetTree().Root.GetNode<Main>("Main")?.BackgroundMusicPlayer.PlayFadeIn(
+            PostSequenceMusic,
+            GetParent<FlyRoom>().MusicVolume,
+            GetParent<FlyRoom>().MusicPitch
+        );
     }
 }

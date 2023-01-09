@@ -52,9 +52,16 @@ public partial class FertilizerBlocker : StaticBody2D {
             player.learn_dash();
         }
 
-        this.QueueFree();
+        this.Hide();
 
+        dialogue.DialogueFinished += HeadingBackDialogue;
         dialogue.set_queue(new List<string>(dialogue_after_removed));
+    }
+
+    private void HeadingBackDialogue() {
+        dialogue.DialogueFinished -= HeadingBackDialogue;
+        GetTree().Root.GetNode<Main>("Main").TeleportToGreenhouse();
+        this.QueueFree();
     }
 
 }

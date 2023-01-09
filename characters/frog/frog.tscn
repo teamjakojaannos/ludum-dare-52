@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://62okybptnvts"]
+[gd_scene load_steps=34 format=3 uid="uid://62okybptnvts"]
 
 [ext_resource type="Script" path="res://characters/frog/Frog.cs" id="1_0fi8k"]
 [ext_resource type="Texture2D" uid="uid://d2sjrqjiwaspk" path="res://characters/frog/frog_tongue_1.png" id="2_c4he0"]
@@ -21,8 +21,47 @@
 [ext_resource type="Texture2D" uid="uid://cwpn5pnqtalyj" path="res://characters/frog/frog_sleep_1.png" id="19_bp1bp"]
 [ext_resource type="Texture2D" uid="uid://c48otto8w44mv" path="res://characters/frog/frog_sleep_2.png" id="20_obxqd"]
 [ext_resource type="AudioStream" uid="uid://doillaxa3n74k" path="res://characters/frog/sound_chewing.ogg" id="21_is2g7"]
+[ext_resource type="Texture2D" uid="uid://dn2gdlgf6g7xo" path="res://enemies/spade/danger.png" id="21_p2aqg"]
 [ext_resource type="AudioStream" uid="uid://b2tib3sas3cnf" path="res://characters/frog/sound_sleeping.ogg" id="22_ciag3"]
 [ext_resource type="AudioStream" uid="uid://b4dp3d2v1r3v1" path="res://characters/frog/sound_slap.ogg" id="23_fdndf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfqgi"]
+atlas = ExtResource("21_p2aqg")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qofj"]
+atlas = ExtResource("21_p2aqg")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ik5tm"]
+atlas = ExtResource("21_p2aqg")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vftns"]
+atlas = ExtResource("21_p2aqg")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tc1ef"]
+atlas = ExtResource("21_p2aqg")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s6281"]
+animations = [{
+"frames": [SubResource("AtlasTexture_cfqgi"), SubResource("AtlasTexture_8qofj")],
+"loop": true,
+"name": &"charging",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_ik5tm")],
+"loop": true,
+"name": &"glom",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_vftns"), SubResource("AtlasTexture_tc1ef")],
+"loop": true,
+"name": &"no_target",
+"speed": 1.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_poy0h"]
 animations = [{
@@ -60,13 +99,20 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y0m4w"]
 size = Vector2(70, 48)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k22sr"]
-size = Vector2(58, 47)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_okrov"]
+radius = 30.0
+height = 84.0
 
 [node name="Frog" type="StaticBody2D"]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_0fi8k")
+
+[node name="Indicator" type="AnimatedSprite2D" parent="."]
+position = Vector2(52, 0)
+frames = SubResource("SpriteFrames_s6281")
+animation = &"no_target"
+playing = true
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 frames = SubResource("SpriteFrames_poy0h")
@@ -84,8 +130,9 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(51, 1.5)
-shape = SubResource("RectangleShape2D_k22sr")
+position = Vector2(41, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_okrov")
 
 [node name="Charge" type="Timer" parent="."]
 wait_time = 2.0

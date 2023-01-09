@@ -13,11 +13,12 @@ public partial class RoomTransition : Area2D {
     [Export]
     public bool IsFirstRoom = false;
 
+    private static Room current;
+
     public override void _Ready() {
         if (IsFirstRoom) {
             var player = GetTree().Root.GetNode<Player>("Main/player");
             TransitionToRoom(player);
-            QueueFree();
         } else {
             BodyShapeEntered += (body_rid, other, body_shape_index, local_shape_index) => {
                 var player = other as Player;
@@ -28,7 +29,7 @@ public partial class RoomTransition : Area2D {
         }
     }
 
-    private void TransitionToRoom(Player player) {
+    public void TransitionToRoom(Player player) {
         var camera = GetTree().Root.GetNode<Camera2D>("Main/Camera");
         camera.LimitLeft = To.CameraLimitLeft;
         camera.LimitRight = To.CameraLimitRight;
@@ -43,18 +44,19 @@ public partial class RoomTransition : Area2D {
             // HACK: remove the tomato branch
             GetTree().Root.GetNodeOrNull<Node2D>("Main/IntroSequence")?.QueueFree();
 
-            CallDeferred(new StringName(nameof(UpdateSceneTree)));
+            CallDeferred(new StringName(nameof(UpdateSceneTree)), From == null ? current : From);
         }
     }
 
-    private void UpdateSceneTree() {
+    private void UpdateSceneTree(Room FromOverride) {
         var rooms = GetTree().Root.GetNode("Main/Rooms");
 
-        if (From != null) {
-            From.OnPlayerExit();
-            rooms.RemoveChild(From);
+        if (FromOverride != null) {
+            FromOverride.OnPlayerExit();
+            rooms.RemoveChild(FromOverride);
         }
 
+        current = this.To;
         if (To != null) {
             rooms.AddChild(To);
             To.OnPlayerEnter();

@@ -65,6 +65,8 @@ public partial class Player : CharacterBody2D {
 
     private bool dash_learned = false;
 
+    public bool InputFrozen = false;
+
     public override void _Ready() {
         GetNode<Area2D>("Hitbox").AreaEntered += HandleCollision;
 
@@ -124,6 +126,7 @@ public partial class Player : CharacterBody2D {
         current_move_smoothness = MoveSmoothness;
 
         IsConfused = false;
+        InputFrozen = false;
     }
 
     public void TransitionToRoom(Node2D entrypoint) {
@@ -151,6 +154,11 @@ public partial class Player : CharacterBody2D {
 
             if (health == 0) {
                 is_dead = true;
+
+                GetTree().CreateTimer(3.0f).Timeout += () => {
+                    GetTree().Root.GetNode<Main>("Main").TeleportToGreenhouse();
+                    HardReset();
+                };
             }
 
             invulnerable_timer.Start();
@@ -183,7 +191,7 @@ public partial class Player : CharacterBody2D {
 
     private Vector2 InputDirection {
         get {
-            return is_dead || dialogue.Visible
+            return is_dead || dialogue.Visible || InputFrozen
                 ? Vector2.Zero
                 : is_dashing
                     ? velocity.Normalized()
@@ -230,7 +238,7 @@ public partial class Player : CharacterBody2D {
         }
 
         var is_dash_ready = !is_dead && dash_cooldown_timer.IsStopped();
-        if (dash_learned && Input.IsActionJustPressed("dash") && is_dash_ready) {
+        if (!InputFrozen && dash_learned && Input.IsActionJustPressed("dash") && is_dash_ready) {
             GetTree().CreateTimer(DashDuration, false).Timeout += () => {
                 is_dashing = false;
             };

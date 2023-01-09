@@ -281,6 +281,12 @@ public partial class Fly : Area2D {
     }
 
     private void shoot_projectile(Vector2 shoot_target) {
+        if (GetTree().Root.GetNode<Main>("Main").DialogueUI.Visible) {
+            projectile_cooldown.Start();
+            ready_to_shoot = false;
+            return;
+        }
+
         var projectile = projectile_template.Instantiate<FlyProjectile>();
 
         var speed = projectile_speed;
@@ -295,7 +301,6 @@ public partial class Fly : Area2D {
 
         projectile_cooldown.Start();
         ready_to_shoot = false;
-
     }
 
     private void projectile_ready() {

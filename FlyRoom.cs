@@ -26,5 +26,7 @@ public partial class FlyRoom : Room {
 		var camera = GetNode<CameraFixedZoom>("/root/Main/Camera");
 		camera.OverridePlayerPosition = false;
 		camera.IntroOffset = Vector2.Zero;
+
+        GetNode<Frog>("Frog").indicator.Show();
     }
 }

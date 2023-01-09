@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://bm8yuh6v168q0"]
+[gd_scene load_steps=80 format=3 uid="uid://bm8yuh6v168q0"]
 
 [ext_resource type="Script" path="res://FlyRoom.cs" id="1_72vv8"]
 [ext_resource type="Texture2D" uid="uid://c40wpwufgldus" path="res://background_scale.png" id="2_b6qyy"]
@@ -11,12 +11,14 @@
 [ext_resource type="Script" path="res://HansIntro.cs" id="9_al55f"]
 [ext_resource type="AudioStream" uid="uid://3spsuif528wu" path="res://characters/hans/HABANEROHANS_THEME.ogg" id="9_b5pyg"]
 [ext_resource type="Texture2D" uid="uid://wvr0a8sbnmbc" path="res://characters/hans/HabaneroHansIdle.png" id="10_qkgdm"]
+[ext_resource type="AudioStream" uid="uid://dqspt6x3u64jj" path="res://music/tutkimusmusa1.0.ogg" id="10_riit2"]
 [ext_resource type="Texture2D" uid="uid://bgr2a8mjesctm" path="res://characters/hans/HabaneroHansPUNCH-sheet.png" id="11_h2xqj"]
 [ext_resource type="Texture2D" uid="uid://l127ov8y4vec" path="res://characters/hans/habanerohansfrontwalk.png" id="12_c3u5r"]
 [ext_resource type="Texture2D" uid="uid://dv7yfnucbbokg" path="res://characters/hans/HabaneroHansSideWalk.png" id="13_6o62i"]
 [ext_resource type="Texture2D" uid="uid://bykkhk2u5mq8o" path="res://characters/hans/HabaneroHansSunglasses.png" id="14_phnjj"]
 [ext_resource type="Texture2D" uid="uid://413kwijru2me" path="res://enemies/fly/fly_frame_1.png" id="15_s835b"]
 [ext_resource type="Texture2D" uid="uid://bdgk5njd8cnhr" path="res://enemies/fly/fly_frame_2.png" id="16_cj4vk"]
+[ext_resource type="AudioStream" uid="uid://jwe3e22a73lr" path="res://characters/hans/HANS_ATTACK.ogg" id="17_8xgpw"]
 [ext_resource type="Texture2D" uid="uid://ch0o0s80pdghm" path="res://enemies/fly/fly_frame_3.png" id="17_v3nhl"]
 [ext_resource type="Texture2D" uid="uid://dndolv0tkmcbu" path="res://enemies/fly/fly_frame_4.png" id="18_p13v4"]
 [ext_resource type="Shader" path="res://flat.gdshader" id="19_11vqs"]
@@ -79,6 +81,18 @@ tracks/2/keys = {
 "args": [],
 "method": &"AngryFlyDialogue"
 }]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../HangryFly/Sprite:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_4xgp8"]
@@ -252,6 +266,18 @@ tracks/13/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(0.5, 0.5), Vector2(1, 1)]
 }
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Krakpaow:playing")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(10.7, 11.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_ojchn"]
 length = 0.001
@@ -314,6 +340,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../HangryFly/Sprite:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_toygo"]
@@ -540,7 +578,7 @@ size = Vector2(512, 512)
 [node name="FlyRoom" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_72vv8")
-EntryDialogueLines = ["Hmm", "That frog looks hungry", "I wonder if I could", "feed them some flies", "[use \"fertilizer\" to attact flies]"]
+EntryDialogueLines = ["Hmm", "That frog looks hungry", "...I wonder", "if he woud like some flies", "[use \"fertilizer\" to attract flies]"]
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -1
@@ -619,17 +657,18 @@ position = Vector2(224, -125)
 
 [node name="FlyRoomQuest" type="Node" parent="."]
 script = ExtResource("7_na5dn")
-FrogAsleepLines = ["Oh", "The frog fell asleep", "Better hope", "No more flies show up"]
+FrogAsleepLines = ["Oh", "The frog fell asleep", "Hopefully no more flies show up"]
 
 [node name="Blocker" parent="." instance=ExtResource("8_2qvcd")]
 position = Vector2(-185, -264)
-dialogue_when_removable = ["Hmm...", "This smells like...", "..like crap.", "...", "...wait!", "I'm a plant!", "I like this stuff!"]
-dialogue_after_removed = ["*GLOM*", "Oh sprout I feel fast now!", "I feel like dashing around!", "[use space to dash]"]
+dialogue_when_removable = ["Hmm... This smells like...", "..like crap.", "...", "...wait! I'm a plant!", "I like this stuff!"]
+dialogue_after_removed = ["*GLOM*", "Oh sprout I feel fast now!", "I feel like dashing around!", "[use space to dash]", "...", "I should head back", "It is not safe here"]
 
 [node name="HansIntro" type="Node2D" parent="."]
 script = ExtResource("9_al55f")
-AngryFlyLines = ["Oh no", "That fly kind of looks", "...hungry"]
-HansComingInLines = ["*distant voice*", "Haha!", "Seems it time for...", "HABANERO!", "HANS!", "...", "...dark, and spicy!"]
+AngryFlyLines = ["Oh no", "That fly is angry"]
+HansComingInLines = ["*distant voice*", "Haha!", "Seems it is time for...", "HABANERO!", "HANS!", "...", "...dark, and spicy!"]
+PostSequenceMusic = ExtResource("10_riit2")
 
 [node name="Animation" type="AnimationPlayer" parent="HansIntro"]
 root_node = NodePath("../Hans")
@@ -653,12 +692,16 @@ animation = &"walk_down"
 playing = true
 offset = Vector2(4, -19)
 
+[node name="Krakpaow" type="AudioStreamPlayer" parent="HansIntro/Hans"]
+stream = ExtResource("17_8xgpw")
+volume_db = -25.0
+
 [node name="HangryFly" type="Node2D" parent="HansIntro"]
 position = Vector2(200, -400)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="HansIntro/HangryFly"]
 frames = SubResource("SpriteFrames_lwa8u")
-frame = 1
+playing = true
 
 [node name="Overlay" type="Sprite2D" parent="."]
 z_index = 99
