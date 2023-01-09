@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bp0w8jibe53x7"]
+[gd_scene load_steps=15 format=3 uid="uid://bp0w8jibe53x7"]
 
-[ext_resource type="Script" path="res://Room.cs" id="1_edeay"]
+[ext_resource type="Script" path="res://SpawnRoom.cs" id="1_gxvlu"]
 [ext_resource type="TileSet" uid="uid://buxsmqvvj7jrb" path="res://greenhouse/greenhouse_tiles.tres" id="2_d5veh"]
 [ext_resource type="Texture2D" uid="uid://bao0onw7asnbx" path="res://greenhouse/programmer-art-sign.png" id="3_horn3"]
 [ext_resource type="Script" path="res://DialogueTrigger.cs" id="3_px738"]
+[ext_resource type="Texture2D" uid="uid://wvr0a8sbnmbc" path="res://characters/hans/HabaneroHansIdle.png" id="5_5qat7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_77fxm"]
 size = Vector2(672, 352)
@@ -11,10 +12,41 @@ size = Vector2(672, 352)
 [sub_resource type="CircleShape2D" id="CircleShape2D_jk8a1"]
 radius = 21.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxs6u"]
+atlas = ExtResource("5_5qat7")
+region = Rect2(0, 0, 26, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adjsw"]
+atlas = ExtResource("5_5qat7")
+region = Rect2(26, 0, 26, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aivuo"]
+atlas = ExtResource("5_5qat7")
+region = Rect2(52, 0, 26, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihbdv"]
+atlas = ExtResource("5_5qat7")
+region = Rect2(78, 0, 26, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ictw"]
+atlas = ExtResource("5_5qat7")
+region = Rect2(104, 0, 26, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssxuq"]
+atlas = ExtResource("5_5qat7")
+region = Rect2(130, 0, 26, 43)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n7ker"]
+animations = [{
+"frames": [SubResource("AtlasTexture_xxs6u"), SubResource("AtlasTexture_adjsw"), SubResource("AtlasTexture_aivuo"), SubResource("AtlasTexture_ihbdv"), SubResource("AtlasTexture_1ictw"), SubResource("AtlasTexture_ssxuq")],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="SpawnRoom" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_edeay")
-StartEnabled = true
+script = ExtResource("1_gxvlu")
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -1
@@ -53,3 +85,20 @@ shape = SubResource("CircleShape2D_jk8a1")
 z_index = 69
 position = Vector2(1, -15)
 texture = ExtResource("3_horn3")
+
+[node name="Hans" type="Area2D" parent="."]
+z_index = 69
+y_sort_enabled = true
+position = Vector2(181, 80)
+script = ExtResource("3_px738")
+lines = ["Hahaa!", "My name is Hans! Hans Habanero!", "The spiciest of all!", "They will NOT get me", "I will not become some hot sauce!", "...", "...too spicy for them to handle"]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hans"]
+shape = SubResource("CircleShape2D_jk8a1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hans"]
+position = Vector2(2, -22)
+frames = SubResource("SpriteFrames_n7ker")
+playing = true
+flip_h = true

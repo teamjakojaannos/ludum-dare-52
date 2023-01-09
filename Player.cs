@@ -40,7 +40,7 @@ public partial class Player : CharacterBody2D {
 
     private int last_sfx_walk_frame = 5;
 
-    private int health = 3;
+    private int health = 4;
 
     private bool is_dead;
 
@@ -63,7 +63,7 @@ public partial class Player : CharacterBody2D {
         }
     }
 
-    private bool dash_learned = false;
+    public bool dash_learned = false;
 
     public bool InputFrozen = false;
 
@@ -110,12 +110,13 @@ public partial class Player : CharacterBody2D {
 
         dialogue = GetTree().Root.GetNode<Main>("Main")?.DialogueUI;
 
-        health = 3;
+        health = 4;
         Reset();
     }
 
     private void Reset() {
         is_dead = false;
+        GetTree().Root.GetNode<Healthbar>("Main/CanvasLayer/Health").Health = health;
 
         is_dashing = false;
         dash_cooldown_timer?.Stop();
@@ -151,6 +152,7 @@ public partial class Player : CharacterBody2D {
     public void TakeDamage(int amount) {
         if (invulnerable_timer.IsStopped()) {
             health -= amount;
+            GetTree().Root.GetNode<Healthbar>("Main/CanvasLayer/Health").Health = health;
 
             if (health == 0) {
                 is_dead = true;

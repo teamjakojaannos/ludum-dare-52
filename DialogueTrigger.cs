@@ -13,7 +13,7 @@ public partial class DialogueTrigger : Area2D {
 	public override void _Ready() {
         BodyEntered += (other) => {
             var player = other as Player;
-            if (player != null) {
+            if (player != null && Visible) {
                 player.IsConfused = true;
                 is_player_near = true;
             }
@@ -21,7 +21,7 @@ public partial class DialogueTrigger : Area2D {
 
 		BodyExited += (other) => {
             var player = other as Player;
-            if (player != null) {
+            if (player != null && Visible) {
                 player.IsConfused = false;
                 is_player_near = false;
             }
