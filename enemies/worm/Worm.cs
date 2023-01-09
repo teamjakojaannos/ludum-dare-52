@@ -33,6 +33,10 @@ public partial class Worm : Area2D {
     [Export]
     public bool allow_reverse_travel = true;
 
+    [Export]
+    public bool patrol_behaviour = false;
+
+
     private double chance_to_reverse = 0.3;
 
 #pragma warning disable CS0162
@@ -79,7 +83,11 @@ public partial class Worm : Area2D {
             randomize_timer(walk_timer, base_walk_time);
         }
 
-        walk_timer.Start();
+        if (patrol_behaviour) {
+            allow_reverse_travel = false;
+        } else {
+            walk_timer.Start();
+        }
     }
 
     public override void _Process(double delta) {
@@ -87,7 +95,25 @@ public partial class Worm : Area2D {
             var direction = reversing ? -1.0 : 1.0;
             var progress = delta * speed * direction;
 
+            var old_ratio = follow.ProgressRatio;
             follow.Progress += (float)progress;
+
+
+
+            if (patrol_behaviour) {
+                var new_ratio = follow.ProgressRatio;
+                var looped_around = !reversing
+                ? new_ratio < old_ratio // went from 100 -> 0
+                : new_ratio > old_ratio; // went from 0 -> 100
+
+                if (looped_around) {
+                    reversing = !reversing;
+                    have_pause();
+                    // reset back to before O looped around
+                    follow.ProgressRatio = old_ratio;
+                }
+
+            }
         }
 
         var old_pos = this.Position;
@@ -114,7 +140,9 @@ public partial class Worm : Area2D {
         }
 
         paused = false;
-        walk_timer.Start();
+        if (!patrol_behaviour) {
+            walk_timer.Start();
+        }
     }
 
     private void have_pause() {

@@ -39,9 +39,9 @@ point_count = 8
 
 [sub_resource type="Curve2D" id="Curve2D_e4gsf"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 273, -12, 0, 0, 0, 0, 273, -48, 0, 0, 0, 0, 309, -47, 0, 0, 0, 0, 273, -48, 0, 0, 0, 0, 273, -12)
+"points": PackedVector2Array(0, 0, 0, 0, 273, -14, 0, 0, 0, 0, 272, -47, 0, 0, 0, 0, 308, -47)
 }
-point_count = 5
+point_count = 3
 
 [node name="CarrotRoom" type="Node2D"]
 script = ExtResource("1_vk371")
@@ -127,26 +127,23 @@ curve = SubResource("Curve2D_61qc6")
 position = Vector2(128, -56)
 rotation = 0.0778565
 
-[node name="Worm_4" parent="Enemies" node_paths=PackedStringArray("path", "walk_timer", "pause_timer") instance=ExtResource("3_dqf0b")]
+[node name="Worm_patrolling" parent="Enemies" node_paths=PackedStringArray("path", "walk_timer", "pause_timer") instance=ExtResource("3_dqf0b")]
 position = Vector2(272, -16)
 path = NodePath("../Path_4")
 speed = 25.0
-walk_timer = NodePath("CustomWalkTimer")
+walk_timer = NodePath("")
 pause_timer = NodePath("CustomWaitTimer")
-allow_timer_randomization = false
 allow_reverse_travel = false
+patrol_behaviour = true
 
-[node name="CustomWalkTimer" type="Timer" parent="Enemies/Worm_4"]
-wait_time = 1.25
-one_shot = true
-
-[node name="CustomWaitTimer" type="Timer" parent="Enemies/Worm_4"]
-wait_time = 10.0
+[node name="CustomWaitTimer" type="Timer" parent="Enemies/Worm_patrolling"]
+wait_time = 6.0
 one_shot = true
 
 [node name="Path_4" type="Path2D" parent="Enemies"]
+visible = false
 curve = SubResource("Curve2D_e4gsf")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path_4"]
-position = Vector2(273, -12)
-rotation = -1.5708
+position = Vector2(273, -14)
+rotation = -1.60109
