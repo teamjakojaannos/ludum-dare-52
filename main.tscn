@@ -527,6 +527,7 @@ texture = ExtResource("15_i6xyt")
 centered = false
 
 [node name="CarrotRoom" parent="Rooms" instance=ExtResource("14_7einq")]
+visible = false
 
 [node name="LeftTransition" type="Area2D" parent="Rooms/CarrotRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
 script = ExtResource("4_1hoxw")
