@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://buxsmqvvj7jrb" path="res://greenhouse/greenhouse_tiles.tres" id="1_267iv"]
 [ext_resource type="Script" path="res://Room.cs" id="1_pkfor"]
-[ext_resource type="Script" path="res://DialogueTrigger.cs" id="2_sjyqg"]
+[ext_resource type="Script" path="res://things/TntOnGround.cs" id="3_m2gm2"]
 [ext_resource type="Texture2D" uid="uid://cfyokay7vv45o" path="res://things/tnt.png" id="3_suvi0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yok53"]
@@ -67,14 +67,15 @@ position = Vector2(-9, -75)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_omotb")
 
-[node name="Area2D" type="Area2D" parent="."]
-script = ExtResource("2_sjyqg")
-lines = ["Why on earth", "would anyone", "have a stick of TNT", "in their greenhouse?", "...", "Oh well, this might come in handy."]
+[node name="Tnt" type="Area2D" parent="." node_paths=PackedStringArray("Target")]
+script = ExtResource("3_m2gm2")
+lines = ["Why on earth...", "would anyone...", "have TNT in their greenhouse?", "...", "Oh well, this might", "come in handy later."]
+Target = NodePath(".")
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Tnt"]
 position = Vector2(38, -10)
 texture = ExtResource("3_suvi0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tnt"]
 position = Vector2(34, -3)
 shape = SubResource("CircleShape2D_ffte2")
