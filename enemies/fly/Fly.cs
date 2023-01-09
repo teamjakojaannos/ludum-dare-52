@@ -62,6 +62,8 @@ public partial class Fly : Area2D {
 
     private bool attack_animation_playing = false;
 
+    private Vector2 attack_animation_offset = new Vector2(9.0f, 0.0f);
+
     public override void _Ready() {
         room_size = get_room_size_or_screen_size();
 
@@ -96,6 +98,7 @@ public partial class Fly : Area2D {
             if (attack_animation_playing) {
                 attack_animation_playing = false;
                 this.animation.Animation = "chase player";
+                this.animation.Offset = Vector2.Zero;
             }
         };
 
@@ -291,6 +294,7 @@ public partial class Fly : Area2D {
         this.player = player;
 
         animation.Animation = "attacking";
+        animation.Offset = attack_animation_offset;
         attack_animation_playing = true;
 
         return true;

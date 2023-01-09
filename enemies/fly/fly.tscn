@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://8saeumnunocv"]
+[gd_scene load_steps=29 format=3 uid="uid://8saeumnunocv"]
 
 [ext_resource type="Script" path="res://enemies/fly/Fly.cs" id="1_usewm"]
 [ext_resource type="PackedScene" uid="uid://bfm3hwee66ifn" path="res://enemies/fly/fly_projectile.tscn" id="2_p63fk"]
 [ext_resource type="Texture2D" uid="uid://413kwijru2me" path="res://enemies/fly/fly_angry_1.png" id="3_2fcfh"]
+[ext_resource type="Texture2D" uid="uid://bfnslfsxuaic2" path="res://enemies/fly/fly_attack.png" id="3_p5qx3"]
 [ext_resource type="Texture2D" uid="uid://bdgk5njd8cnhr" path="res://enemies/fly/fly_angry_2.png" id="4_230ps"]
 [ext_resource type="Texture2D" uid="uid://ch0o0s80pdghm" path="res://enemies/fly/fly_angry_3.png" id="4_rwjjl"]
 [ext_resource type="Texture2D" uid="uid://dndolv0tkmcbu" path="res://enemies/fly/fly_angry_4.png" id="5_cuybh"]
@@ -12,12 +13,56 @@
 [ext_resource type="Texture2D" uid="uid://b0aynchk35x8q" path="res://enemies/fly/fly_dung_3.png" id="9_y14ih"]
 [ext_resource type="Texture2D" uid="uid://cobhpr61i0bue" path="res://enemies/fly/fly_dung_4.png" id="10_d3816"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lyam"]
+atlas = ExtResource("3_p5qx3")
+region = Rect2(0, 0, 64, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmlqq"]
+atlas = ExtResource("3_p5qx3")
+region = Rect2(64, 0, 64, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcbxo"]
+atlas = ExtResource("3_p5qx3")
+region = Rect2(128, 0, 64, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jcds"]
+atlas = ExtResource("3_p5qx3")
+region = Rect2(192, 0, 64, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0k41"]
+atlas = ExtResource("3_p5qx3")
+region = Rect2(256, 0, 64, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4n15"]
+atlas = ExtResource("3_p5qx3")
+region = Rect2(320, 0, 64, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcbsc"]
+atlas = ExtResource("3_p5qx3")
+region = Rect2(384, 0, 64, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ooa1"]
+atlas = ExtResource("3_p5qx3")
+region = Rect2(448, 0, 64, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52gqu"]
+atlas = ExtResource("3_p5qx3")
+region = Rect2(512, 0, 64, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kp2te"]
+atlas = ExtResource("3_p5qx3")
+region = Rect2(576, 0, 64, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrupe"]
+atlas = ExtResource("3_p5qx3")
+region = Rect2(640, 0, 64, 45)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_ehqq1"]
 animations = [{
-"frames": [ExtResource("3_2fcfh"), ExtResource("4_230ps")],
+"frames": [SubResource("AtlasTexture_0lyam"), SubResource("AtlasTexture_xmlqq"), SubResource("AtlasTexture_gcbxo"), SubResource("AtlasTexture_1jcds"), SubResource("AtlasTexture_u0k41"), SubResource("AtlasTexture_p4n15"), SubResource("AtlasTexture_wcbsc"), SubResource("AtlasTexture_3ooa1"), SubResource("AtlasTexture_52gqu"), SubResource("AtlasTexture_kp2te"), SubResource("AtlasTexture_hrupe")],
 "loop": false,
 "name": &"attacking",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [ExtResource("3_2fcfh"), ExtResource("4_230ps"), ExtResource("4_rwjjl"), ExtResource("5_cuybh")],
 "loop": true,
@@ -60,6 +105,7 @@ speed = 100.0
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 frames = SubResource("SpriteFrames_ehqq1")
+playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(3, -1)
