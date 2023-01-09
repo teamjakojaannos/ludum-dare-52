@@ -3,9 +3,15 @@
 [ext_resource type="Script" path="res://SpawnRoom.cs" id="1_gxvlu"]
 [ext_resource type="TileSet" uid="uid://buxsmqvvj7jrb" path="res://greenhouse/greenhouse_tiles.tres" id="2_d5veh"]
 [ext_resource type="Texture2D" uid="uid://bao0onw7asnbx" path="res://greenhouse/programmer-art-sign.png" id="3_horn3"]
+[ext_resource type="Texture2D" uid="uid://cbs33bci7v20w" path="res://environment props/basilika.png" id="3_ngux6"]
 [ext_resource type="Script" path="res://DialogueTrigger.cs" id="3_px738"]
 [ext_resource type="Texture2D" uid="uid://wvr0a8sbnmbc" path="res://characters/hans/HabaneroHansIdle.png" id="5_5qat7"]
 [ext_resource type="Texture2D" uid="uid://dvxnybhvchpii" path="res://characters/carrot/gretaidle.png" id="6_tfujx"]
+[ext_resource type="Texture2D" uid="uid://b6w4wfnsl7231" path="res://environment props/chili.png" id="4_nhc4b"]
+[ext_resource type="Texture2D" uid="uid://dmgc07svavr60" path="res://environment props/chili2.png" id="5_if087"]
+[ext_resource type="Texture2D" uid="uid://d4e2jeep7day7" path="res://environment props/kaali.png" id="6_kp11y"]
+[ext_resource type="Texture2D" uid="uid://dd4bqtbvggbx2" path="res://environment props/kurkku.png" id="7_hqv17"]
+[ext_resource type="Texture2D" uid="uid://bcypkuy6ienew" path="res://environment props/mansikka.png" id="8_7imr6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_77fxm"]
 size = Vector2(672, 352)
@@ -99,6 +105,251 @@ layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(131064, 131073, 4, 65543, 131073, 4, 196615, 131073, 4, -196616, 131073, 4, -196596, 131073, 4, 196620, 131073, 4, -262145, 65537, 0, -327687, 65537, 0, -262151, 65537, 1, -327686, 65537, 0, -262150, 65537, 1, -327685, 65537, 0, -262149, 65537, 1, -327684, 65537, 0, -262148, 65537, 1, -327683, 65537, 0, -262147, 65537, 1, -327682, 1, 65536, -262146, 1, 65537, -393216, 1, 0, -327680, 1, 1, -393215, 65537, 0, -327679, 65537, 1, -393214, 65537, 0, -327678, 65537, 1, -393213, 65537, 0, -327677, 65537, 1, -393212, 65537, 0, -327676, 65537, 1, -393211, 65537, 0, -327675, 65537, 1, -393210, 65537, 0, -327674, 65537, 1, -393209, 65537, 0, -327673, 65537, 1, -393208, 65537, 0, -327672, 65537, 1, -393207, 65537, 0, -327671, 65537, 1, -393206, 65537, 0, -327670, 65537, 1, -393205, 65537, 0, -327669, 65537, 1, -393204, 1, 65536, -327668, 1, 65537, -327681, 65537, 0, -327688, 1, 0, -262152, 1, 1)
+
+[node name="Basilika8" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(79, 121)
+texture = ExtResource("3_ngux6")
+
+[node name="Basilika7" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(400, -20)
+texture = ExtResource("3_ngux6")
+
+[node name="Basilika6" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(370, 124)
+texture = ExtResource("3_ngux6")
+
+[node name="Basilika5" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-240, -50)
+texture = ExtResource("3_ngux6")
+
+[node name="Basilika4" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(212, 28)
+texture = ExtResource("3_ngux6")
+
+[node name="Basilika3" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(19, -68)
+texture = ExtResource("3_ngux6")
+
+[node name="Basilika2" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-160, -133)
+texture = ExtResource("3_ngux6")
+
+[node name="Basilika" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-53, -133)
+texture = ExtResource("3_ngux6")
+
+[node name="Chili6" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-240, 86)
+texture = ExtResource("4_nhc4b")
+
+[node name="Chili5" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(111, 118)
+texture = ExtResource("4_nhc4b")
+
+[node name="Chili4" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(336, -75)
+texture = ExtResource("4_nhc4b")
+
+[node name="Chili3" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(182, 20)
+texture = ExtResource("4_nhc4b")
+
+[node name="Chili2" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-174, 20)
+texture = ExtResource("4_nhc4b")
+
+[node name="Chili" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(70, -141)
+texture = ExtResource("4_nhc4b")
+
+[node name="ChiliSmol10" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(1600, -188)
+texture = ExtResource("5_if087")
+
+[node name="ChiliSmol9" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-241, -96)
+texture = ExtResource("5_if087")
+
+[node name="ChiliSmol8" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(400, -47)
+texture = ExtResource("5_if087")
+
+[node name="ChiliSmol7" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-50, 128)
+texture = ExtResource("5_if087")
+
+[node name="ChiliSmol6" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-241, -23)
+texture = ExtResource("5_if087")
+
+[node name="ChiliSmol5" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(76, 32)
+texture = ExtResource("5_if087")
+
+[node name="ChiliSmol4" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(335, 30)
+texture = ExtResource("5_if087")
+
+[node name="ChiliSmol3" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-124, -130)
+texture = ExtResource("5_if087")
+
+[node name="ChiliSmol2" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(173, -132)
+texture = ExtResource("5_if087")
+
+[node name="ChiliSmol" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-8, -65)
+texture = ExtResource("5_if087")
+
+[node name="Kaali10" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(146, -66)
+texture = ExtResource("6_kp11y")
+
+[node name="Kaali9" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-206, 129)
+texture = ExtResource("6_kp11y")
+
+[node name="Kaali8" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-238, -129)
+texture = ExtResource("6_kp11y")
+
+[node name="Kaali7" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(47, 31)
+texture = ExtResource("6_kp11y")
+
+[node name="Kaali6" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(307, 128)
+texture = ExtResource("6_kp11y")
+
+[node name="Kaali5" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-139, -67)
+texture = ExtResource("6_kp11y")
+
+[node name="Kaali4" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-85, 31)
+texture = ExtResource("6_kp11y")
+
+[node name="Kaali3" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(307, 31)
+texture = ExtResource("6_kp11y")
+
+[node name="Kaali2" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(30, -131)
+texture = ExtResource("6_kp11y")
+
+[node name="Kaali" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-85, -130)
+texture = ExtResource("6_kp11y")
+
+[node name="Kurkku5" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-176, 109)
+texture = ExtResource("7_hqv17")
+
+[node name="Kurkku4" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-108, -83)
+texture = ExtResource("7_hqv17")
+
+[node name="Kurkku3" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(398, 70)
+texture = ExtResource("7_hqv17")
+
+[node name="Kurkku2" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(208, -150)
+texture = ExtResource("7_hqv17")
+
+[node name="Kurkku" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-8, 13)
+texture = ExtResource("7_hqv17")
+
+[node name="Mansikka10" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-209, -131)
+texture = ExtResource("8_7imr6")
+
+[node name="Mansikka9" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(208, 125)
+texture = ExtResource("8_7imr6")
+
+[node name="Mansikka8" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(396, -129)
+texture = ExtResource("8_7imr6")
+
+[node name="Mansikka7" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-240, 125)
+texture = ExtResource("8_7imr6")
+
+[node name="Mansikka6" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-115, 28)
+texture = ExtResource("8_7imr6")
+
+[node name="Mansikka5" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(46, -67)
+texture = ExtResource("8_7imr6")
+
+[node name="Mansikka4" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(149, 29)
+texture = ExtResource("8_7imr6")
+
+[node name="Mansikka3" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(237, -65)
+texture = ExtResource("8_7imr6")
+
+[node name="Mansikka2" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(-170, -66)
+texture = ExtResource("8_7imr6")
+
+[node name="Mansikka" type="Sprite2D" parent="."]
+z_index = 80
+position = Vector2(134, -133)
+texture = ExtResource("8_7imr6")
 
 [node name="Bounds" type="Area2D" parent="."]
 visible = false
