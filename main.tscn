@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://0hox6eid43h1"]
+[gd_scene load_steps=74 format=3 uid="uid://0hox6eid43h1"]
 
 [ext_resource type="PackedScene" uid="uid://blcrlxm2w0jt4" path="res://player.tscn" id="1_7y16m"]
 [ext_resource type="PackedScene" uid="uid://ddtu463gtav58" path="res://boss_room.tscn" id="1_e0hd2"]
@@ -42,6 +42,11 @@ size = Vector2(60, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evmpv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lcd77"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x80d8"]
+size = Vector2(36, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xbdnf"]
 
 [sub_resource type="Animation" id="Animation_tk3hk"]
 resource_name = "Intro"
@@ -152,11 +157,6 @@ _data = {
 "Intro": SubResource("Animation_tk3hk"),
 "RESET": SubResource("Animation_4ygop")
 }
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x80d8"]
-size = Vector2(36, 17)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xbdnf"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_irlsu"]
 size = Vector2(512, 512)
@@ -508,24 +508,6 @@ position = Vector2(-211, 81)
 [node name="RightEntry" type="Marker2D" parent="Rooms/SecondFlyRoom"]
 position = Vector2(204, 144)
 
-[node name="IntroAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_jsyex")
-}
-
-[node name="CameraOverlay" type="Sprite2D" parent="."]
-visible = false
-modulate = Color(0, 0, 0, 1)
-z_index = 80
-position = Vector2(-295, -267)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("5_r23nj")
-centered = false
-
-[node name="CameraOverlay2" type="Sprite2D" parent="CameraOverlay"]
-texture = ExtResource("15_i6xyt")
-centered = false
-
 [node name="CarrotRoom" parent="Rooms" instance=ExtResource("14_7einq")]
 visible = false
 
@@ -559,6 +541,24 @@ position = Vector2(-175, -111)
 
 [node name="EntryRight" type="Marker2D" parent="Rooms/CarrotRoom"]
 position = Vector2(587, -97)
+
+[node name="IntroAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jsyex")
+}
+
+[node name="CameraOverlay" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 1)
+z_index = 80
+position = Vector2(-295, -267)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("5_r23nj")
+centered = false
+
+[node name="CameraOverlay2" type="Sprite2D" parent="CameraOverlay"]
+texture = ExtResource("15_i6xyt")
+centered = false
 
 [node name="Overlay" type="Sprite2D" parent="."]
 visible = false
