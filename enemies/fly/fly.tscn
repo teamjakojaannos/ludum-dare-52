@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://8saeumnunocv"]
+[gd_scene load_steps=17 format=3 uid="uid://8saeumnunocv"]
 
 [ext_resource type="Script" path="res://enemies/fly/Fly.cs" id="1_usewm"]
 [ext_resource type="PackedScene" uid="uid://bfm3hwee66ifn" path="res://enemies/fly/fly_projectile.tscn" id="2_p63fk"]
@@ -7,11 +7,15 @@
 [ext_resource type="Texture2D" uid="uid://ch0o0s80pdghm" path="res://enemies/fly/fly_angry_3.png" id="4_rwjjl"]
 [ext_resource type="Texture2D" uid="uid://dndolv0tkmcbu" path="res://enemies/fly/fly_angry_4.png" id="5_cuybh"]
 [ext_resource type="AudioStream" uid="uid://dqpssdluqgsjr" path="res://enemies/fly/FLY.ogg" id="6_dyglj"]
+[ext_resource type="Texture2D" uid="uid://cgfef4jw1ixea" path="res://enemies/fly/fly_dung_1.png" id="7_shttc"]
+[ext_resource type="Texture2D" uid="uid://dujxrqqlg54e7" path="res://enemies/fly/fly_dung_2.png" id="8_bokfp"]
+[ext_resource type="Texture2D" uid="uid://b0aynchk35x8q" path="res://enemies/fly/fly_dung_3.png" id="9_y14ih"]
+[ext_resource type="Texture2D" uid="uid://cobhpr61i0bue" path="res://enemies/fly/fly_dung_4.png" id="10_d3816"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ehqq1"]
 animations = [{
-"frames": [],
-"loop": true,
+"frames": [ExtResource("3_2fcfh"), ExtResource("4_230ps")],
+"loop": false,
 "name": &"attacking",
 "speed": 5.0
 }, {
@@ -20,7 +24,7 @@ animations = [{
 "name": &"chase player",
 "speed": 12.0
 }, {
-"frames": [ExtResource("3_2fcfh"), ExtResource("4_230ps"), ExtResource("4_rwjjl"), ExtResource("5_cuybh")],
+"frames": [ExtResource("7_shttc"), ExtResource("8_bokfp"), ExtResource("9_y14ih"), ExtResource("10_d3816")],
 "loop": true,
 "name": &"default",
 "speed": 12.0

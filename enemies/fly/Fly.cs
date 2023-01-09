@@ -60,6 +60,8 @@ public partial class Fly : Area2D {
 
     private Node2D player;
 
+    private bool attack_animation_playing = false;
+
     public override void _Ready() {
         room_size = get_room_size_or_screen_size();
 
@@ -87,6 +89,13 @@ public partial class Fly : Area2D {
             if (player != null) {
                 shoot_projectile(player.Position);
                 charging_shot = false;
+            }
+        };
+
+        this.animation.AnimationFinished += () => {
+            if (attack_animation_playing) {
+                attack_animation_playing = false;
+                this.animation.Animation = "chase player";
             }
         };
 
@@ -212,6 +221,7 @@ public partial class Fly : Area2D {
 
         var player = visible_items.Find(node => node.GetType() == typeof(Player));
         if (player != null) {
+            this.animation.Animation = "chase player";
             return player;
         }
 
@@ -219,6 +229,8 @@ public partial class Fly : Area2D {
         if (dungs.Count == 0) {
             return null;
         }
+
+        this.animation.Animation = "default";
         if (dungs.Count == 1) {
             return dungs[0];
         }
@@ -276,6 +288,9 @@ public partial class Fly : Area2D {
         charge_timer.Start();
         charging_shot = true;
         this.player = player;
+
+        animation.Animation = "attacking";
+        attack_animation_playing = true;
 
         return true;
     }
