@@ -1,15 +1,15 @@
-[gd_scene load_steps=60 format=3 uid="uid://c0ccubwjmrsdd"]
+[gd_scene load_steps=60 format=3]
 
-[ext_resource type="AudioStream" uid="uid://bjtck3ghkghma" path="res://characters/hans/HABANEROHANS_THEME.ogg" id="1_oj7c2"]
+[ext_resource type="AudioStream" uid="uid://3spsuif528wu" path="res://characters/hans/HABANEROHANS_THEME.ogg" id="1_oj7c2"]
 [ext_resource type="Texture2D" uid="uid://wvr0a8sbnmbc" path="res://characters/hans/HabaneroHansIdle.png" id="2_gsyqk"]
 [ext_resource type="Texture2D" uid="uid://bgr2a8mjesctm" path="res://characters/hans/HabaneroHansPUNCH-sheet.png" id="3_ewgl8"]
 [ext_resource type="Texture2D" uid="uid://l127ov8y4vec" path="res://characters/hans/habanerohansfrontwalk.png" id="4_h5opq"]
 [ext_resource type="Texture2D" uid="uid://dv7yfnucbbokg" path="res://characters/hans/HabaneroHansSideWalk.png" id="5_dus6i"]
 [ext_resource type="Texture2D" uid="uid://bykkhk2u5mq8o" path="res://characters/hans/HabaneroHansSunglasses.png" id="6_gkhak"]
-[ext_resource type="Texture2D" uid="uid://413kwijru2me" path="res://enemies/fly/fly_frame_1.png" id="7_a8mn5"]
-[ext_resource type="Texture2D" uid="uid://bdgk5njd8cnhr" path="res://enemies/fly/fly_frame_2.png" id="8_4ooc8"]
-[ext_resource type="Texture2D" uid="uid://ch0o0s80pdghm" path="res://enemies/fly/fly_frame_3.png" id="9_e80h2"]
-[ext_resource type="Texture2D" uid="uid://dndolv0tkmcbu" path="res://enemies/fly/fly_frame_4.png" id="10_1hdx7"]
+[ext_resource type="Texture2D" uid="uid://413kwijru2me" path="res://enemies/fly/fly_angry_1.png" id="7_a8mn5"]
+[ext_resource type="Texture2D" uid="uid://bdgk5njd8cnhr" path="res://enemies/fly/fly_angry_2.png" id="8_4ooc8"]
+[ext_resource type="Texture2D" uid="uid://ch0o0s80pdghm" path="res://enemies/fly/fly_angry_3.png" id="9_e80h2"]
+[ext_resource type="Texture2D" uid="uid://dndolv0tkmcbu" path="res://enemies/fly/fly_angry_4.png" id="10_1hdx7"]
 
 [sub_resource type="Animation" id="Animation_58jt7"]
 resource_name = "HangryFlyEnter"
