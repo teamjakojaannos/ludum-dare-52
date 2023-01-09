@@ -18,8 +18,10 @@
 [ext_resource type="PackedScene" uid="uid://bqhicrodfpprn" path="res://gardener_room.tscn" id="11_f2dft"]
 [ext_resource type="PackedScene" uid="uid://7gs6wcaj8pjb" path="res://rooms/FlyIntroRoom.tscn" id="12_b8tr0"]
 [ext_resource type="PackedScene" uid="uid://ik8tjv87xdnw" path="res://rooms/SecondFlyRoom.tscn" id="13_r7sl1"]
+[ext_resource type="PackedScene" uid="uid://bkboy05kp1g0i" path="res://rooms/CarrotRoom.tscn" id="14_7einq"]
 [ext_resource type="Material" uid="uid://bt154vue6mixi" path="res://spawn_room.tres" id="15_4uxj0"]
 [ext_resource type="Texture2D" uid="uid://dblgq63hq7lg0" path="res://intro/intro_background_foreground.png" id="15_i6xyt"]
+[ext_resource type="Texture2D" uid="uid://c2a4h3bvilw26" path="res://enemies/spade/lapio.png" id="15_ogogp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ssns8"]
 radius = 0.01
@@ -150,6 +152,11 @@ _data = {
 "Intro": SubResource("Animation_tk3hk"),
 "RESET": SubResource("Animation_4ygop")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x80d8"]
+size = Vector2(36, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xbdnf"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_irlsu"]
 size = Vector2(512, 512)
@@ -369,14 +376,14 @@ metadata/_edit_group_ = true
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_ro1hx")
 
-[node name="GardenerRoomTransition" type="Area2D" parent="Rooms/SpawnRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
+[node name="BottomTransition" type="Area2D" parent="Rooms/SpawnRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
 position = Vector2(272, 171)
 script = ExtResource("4_1hoxw")
 From = NodePath("..")
-To = NodePath("../../GardenerRoom")
-Entrypoint = NodePath("../../GardenerRoom/GardenerEntryTop")
+To = NodePath("../../CarrotRoom")
+Entrypoint = NodePath("../../CarrotRoom/EntryLeft")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/SpawnRoom/GardenerRoomTransition"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/SpawnRoom/BottomTransition"]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_ro1hx")
 
@@ -518,6 +525,39 @@ centered = false
 [node name="CameraOverlay2" type="Sprite2D" parent="CameraOverlay"]
 texture = ExtResource("15_i6xyt")
 centered = false
+
+[node name="CarrotRoom" parent="Rooms" instance=ExtResource("14_7einq")]
+
+[node name="LeftTransition" type="Area2D" parent="Rooms/CarrotRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
+script = ExtResource("4_1hoxw")
+From = NodePath("..")
+To = NodePath("../../SpawnRoom")
+Entrypoint = NodePath("../../SpawnRoom/SpawnRoomEntryBottom")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/CarrotRoom/LeftTransition"]
+position = Vector2(-176, -158)
+shape = SubResource("RectangleShape2D_x80d8")
+
+[node name="RightTransition" type="Area2D" parent="Rooms/CarrotRoom" node_paths=PackedStringArray("From", "To", "Entrypoint")]
+script = ExtResource("4_1hoxw")
+From = NodePath("..")
+To = NodePath("../../GardenerRoom")
+Entrypoint = NodePath("../../GardenerRoom/GardenerEntryTop")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/CarrotRoom/RightTransition"]
+position = Vector2(589, -132)
+shape = SubResource("RectangleShape2D_xbdnf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooms/CarrotRoom/RightTransition"]
+position = Vector2(590, -134)
+scale = Vector2(1.11458, 0.71875)
+texture = ExtResource("15_ogogp")
+
+[node name="EntryLeft" type="Marker2D" parent="Rooms/CarrotRoom"]
+position = Vector2(-175, -111)
+
+[node name="EntryRight" type="Marker2D" parent="Rooms/CarrotRoom"]
+position = Vector2(587, -97)
 
 [node name="Overlay" type="Sprite2D" parent="."]
 visible = false
