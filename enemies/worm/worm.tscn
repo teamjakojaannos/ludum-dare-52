@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://cb5hae6d1sok4"]
+
+[ext_resource type="Texture2D" uid="uid://djeiabt46sq0q" path="res://placeholder.png" id="1_ljeem"]
+[ext_resource type="Script" path="res://enemies/worm/Worm.cs" id="1_paxln"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k2fjn"]
+size = Vector2(22, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pxlec"]
+animations = [{
+"frames": [ExtResource("1_ljeem")],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Worm" type="Area2D" node_paths=PackedStringArray("walk_timer", "pause_timer")]
+collision_layer = 4
+script = ExtResource("1_paxln")
+walk_timer = NodePath("WalkTimer")
+pause_timer = NodePath("PauseTimer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 2)
+shape = SubResource("RectangleShape2D_k2fjn")
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, 2)
+scale = Vector2(0.1875, 0.1875)
+frames = SubResource("SpriteFrames_pxlec")
+
+[node name="PauseTimer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
+[node name="WalkTimer" type="Timer" parent="."]
+wait_time = 4.5
+one_shot = true

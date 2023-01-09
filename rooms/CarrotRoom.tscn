@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkboy05kp1g0i"]
+[gd_scene load_steps=13 format=3 uid="uid://bkboy05kp1g0i"]
 
 [ext_resource type="Script" path="res://Room.cs" id="1_vk371"]
 [ext_resource type="TileSet" uid="uid://bkr6fw3ilgafx" path="res://greenery/greenery_tile_set.tres" id="2_pjyup"]
+[ext_resource type="PackedScene" uid="uid://cb5hae6d1sok4" path="res://enemies/worm/worm.tscn" id="3_dqf0b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bcp2m"]
 size = Vector2(869, 352)
@@ -17,6 +18,30 @@ size = Vector2(25.75, 871)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t7d3b"]
 size = Vector2(25.75, 872.75)
+
+[sub_resource type="Curve2D" id="Curve2D_70kmy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -81, 17, 0, 0, 0, 0, -82, 112, 0, 0, 0, 0, -173, 114, 0, 0, 0, 0, -173, 18, 0, 0, 0, 0, -81, 17)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_7gbs5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 95, -46, 0, 0, 0, 0, 54, -46, 0, 0, 0, 0, 46, 115, 0, 0, 0, 0, 150, 110, 0, 0, 0, 0, 47, 111, 0, 0, 0, 0, 46, -52, 0, 0, 0, 0, 100, -51, 0, 0, 0, 0, 150, -54, 0, 0, 0, 0, 100, -51, 0, 0, 0, 0, 95, -46)
+}
+point_count = 10
+
+[sub_resource type="Curve2D" id="Curve2D_61qc6"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 128, -56, 0, 0, 0, 0, 269, -45, 0, 0, 0, 0, 271, 116, 0, 0, 0, 0, 136, 107, 0, 0, 0, 0, 267, 111, 0, 0, 0, 0, 272, -54, 0, 0, 0, 0, 160, -47, 0, 0, 0, 0, 128, -56)
+}
+point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_e4gsf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 273, -12, 0, 0, 0, 0, 273, -48, 0, 0, 0, 0, 309, -47, 0, 0, 0, 0, 273, -48, 0, 0, 0, 0, 273, -12)
+}
+point_count = 5
 
 [node name="CarrotRoom" type="Node2D"]
 script = ExtResource("1_vk371")
@@ -37,6 +62,7 @@ layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(131067, 65536, 5, 196603, 65536, 6, 131068, 131072, 5, 196604, 131072, 6, -262149, 0, 6, -196613, 0, 6, -131077, 0, 6, -65541, 0, 6, -327678, 0, 6, -262142, 0, 6, 262145, 0, 6, 393213, 327680, 2, -3, 0, 6, 131070, 65536, 5, 196606, 65536, 6, 131071, 131072, 5, 196607, 131072, 6, -5, 0, 6, -4, 0, 6, -262151, 0, 6, -196615, 0, 6, -131079, 0, 6, -65543, 0, 6, -7, 0, 6, 65529, 0, 6, 131065, 0, 6, 196601, 0, 6, 262137, 0, 6, 327673, 0, 6, 393209, 0, 6, 393210, 0, 6, 393211, 0, 6, 327675, 0, 6, 327676, 0, 6, 327677, 0, 6, 327678, 0, 6, 327679, 0, 6, 262144, 0, 6, 262146, 0, 6, 262142, 327680, 2, 131074, 327680, 2, -65534, 327680, 2, -196606, 0, 6, -196607, 0, 6, -196608, 0, 6, -2, 0, 6, -1, 0, 6, -65536, 0, 6, -131072, 0, 6, -196603, 0, 6, -262139, 0, 6, -327675, 0, 6, -196602, 0, 6, -196601, 0, 6, 131072, 0, 6, -65531, 0, 6, -65530, 0, 6, -65529, 0, 6, -262137, 0, 6, -262135, 0, 6, -65527, 0, 6, 131077, 0, 6, 131078, 0, 6, 131079, 0, 6, -65526, 0, 6, 131081, 0, 6, 131082, 0, 6, 6, 65536, 5, 65542, 65536, 6, 7, 131072, 5, 65543, 131072, 6, -196599, 0, 6, -196598, 0, 6, -196597, 0, 6, -327673, 0, 6, -327672, 0, 6, -327671, 0, 6, 262149, 0, 6, 262150, 0, 6, 262151, 0, 6, 262152, 0, 6, 262153, 0, 6, 262154, 0, 6, 262155, 0, 6, 10, 65536, 5, 65546, 65536, 6, 11, 131072, 5, 65547, 131072, 6, -65525, 0, 6, 131083, 0, 6)
 
 [node name="Bounds" type="Area2D" parent="."]
+visible = false
 
 [node name="Shape" type="CollisionShape2D" parent="Bounds"]
 position = Vector2(178.5, 16)
@@ -61,3 +87,66 @@ shape = SubResource("RectangleShape2D_0qfr2")
 position = Vector2(178.625, -173.001)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_t7d3b")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Worm_1" parent="Enemies" node_paths=PackedStringArray("path") instance=ExtResource("3_dqf0b")]
+position = Vector2(-82, 14)
+path = NodePath("../Path_1")
+
+[node name="Path_1" type="Path2D" parent="Enemies"]
+visible = false
+curve = SubResource("Curve2D_70kmy")
+
+[node name="Follow" type="PathFollow2D" parent="Enemies/Path_1"]
+position = Vector2(-81, 17)
+rotation = 1.58132
+
+[node name="Worm_2" parent="Enemies" node_paths=PackedStringArray("path") instance=ExtResource("3_dqf0b")]
+position = Vector2(48, -49)
+path = NodePath("../Path_2")
+allow_reverse_travel = false
+
+[node name="Path_2" type="Path2D" parent="Enemies"]
+visible = false
+curve = SubResource("Curve2D_7gbs5")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path_2"]
+position = Vector2(95, -46)
+rotation = 3.14159
+
+[node name="Worm_3" parent="Enemies" node_paths=PackedStringArray("path") instance=ExtResource("3_dqf0b")]
+position = Vector2(177, -50)
+path = NodePath("../Path_3")
+
+[node name="Path_3" type="Path2D" parent="Enemies"]
+visible = false
+curve = SubResource("Curve2D_61qc6")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path_3"]
+position = Vector2(128, -56)
+rotation = 0.0778565
+
+[node name="Worm_4" parent="Enemies" node_paths=PackedStringArray("path", "walk_timer", "pause_timer") instance=ExtResource("3_dqf0b")]
+position = Vector2(272, -16)
+path = NodePath("../Path_4")
+speed = 25.0
+walk_timer = NodePath("CustomWalkTimer")
+pause_timer = NodePath("CustomWaitTimer")
+allow_timer_randomization = false
+allow_reverse_travel = false
+
+[node name="CustomWalkTimer" type="Timer" parent="Enemies/Worm_4"]
+wait_time = 1.25
+one_shot = true
+
+[node name="CustomWaitTimer" type="Timer" parent="Enemies/Worm_4"]
+wait_time = 10.0
+one_shot = true
+
+[node name="Path_4" type="Path2D" parent="Enemies"]
+curve = SubResource("Curve2D_e4gsf")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path_4"]
+position = Vector2(273, -12)
+rotation = -1.5708
