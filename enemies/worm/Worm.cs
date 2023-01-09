@@ -124,7 +124,16 @@ public partial class Worm : Area2D {
     }
 
     private void update_sprite(Vector2 old_pos, Vector2 new_pos) {
-        this.animation.FlipH = old_pos.x > new_pos.x;
+        var x_diff = old_pos.x - new_pos.x;
+        var y_diff = old_pos.y - new_pos.y;
+        if (Math.Abs(y_diff) > Math.Abs(x_diff)) {
+            this.animation.Animation = y_diff > 0
+                ? "up"
+                : "down";
+        } else {
+            this.animation.Animation = "side";
+            this.animation.FlipH = old_pos.x > new_pos.x;
+        }
     }
 
     private void continue_journey() {
