@@ -173,10 +173,10 @@ public partial class Player : CharacterBody2D {
 
         var original_modulate = Modulate;
         GetTree().CreateTimer(interval / 2.0f, false).Timeout += () => {
-            Modulate = new Color(0.0f, 0.0f, 0.0f);
+            sprite.Modulate = new Color(0.0f, 0.0f, 0.0f);
 
             GetTree().CreateTimer(interval / 2.0f, false).Timeout += () => {
-                Modulate = original_modulate;
+                sprite.Modulate = original_modulate;
 
                 Blink(--blinks, interval);
             };
