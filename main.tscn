@@ -665,7 +665,6 @@ scale = Vector2(10000, 10000)
 texture = SubResource("PlaceholderTexture2D_irlsu")
 
 [node name="IntroSequence" type="AnimatedSprite2D" parent="."]
-visible = false
 z_index = 91
 position = Vector2(-204, -52)
 frames = SubResource("SpriteFrames_mqq3p")
@@ -694,6 +693,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Container"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
